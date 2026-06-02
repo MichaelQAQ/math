@@ -816,6 +816,11 @@
         margin: 14px 0 16px;
       }
 
+      .schedule-section {
+        break-before: page;
+        page-break-before: always;
+      }
+
       .brief {
         min-height: 98px;
         padding: 10px 12px;
@@ -834,6 +839,8 @@
 
       .section-heading {
         margin-bottom: 8px;
+        break-after: avoid;
+        page-break-after: avoid;
       }
 
       .section-heading h2 {
@@ -998,7 +1005,7 @@
       </article>
     </section>
 
-    <section aria-labelledby="schedule-title">
+    <section class="schedule-section" aria-labelledby="schedule-title">
       <div class="section-heading">
         <h2 id="schedule-title">课程安排</h2>
         <p>完成当天学习后勾选状态框，进度将自动保存于本设备。</p>
