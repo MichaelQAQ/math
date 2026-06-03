@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>二年级数学教材 - 前两个单元</title>
+  <meta name="description" content="Learning Mathematics 2 前两个单元 HTML 阅读版：Numbers within 1000 与 Adding Numbers within 1000。">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1f2933;
+      --muted: #60717b;
+      --paper: #fffdf8;
+      --canvas: #f3eee4;
+      --line: rgba(31, 41, 51, .14);
+      --line-strong: rgba(31, 41, 51, .24);
+      --teal: #147d76;
+      --coral: #c94f45;
+      --gold: #d39b2f;
+      --blue: #2f607d;
+      --green: #5e8057;
+      --shadow: 0 18px 54px rgba(31, 41, 51, .13);
+      --page-width: min(100%, 840px);
+      --reader-scale: 1;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--canvas);
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background:
+        linear-gradient(135deg, rgba(20, 125, 118, .07) 0 16%, transparent 16% 100%),
+        linear-gradient(180deg, #fffaf0 0%, var(--canvas) 58%, #eaf1ec 100%);
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      border: 0;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 253, 248, .92);
+      backdrop-filter: blur(16px);
+    }
+
+    .topbar-inner {
+      width: min(1240px, calc(100% - 36px));
+      min-height: 66px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 850;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 auto;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, transparent 42%, rgba(255, 253, 248, .96) 43% 56%, transparent 57%),
+        linear-gradient(135deg, var(--teal), var(--gold));
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .7);
+    }
+
+    .brand-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link,
+    .control-button,
+    .unit-tab {
+      min-height: 38px;
+      padding: 8px 12px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink);
+      background: rgba(255, 253, 248, .84);
+      font-weight: 760;
+      line-height: 1.1;
+    }
+
+    .control-button {
+      width: 38px;
+      padding: 0;
+      font-size: 1.12rem;
+    }
+
+    .nav-link:hover,
+    .control-button:hover,
+    .unit-tab:hover {
+      border-color: rgba(20, 125, 118, .5);
+      background: #fff;
+    }
+
+    .unit-tab.active {
+      color: #fffdf8;
+      border-color: transparent;
+      background: var(--teal);
+    }
+
+    .layout {
+      width: min(1240px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 26px 0 52px;
+      display: grid;
+      grid-template-columns: 270px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 88px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .title-block,
+    .outline {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 253, 248, .9);
+      box-shadow: 0 14px 38px rgba(31, 41, 51, .08);
+    }
+
+    .title-block {
+      padding: 18px;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--coral);
+      font-size: .78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(1.6rem, 3vw, 2.3rem);
+      line-height: 1.08;
+      font-weight: 900;
+    }
+
+    .summary {
+      margin-top: 12px;
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    .stats {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .stat {
+      min-height: 68px;
+      padding: 10px;
+      border-radius: 8px;
+      color: #fffdf8;
+      background: var(--blue);
+    }
+
+    .stat:nth-child(2) {
+      background: var(--green);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.45rem;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 7px;
+      font-size: .82rem;
+      font-weight: 760;
+    }
+
+    .outline {
+      padding: 12px;
+    }
+
+    .outline h2 {
+      padding: 6px 6px 11px;
+      font-size: .95rem;
+      color: var(--muted);
+    }
+
+    .outline-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .outline a {
+      min-height: 44px;
+      padding: 10px;
+      border-radius: 8px;
+      display: grid;
+      gap: 3px;
+      border: 1px solid transparent;
+      background: rgba(243, 238, 228, .74);
+      font-weight: 850;
+    }
+
+    .outline a:hover {
+      border-color: rgba(20, 125, 118, .4);
+      background: #fff;
+    }
+
+    .outline small {
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 760;
+    }
+
+    .reader {
+      display: grid;
+      justify-items: center;
+      gap: 24px;
+    }
+
+    .unit-heading {
+      width: min(100%, calc(var(--page-width) * var(--reader-scale)));
+      padding: 18px 20px;
+      border-left: 6px solid var(--teal);
+      background: rgba(255, 253, 248, .82);
+      box-shadow: 0 12px 32px rgba(31, 41, 51, .08);
+    }
+
+    .unit-heading.unit-two {
+      border-color: var(--coral);
+    }
+
+    .unit-heading h2 {
+      font-size: clamp(1.25rem, 3vw, 1.9rem);
+      line-height: 1.16;
+    }
+
+    .unit-heading p {
+      margin-top: 7px;
+      color: var(--muted);
+      font-weight: 680;
+    }
+
+    .page {
+      width: min(100%, calc(var(--page-width) * var(--reader-scale)));
+      margin: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      transform-origin: top center;
+    }
+
+    .page img {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: var(--paper);
+    }
+
+    .page figcaption {
+      min-height: 42px;
+      padding: 10px 14px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: .88rem;
+      font-weight: 760;
+      background: #fffdf8;
+    }
+
+    .reader.filtered .page,
+    .reader.filtered .unit-heading {
+      display: none;
+    }
+
+    .reader.filtered[data-active-unit="1"] [data-unit="1"],
+    .reader.filtered[data-active-unit="2"] [data-unit="2"] {
+      display: block;
+    }
+
+    .reader.filtered[data-active-unit="1"] .unit-heading[data-unit="1"],
+    .reader.filtered[data-active-unit="2"] .unit-heading[data-unit="2"] {
+      display: block;
+    }
+
+    @media (max-width: 960px) {
+      .topbar-inner {
+        grid-template-columns: 1fr;
+        padding: 10px 0;
+      }
+
+      .controls {
+        justify-content: flex-start;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        order: 2;
+        position: static;
+      }
+
+      .reader {
+        order: 1;
+      }
+
+      .title-block,
+      .outline {
+        box-shadow: none;
+      }
+
+      .outline-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .topbar-inner,
+      .layout {
+        width: min(100% - 24px, 1240px);
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        width: 100%;
+      }
+
+      .nav-link,
+      .unit-tab {
+        min-width: 0;
+        padding: 8px 7px;
+        font-size: .84rem;
+      }
+
+      .control-button {
+        width: auto;
+      }
+
+      .outline-list,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .page figcaption {
+        display: grid;
+        gap: 3px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../" aria-label="返回小学数学专区">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text">二年级数学教材 · 前两个单元</span>
+      </a>
+      <nav class="controls" aria-label="阅读控制">
+        <a class="nav-link" href="../">小学数学</a>
+        <button class="unit-tab active" type="button" data-filter="all">全部</button>
+        <button class="unit-tab" type="button" data-filter="1">Unit 1</button>
+        <button class="unit-tab" type="button" data-filter="2">Unit 2</button>
+        <button class="control-button" type="button" data-zoom="-1" aria-label="缩小">-</button>
+        <button class="control-button" type="button" data-zoom="1" aria-label="放大">+</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <section class="title-block" aria-labelledby="book-title">
+        <p class="eyebrow">Learning Mathematics 2</p>
+        <h1 id="book-title">前两个单元 HTML 阅读版</h1>
+        <p class="summary">Numbers within 1000 与 Adding Numbers within 1000，按原教材页序整理为连续阅读页面。</p>
+        <div class="stats" aria-label="页面统计">
+          <div class="stat">
+            <strong>2</strong>
+            <span>Units</span>
+          </div>
+          <div class="stat">
+            <strong>22</strong>
+            <span>Pages</span>
+          </div>
+        </div>
+      </section>
+
+      <nav class="outline" aria-labelledby="outline-title">
+        <h2 id="outline-title">目录</h2>
+        <div class="outline-list">
+          <a href="#unit-1">
+            <span>Unit 1 · Numbers within 1000</span>
+            <small>书内页码 1-14</small>
+          </a>
+          <a href="#unit-2">
+            <span>Unit 2 · Adding Numbers within 1000</span>
+            <small>书内页码 15-22</small>
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <section class="reader" id="reader" aria-label="教材页面">
+      <header class="unit-heading" id="unit-1" data-unit="1">
+        <h2>Unit 1 · Numbers within 1000</h2>
+        <p>Recognise, compare, arrange and complete number patterns within 1000.</p>
+      </header>
+
+      <figure class="page" id="page-1" data-unit="1">
+        <img src="assets/pages/page-018.jpg" alt="Unit 1, book page 1" width="1324" height="1853" fetchpriority="high">
+        <figcaption><span>Unit 1</span><span>Book page 1 · PDF page 18</span></figcaption>
+      </figure>
+      <figure class="page" id="page-2" data-unit="1">
+        <img src="assets/pages/page-019.jpg" alt="Unit 1, book page 2" width="1322" height="1853" loading="lazy">
+        <figcaption><span>Unit 1</span><span>Book page 2 · PDF page 19</span></figcaption>
+      </figure>
+      <figure class="page" id="page-3" data-unit="1">
+        <img src="assets/pages/page-020.jpg" alt="Unit 1, book page 3" width="1326" height="1849" loading="lazy">
+        <figcaption><span>Unit 1</span><span>Book page 3 · PDF page 20</span></figcaption>
+      </figure>
+      <figure class="page" id="page-4" data-unit="1">
+        <img src="assets/pages/page-021.jpg" alt="Unit 1, book page 4" width="1324" height="1849" loading="lazy">
+        <figcaption><span>Unit 1</span><span>Book page 4 · PDF page 21</span></figcaption>
+      </figure>
+      <figure class="page" id="page-5" data-unit="1">
+        <img src="assets/pages/page-022.jpg" alt="Unit 1, book page 5" width="1322" height="1853" loading="lazy">
+        <figcaption><span>Unit 1</span><span>Book page 5 · PDF page 22</span></figcaption>
+      </figure>
+      <figure class="page" id="page-6" data-unit="1">
+        <img src="assets/pages/page-023.jpg" alt="Unit 1, book page 6" width="1324" height="1849" loading="lazy">
+        <figcaption><span>Unit 1</span><span>Book page 6 · PDF page 23</span></figcaption>
+      </figure>
+      <figure class="page" id="page-7" data-unit="1">
+        <img src="assets/pages/page-024.jpg" alt="Unit 1, book page 7" width="1324" height="1849" loading="lazy">
+        <figcaption><span>Unit 1</span><span>Book page 7 · PDF page 24</span></figcaption>
+      </figure>
+      <figure class="page" id="page-8" data-unit="1">
+        <img src="assets/pages/page-025.jpg" alt="Unit 1, book page 8" width="1324" height="1849" loading="lazy">
+        <figcaption><span>Unit 1</span><span>Book page 8 · PDF page 25</span></figcaption>
+      </figure>
+      <figure class="page" id="page-9" data-unit="1">
+        <img src="assets/pages/page-026.jpg" alt="Unit 1, book page 9" width="1324" height="1849" loading="lazy">
+        <figcaption><span>Unit 1</span><span>Book page 9 · PDF page 26</span></figcaption>
+      </figure>
+      <figure class="page" id="page-10" data-unit="1">
+        <img src="assets/pages/page-027.jpg" alt="Unit 1, book page 10" width="1324" height="1849" loading="lazy">
+        <figcaption><span>Unit 1</span><span>Book page 10 · PDF page 27</span></figcaption>
+      </figure>
+      <figure class="page" id="page-11" data-unit="1">
+        <img src="assets/pages/page-028.jpg" alt="Unit 1, book page 11" width="1324" height="1849" loading="lazy">
+        <figcaption><span>Unit 1</span><span>Book page 11 · PDF page 28</span></figcaption>
+      </figure>
+      <figure class="page" id="page-12" data-unit="1">
+        <img src="assets/pages/page-029.jpg" alt="Unit 1, book page 12" width="1324" height="1849" loading="lazy">
+        <figcaption><span>Unit 1</span><span>Book page 12 · PDF page 29</span></figcaption>
+      </figure>
+      <figure class="page" id="page-13" data-unit="1">
+        <img src="assets/pages/page-030.jpg" alt="Unit 1, book page 13" width="1324" height="1849" loading="lazy">
+        <figcaption><span>Unit 1</span><span>Book page 13 · PDF page 30</span></figcaption>
+      </figure>
+      <figure class="page" id="page-14" data-unit="1">
+        <img src="assets/pages/page-031.jpg" alt="Unit 1, book page 14" width="1324" height="1849" loading="lazy">
+        <figcaption><span>Unit 1</span><span>Book page 14 · PDF page 31</span></figcaption>
+      </figure>
+
+      <header class="unit-heading unit-two" id="unit-2" data-unit="2">
+        <h2>Unit 2 · Adding Numbers within 1000</h2>
+        <p>Add numbers mentally, without regrouping, and by regrouping ones, tens or hundreds.</p>
+      </header>
+
+      <figure class="page" id="page-15" data-unit="2">
+        <img src="assets/pages/page-032.jpg" alt="Unit 2, book page 15" width="1324" height="1849" loading="lazy">
+        <figcaption><span>Unit 2</span><span>Book page 15 · PDF page 32</span></figcaption>
+      </figure>
+      <figure class="page" id="page-16" data-unit="2">
+        <img src="assets/pages/page-033.jpg" alt="Unit 2, book page 16" width="1324" height="1849" loading="lazy">
+        <figcaption><span>Unit 2</span><span>Book page 16 · PDF page 33</span></figcaption>
+      </figure>
+      <figure class="page" id="page-17" data-unit="2">
+        <img src="assets/pages/page-034.jpg" alt="Unit 2, book page 17" width="1324" height="1849" loading="lazy">
+        <figcaption><span>Unit 2</span><span>Book page 17 · PDF page 34</span></figcaption>
+      </figure>
+      <figure class="page" id="page-18" data-unit="2">
+        <img src="assets/pages/page-035.jpg" alt="Unit 2, book page 18" width="1324" height="1849" loading="lazy">
+        <figcaption><span>Unit 2</span><span>Book page 18 · PDF page 35</span></figcaption>
+      </figure>
+      <figure class="page" id="page-19" data-unit="2">
+        <img src="assets/pages/page-036.jpg" alt="Unit 2, book page 19" width="1324" height="1849" loading="lazy">
+        <figcaption><span>Unit 2</span><span>Book page 19 · PDF page 36</span></figcaption>
+      </figure>
+      <figure class="page" id="page-20" data-unit="2">
+        <img src="assets/pages/page-037.jpg" alt="Unit 2, book page 20" width="1324" height="1849" loading="lazy">
+        <figcaption><span>Unit 2</span><span>Book page 20 · PDF page 37</span></figcaption>
+      </figure>
+      <figure class="page" id="page-21" data-unit="2">
+        <img src="assets/pages/page-038.jpg" alt="Unit 2, book page 21" width="1324" height="1849" loading="lazy">
+        <figcaption><span>Unit 2</span><span>Book page 21 · PDF page 38</span></figcaption>
+      </figure>
+      <figure class="page" id="page-22" data-unit="2">
+        <img src="assets/pages/page-039.jpg" alt="Unit 2, book page 22" width="1324" height="1849" loading="lazy">
+        <figcaption><span>Unit 2</span><span>Book page 22 · PDF page 39</span></figcaption>
+      </figure>
+    </section>
+  </main>
+
+  <script>
+    const reader = document.querySelector("#reader");
+    const tabs = document.querySelectorAll("[data-filter]");
+    const zoomButtons = document.querySelectorAll("[data-zoom]");
+    let zoomLevel = 0;
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const filter = tab.dataset.filter;
+        tabs.forEach((item) => item.classList.toggle("active", item === tab));
+        if (filter === "all") {
+          reader.classList.remove("filtered");
+          reader.removeAttribute("data-active-unit");
+          return;
+        }
+        reader.classList.add("filtered");
+        reader.dataset.activeUnit = filter;
+        document.querySelector(`#unit-${filter}`).scrollIntoView({ block: "start" });
+      });
+    });
+
+    zoomButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        zoomLevel = Math.max(-2, Math.min(3, zoomLevel + Number(button.dataset.zoom)));
+        const scale = 1 + zoomLevel * 0.11;
+        document.documentElement.style.setProperty("--reader-scale", scale.toFixed(2));
+      });
+    });
+  </script>
+</body>
+</html>
