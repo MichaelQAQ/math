@@ -1,0 +1,1417 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>暑假学习计划 - 唐老师的学习小屋</title>
+  <meta name="description" content="简洁专业的五六年级数学暑假学习计划安排表：三周共十五天，每日九十分钟，包含任务、活动、达成标准与进度记录。">
+  <style>
+    :root {
+      --canvas: #f3f1eb;
+      --sheet: #fffefb;
+      --ink: #172536;
+      --ink-soft: #4e5e6d;
+      --muted: #788391;
+      --rule: #d9d9d1;
+      --rule-strong: #c7c7bc;
+      --navy: #142f4b;
+      --navy-soft: #eaf0f5;
+      --gold: #a67d3d;
+      --gold-soft: #f5efe4;
+      --sage: #547568;
+      --sage-soft: #edf3ef;
+      --blue: #365c82;
+      --blue-soft: #eaf1f7;
+      --shadow: 0 22px 70px rgba(22, 35, 50, 0.09);
+      --sans: "PingFang SC", "Hiragino Sans GB", "Source Han Sans SC", "Microsoft YaHei", Arial, sans-serif;
+      --serif: "Songti SC", "STSong", "Source Han Serif SC", serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.55;
+      background:
+        linear-gradient(90deg, rgba(20, 47, 75, 0.025) 1px, transparent 1px),
+        linear-gradient(rgba(20, 47, 75, 0.025) 1px, transparent 1px),
+        var(--canvas);
+      background-size: 42px 42px, 42px 42px, auto;
+    }
+
+    a,
+    button,
+    input {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      width: min(1320px, calc(100% - 42px));
+      margin: 24px auto 14px;
+    }
+
+    .toolbar a,
+    .toolbar button {
+      min-height: 44px;
+      padding: 0 18px;
+      border: 1px solid var(--rule-strong);
+      border-radius: 10px;
+      color: var(--navy);
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+    }
+
+    .toolbar .print {
+      border-color: var(--navy);
+      color: #fff;
+      background: var(--navy);
+    }
+
+    .toolbar a:hover,
+    .toolbar button:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .toolbar .print:hover {
+      border-color: #244c72;
+      color: #fff;
+      background: #244c72;
+    }
+
+    .sheet {
+      width: min(1320px, calc(100% - 42px));
+      margin: 0 auto 38px;
+      padding: clamp(28px, 4vw, 48px);
+      border: 1px solid #dedcd4;
+      border-radius: 12px;
+      background: var(--sheet);
+      box-shadow: var(--shadow);
+    }
+
+    .masthead {
+      display: grid;
+      grid-template-columns: minmax(460px, 1fr) 320px;
+      gap: 34px;
+      padding-bottom: 31px;
+      border-bottom: 2px solid var(--navy);
+    }
+
+    .edition {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0 0 23px;
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .edition::before {
+      width: 42px;
+      height: 1px;
+      background: var(--gold);
+      content: "";
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--navy);
+      font-family: var(--serif);
+      font-size: clamp(36px, 4.6vw, 55px);
+      font-weight: 700;
+      letter-spacing: 0.035em;
+      line-height: 1.22;
+    }
+
+    h1 span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--gold);
+      font-family: var(--sans);
+      font-size: 0.36em;
+      font-weight: 700;
+      letter-spacing: 0.36em;
+    }
+
+    .subtitle {
+      max-width: 680px;
+      margin: 19px 0 0;
+      color: var(--ink-soft);
+      font-size: 16px;
+      letter-spacing: 0.04em;
+    }
+
+    .identity {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 26px;
+      margin-top: 31px;
+    }
+
+    .identity label {
+      display: flex;
+      align-items: flex-end;
+      gap: 9px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .identity input {
+      width: 108px;
+      padding: 0 3px 5px;
+      border: 0;
+      border-bottom: 1px solid var(--rule-strong);
+      border-radius: 0;
+      color: var(--ink);
+      background: transparent;
+      outline: none;
+    }
+
+    .identity .period input {
+      width: 170px;
+    }
+
+    .summary {
+      align-self: start;
+      padding: 25px 24px 23px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--navy);
+    }
+
+    .summary-label {
+      color: rgba(255, 255, 255, 0.67);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .progress-number {
+      display: flex;
+      align-items: baseline;
+      gap: 9px;
+      margin: 13px 0 3px;
+    }
+
+    #completedCount {
+      font-size: 50px;
+      font-weight: 300;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .progress-number span:last-child {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 15px;
+    }
+
+    .progress-bar {
+      height: 5px;
+      margin: 20px 0 21px;
+      overflow: hidden;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .progress-bar span {
+      display: block;
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: #d2b477;
+      transition: width 240ms ease;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 12px;
+    }
+
+    .summary-grid strong {
+      display: block;
+      color: #fff;
+      font-size: 19px;
+      font-weight: 600;
+    }
+
+    .summary-grid small {
+      color: rgba(255, 255, 255, 0.64);
+      font-size: 12px;
+    }
+
+    .principles {
+      display: grid;
+      grid-template-columns: 1.02fr 1.16fr 1fr 1fr;
+      gap: 12px;
+      margin: 26px 0 31px;
+    }
+
+    .brief {
+      min-height: 151px;
+      padding: 18px 19px 17px;
+      border: 1px solid var(--rule);
+      border-top: 3px solid var(--gold);
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    .brief:nth-child(2) {
+      border-top-color: var(--blue);
+    }
+
+    .brief:nth-child(3) {
+      border-top-color: var(--sage);
+    }
+
+    .brief:nth-child(4) {
+      border-top-color: var(--navy);
+    }
+
+    .brief h2 {
+      margin: 0 0 11px;
+      color: var(--navy);
+      font-size: 16px;
+      font-weight: 650;
+      letter-spacing: 0.08em;
+    }
+
+    .brief ul {
+      display: grid;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: var(--ink-soft);
+      font-size: 13px;
+    }
+
+    .brief li {
+      display: flex;
+      gap: 8px;
+    }
+
+    .brief li::before {
+      width: 4px;
+      height: 4px;
+      flex: 0 0 auto;
+      margin-top: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      content: "";
+    }
+
+    .duration {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 5px 12px;
+      color: var(--ink-soft);
+      font-size: 13px;
+    }
+
+    .duration strong {
+      color: var(--navy);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin: 0 0 17px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      color: var(--navy);
+      font-family: var(--serif);
+      font-size: 27px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .section-heading p {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .week {
+      margin-bottom: 13px;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+      border-radius: 7px;
+    }
+
+    .week-header {
+      display: grid;
+      grid-template-columns: 205px 1fr auto;
+      align-items: center;
+      gap: 18px;
+      min-height: 60px;
+      padding: 10px 19px;
+      background: var(--blue-soft);
+    }
+
+    .week.two .week-header {
+      background: var(--sage-soft);
+    }
+
+    .week.three .week-header {
+      background: var(--gold-soft);
+    }
+
+    .week-title {
+      color: var(--navy);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .week-title small {
+      display: block;
+      margin-top: 1px;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+
+    .week.two .week-title small {
+      color: var(--sage);
+    }
+
+    .week.three .week-title small {
+      color: var(--gold);
+    }
+
+    .week-goal {
+      color: var(--ink-soft);
+      font-size: 13px;
+    }
+
+    .week-hours {
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 650;
+      letter-spacing: 0.05em;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 940px;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    col.day {
+      width: 74px;
+    }
+
+    col.topic {
+      width: 175px;
+    }
+
+    col.focus {
+      width: 253px;
+    }
+
+    col.practice {
+      width: 221px;
+    }
+
+    col.result {
+      width: auto;
+    }
+
+    col.check {
+      width: 66px;
+    }
+
+    thead th {
+      height: 41px;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--rule);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: 0.1em;
+      text-align: left;
+    }
+
+    thead th:last-child {
+      text-align: center;
+    }
+
+    tbody tr {
+      transition: background 160ms ease;
+    }
+
+    tbody tr.done {
+      background: #faf9f5;
+    }
+
+    td {
+      height: 69px;
+      padding: 10px;
+      border-bottom: 1px solid #edece6;
+      vertical-align: middle;
+      color: var(--ink-soft);
+      font-size: 13px;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    td.day {
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .topic-name {
+      display: block;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 650;
+    }
+
+    .topic-mark {
+      display: block;
+      margin-top: 2px;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .week.two .topic-mark {
+      color: var(--sage);
+    }
+
+    .week.three .topic-mark {
+      color: var(--gold);
+    }
+
+    .focus-list {
+      display: grid;
+      gap: 2px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .focus-list li::before {
+      margin-right: 8px;
+      color: var(--rule-strong);
+      content: "/";
+    }
+
+    td.practice strong {
+      display: block;
+      margin-bottom: 1px;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    td.result {
+      color: var(--ink);
+      font-size: 13px;
+    }
+
+    td.status {
+      text-align: center;
+    }
+
+    .check-label {
+      display: inline-grid;
+      place-items: center;
+      width: 25px;
+      height: 25px;
+      border: 1px solid var(--rule-strong);
+      border-radius: 5px;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .day-check {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+
+    .check-label::after {
+      width: 11px;
+      height: 6px;
+      border-bottom: 2px solid #fff;
+      border-left: 2px solid #fff;
+      opacity: 0;
+      transform: rotate(-45deg) translate(1px, -1px);
+      content: "";
+    }
+
+    .day-check:checked + .check-label {
+      border-color: var(--sage);
+      background: var(--sage);
+    }
+
+    .day-check:checked + .check-label::after {
+      opacity: 1;
+    }
+
+    .day-check:focus-visible + .check-label {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    .closing {
+      display: grid;
+      grid-template-columns: 1fr 1.04fr 0.82fr;
+      gap: 13px;
+      margin-top: 24px;
+    }
+
+    .closing-card {
+      padding: 20px 20px 18px;
+      border: 1px solid var(--rule);
+      border-radius: 7px;
+    }
+
+    .closing-card h2 {
+      margin: 0 0 12px;
+      color: var(--navy);
+      font-size: 17px;
+      font-weight: 650;
+      letter-spacing: 0.06em;
+    }
+
+    .closing-card ol {
+      display: grid;
+      gap: 6px;
+      margin: 0;
+      padding-left: 19px;
+      color: var(--ink-soft);
+      font-size: 13px;
+    }
+
+    .review-lines {
+      display: grid;
+      gap: 15px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .review-line {
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .reward {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: var(--ink-soft);
+      background: var(--gold-soft);
+    }
+
+    .reward strong {
+      display: block;
+      color: var(--navy);
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 600;
+    }
+
+    .reward p {
+      margin: 8px 0 0;
+      font-size: 13px;
+    }
+
+    .signature {
+      margin-top: 28px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(166, 125, 61, 0.32);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: 0.16em;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 1060px) {
+      .masthead {
+        grid-template-columns: 1fr;
+      }
+
+      .summary {
+        width: 100%;
+      }
+
+      .summary-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .principles,
+      .closing {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .reward {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 690px) {
+      .toolbar,
+      .sheet {
+        width: min(100% - 24px, 560px);
+      }
+
+      .toolbar {
+        margin-top: 14px;
+      }
+
+      .toolbar a,
+      .toolbar button {
+        flex: 1 1 160px;
+        min-width: 0;
+      }
+
+      .sheet {
+        padding: 23px 16px 25px;
+      }
+
+      .masthead {
+        gap: 23px;
+      }
+
+      .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      h1 {
+        font-size: 33px;
+      }
+
+      .identity {
+        gap: 16px;
+      }
+
+      .principles,
+      .closing {
+        grid-template-columns: 1fr;
+      }
+
+      .brief {
+        min-height: auto;
+      }
+
+      .reward {
+        grid-column: auto;
+      }
+
+      .week-header {
+        grid-template-columns: 1fr;
+        gap: 5px;
+        padding: 13px 15px;
+      }
+
+      table {
+        width: 100%;
+        min-width: 0;
+        display: block;
+      }
+
+      colgroup,
+      thead {
+        display: none;
+      }
+
+      tbody {
+        display: grid;
+        gap: 10px;
+        padding: 10px;
+      }
+
+      tr {
+        min-width: 0;
+        border: 1px solid var(--rule);
+        border-radius: 8px;
+        display: grid;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      td {
+        width: 100%;
+        min-width: 0;
+        min-height: 0;
+        height: auto;
+        padding: 11px 12px;
+        border: 0;
+        border-bottom: 1px solid var(--rule);
+        display: grid;
+        grid-template-columns: 86px minmax(0, 1fr);
+        gap: 10px;
+        text-align: left;
+      }
+
+      td:last-child {
+        border-bottom: 0;
+      }
+
+      td::before {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      td:nth-child(1)::before {
+        content: "日期";
+      }
+
+      td:nth-child(2)::before {
+        content: "学习主题";
+      }
+
+      td:nth-child(3)::before {
+        content: "核心任务";
+      }
+
+      td:nth-child(4)::before {
+        content: "实践活动";
+      }
+
+      td:nth-child(5)::before {
+        content: "完成标准";
+      }
+
+      td:nth-child(6)::before {
+        content: "状态";
+      }
+
+      td.day,
+      td.practice,
+      td.result,
+      td.status {
+        text-align: left;
+      }
+
+      td.status {
+        justify-items: start;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading p {
+        margin-top: 7px;
+      }
+
+      footer {
+        display: block;
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4 landscape;
+        margin: 10mm;
+      }
+
+      body {
+        background: #fff;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .toolbar {
+        display: none;
+      }
+
+      .sheet {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        box-shadow: none;
+      }
+
+      .masthead {
+        grid-template-columns: 1fr 275px;
+        gap: 22px;
+        padding-bottom: 18px;
+      }
+
+      h1 {
+        font-size: 37px;
+      }
+
+      .identity {
+        margin-top: 18px;
+      }
+
+      .summary {
+        padding: 17px 18px;
+      }
+
+      #completedCount {
+        font-size: 37px;
+      }
+
+      .progress-bar {
+        margin: 11px 0 13px;
+      }
+
+      .principles {
+        margin: 14px 0 16px;
+      }
+
+      .schedule-section {
+        break-before: page;
+        page-break-before: always;
+      }
+
+      .brief {
+        min-height: 98px;
+        padding: 10px 12px;
+      }
+
+      .brief h2 {
+        margin-bottom: 5px;
+        font-size: 13px;
+      }
+
+      .brief ul,
+      .duration {
+        font-size: 10px;
+        gap: 2px 8px;
+      }
+
+      .section-heading {
+        margin-bottom: 8px;
+        break-after: avoid;
+        page-break-after: avoid;
+      }
+
+      .section-heading h2 {
+        font-size: 20px;
+      }
+
+      .week {
+        margin-bottom: 7px;
+        break-inside: avoid;
+      }
+
+      .week-header {
+        min-height: 35px;
+        padding: 5px 12px;
+      }
+
+      .week-title {
+        font-size: 13px;
+      }
+
+      .week-title small,
+      .week-goal,
+      .week-hours {
+        font-size: 9px;
+      }
+
+      thead th {
+        height: 25px;
+        padding: 4px 6px;
+        font-size: 9px;
+      }
+
+      td {
+        height: 37px;
+        padding: 4px 6px;
+        font-size: 9px;
+      }
+
+      .topic-name {
+        font-size: 10px;
+      }
+
+      .topic-mark,
+      td.practice strong,
+      td.result,
+      td.day {
+        font-size: 9px;
+      }
+
+      .check-label {
+        width: 17px;
+        height: 17px;
+      }
+
+      .closing {
+        margin-top: 10px;
+      }
+
+      .closing-card {
+        padding: 9px 12px;
+      }
+
+      .closing-card h2 {
+        margin-bottom: 5px;
+        font-size: 12px;
+      }
+
+      .closing-card ol,
+      .reward p,
+      .review-lines {
+        gap: 3px;
+        font-size: 9px;
+      }
+
+      .reward strong {
+        font-size: 20px;
+      }
+
+      .signature {
+        margin-top: 8px;
+        font-size: 9px;
+      }
+
+      footer {
+        margin-top: 9px;
+        font-size: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar" aria-label="页面操作">
+    <a href="../">返回学习小屋</a>
+    <button type="button" id="resetProgress">清空完成记录</button>
+    <button type="button" class="print" id="printPlan">打印 / 导出 PDF</button>
+  </div>
+
+  <main class="sheet">
+    <header class="masthead">
+      <div>
+        <p class="edition">Summer Study Program / 2026</p>
+        <h1><span>GRADE 5-6 MATHEMATICS</span>暑假学习计划安排表</h1>
+        <p class="subtitle">三周共 15 天，每日专注学习 90 分钟。由基础概念走向模型应用，用稳定节奏完成一次系统、清晰而有成果的数学进阶。</p>
+        <div class="identity">
+          <label>学生姓名<input type="text" aria-label="学生姓名"></label>
+          <label>年级<input type="text" aria-label="年级"></label>
+          <label class="period">执行日期<input type="text" aria-label="执行日期"></label>
+        </div>
+      </div>
+
+      <aside class="summary" aria-label="计划摘要">
+        <div class="summary-label">Completion</div>
+        <div class="progress-number">
+          <strong id="completedCount">0</strong>
+          <span>/ 15 天完成</span>
+        </div>
+        <div class="progress-bar" aria-hidden="true"><span id="progressBar"></span></div>
+        <div class="summary-grid">
+          <div><strong>3</strong><small>学习周次</small></div>
+          <div><strong>15</strong><small>主题任务</small></div>
+          <div><strong>90 min</strong><small>每日投入</small></div>
+          <div><strong>22.5 h</strong><small>计划总量</small></div>
+        </div>
+      </aside>
+    </header>
+
+    <section class="principles" aria-label="计划说明">
+      <article class="brief">
+        <h2>学习目标</h2>
+        <ul>
+          <li>构建方程、分数、比例与百分数知识框架</li>
+          <li>掌握由题意到模型的分析路径</li>
+          <li>形成规范演算与复盘习惯</li>
+        </ul>
+      </article>
+
+      <article class="brief">
+        <h2>每日节奏 / 90 MIN</h2>
+        <div class="duration">
+          <strong>20 min</strong><span>概念梳理与例题理解</span>
+          <strong>40 min</strong><span>专题练习与建模表达</span>
+          <strong>20 min</strong><span>实践活动与思维拓展</span>
+          <strong>10 min</strong><span>订正归纳与明日预告</span>
+        </div>
+      </article>
+
+      <article class="brief">
+        <h2>执行原则</h2>
+        <ul>
+          <li>先理解关系，再列式计算</li>
+          <li>错题当天订正并说明原因</li>
+          <li>每周完成一次专题回顾</li>
+        </ul>
+      </article>
+
+      <article class="brief">
+        <h2>准备清单</h2>
+        <ul>
+          <li>专题本、错题本与直尺</li>
+          <li>彩色笔、计时器与草稿纸</li>
+          <li>安静固定的学习空间</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="schedule-section" aria-labelledby="schedule-title">
+      <div class="section-heading">
+        <h2 id="schedule-title">课程安排</h2>
+        <p>完成当天学习后勾选状态框，进度将自动保存于本设备。</p>
+      </div>
+
+      <article class="week one">
+        <header class="week-header">
+          <div class="week-title">第一周<small>基础夯实</small></div>
+          <div class="week-goal">建立数量关系意识，准确表达方程与分数含义。</div>
+          <div class="week-hours">DAY 01 - 05 / 7.5 HOURS</div>
+        </header>
+        <div class="table-wrap">
+          <table aria-label="第一周课程安排">
+            <colgroup>
+              <col class="day"><col class="topic"><col class="focus"><col class="practice"><col class="result"><col class="check">
+            </colgroup>
+            <thead>
+              <tr>
+                <th>日期</th>
+                <th>学习主题</th>
+                <th>核心任务</th>
+                <th>实践活动</th>
+                <th>完成标准</th>
+                <th>状态</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="day">DAY 01</td>
+                <td><span class="topic-name">方程法入门</span><span class="topic-mark">x + 6 = 18</span></td>
+                <td><ul class="focus-list"><li>等式性质与未知数</li><li>一元一次方程初步</li></ul></td>
+                <td class="practice"><strong>平衡推演</strong>用等量变化解释解方程过程</td>
+                <td class="result">能口述方程意义并完成基础求解</td>
+                <td class="status"><input class="day-check" id="day01" type="checkbox"><label class="check-label" for="day01" aria-label="完成第一天"></label></td>
+              </tr>
+              <tr>
+                <td class="day">DAY 02</td>
+                <td><span class="topic-name">方程应用题</span><span class="topic-mark">数量关系</span></td>
+                <td><ul class="focus-list"><li>基本数量关系</li><li>和差问题与倍数问题</li></ul></td>
+                <td class="practice"><strong>生活清单建模</strong>将购物条件转换为方程</td>
+                <td class="result">会根据题意列方程解决简单问题</td>
+                <td class="status"><input class="day-check" id="day02" type="checkbox"><label class="check-label" for="day02" aria-label="完成第二天"></label></td>
+              </tr>
+              <tr>
+                <td class="day">DAY 03</td>
+                <td><span class="topic-name">数与规律</span><span class="topic-mark">余数 / 数字谜</span></td>
+                <td><ul class="focus-list"><li>余数问题</li><li>枚举、验证与找规律</li></ul></td>
+                <td class="practice"><strong>数字侦探</strong>整理条件并排除不可能答案</td>
+                <td class="result">能有序找出符合条件的可能结果</td>
+                <td class="status"><input class="day-check" id="day03" type="checkbox"><label class="check-label" for="day03" aria-label="完成第三天"></label></td>
+              </tr>
+              <tr>
+                <td class="day">DAY 04</td>
+                <td><span class="topic-name">分数的意义</span><span class="topic-mark">单位“1”</span></td>
+                <td><ul class="focus-list"><li>整体与部分</li><li>分数单位的理解</li></ul></td>
+                <td class="practice"><strong>分割设计</strong>用同一整体展示不同分数</td>
+                <td class="result">正确确定单位“1”并解释分数</td>
+                <td class="status"><input class="day-check" id="day04" type="checkbox"><label class="check-label" for="day04" aria-label="完成第四天"></label></td>
+              </tr>
+              <tr>
+                <td class="day">DAY 05</td>
+                <td><span class="topic-name">分数应用题</span><span class="topic-mark">部分与整体</span></td>
+                <td><ul class="focus-list"><li>求一个数的几分之几</li><li>分数关系建模</li></ul></td>
+                <td class="practice"><strong>份额规划</strong>设计一份分配方案并校验总量</td>
+                <td class="result">会解决常见分数实际问题</td>
+                <td class="status"><input class="day-check" id="day05" type="checkbox"><label class="check-label" for="day05" aria-label="完成第五天"></label></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="week two">
+        <header class="week-header">
+          <div class="week-title">第二周<small>能力提升</small></div>
+          <div class="week-goal">将比例与百分数连接到数据表达和生活决策。</div>
+          <div class="week-hours">DAY 06 - 10 / 7.5 HOURS</div>
+        </header>
+        <div class="table-wrap">
+          <table aria-label="第二周课程安排">
+            <colgroup>
+              <col class="day"><col class="topic"><col class="focus"><col class="practice"><col class="result"><col class="check">
+            </colgroup>
+            <thead>
+              <tr>
+                <th>日期</th>
+                <th>学习主题</th>
+                <th>核心任务</th>
+                <th>实践活动</th>
+                <th>完成标准</th>
+                <th>状态</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="day">DAY 06</td>
+                <td><span class="topic-name">比的意义</span><span class="topic-mark">2 : 3 = 4 : 6</span></td>
+                <td><ul class="focus-list"><li>比的基本性质</li><li>比与比值的区别</li></ul></td>
+                <td class="practice"><strong>比例构图</strong>用方格设计按比例放大的图形</td>
+                <td class="result">理解比值意义并能判断等比关系</td>
+                <td class="status"><input class="day-check" id="day06" type="checkbox"><label class="check-label" for="day06" aria-label="完成第六天"></label></td>
+              </tr>
+              <tr>
+                <td class="day">DAY 07</td>
+                <td><span class="topic-name">比例应用题</span><span class="topic-mark">比例尺 / 配比</span></td>
+                <td><ul class="focus-list"><li>正反向列比例</li><li>比例解决实际问题</li></ul></td>
+                <td class="practice"><strong>配方调整</strong>按人数重新计算饮品配比</td>
+                <td class="result">会使用比例处理生活中的量变</td>
+                <td class="status"><input class="day-check" id="day07" type="checkbox"><label class="check-label" for="day07" aria-label="完成第七天"></label></td>
+              </tr>
+              <tr>
+                <td class="day">DAY 08</td>
+                <td><span class="topic-name">正比例与反比例</span><span class="topic-mark">变量关系</span></td>
+                <td><ul class="focus-list"><li>y ÷ x 为定值</li><li>x × y 为定值</li></ul></td>
+                <td class="practice"><strong>图表观察</strong>依据数据变化判断关系类型</td>
+                <td class="result">能区分正比例、反比例及非比例</td>
+                <td class="status"><input class="day-check" id="day08" type="checkbox"><label class="check-label" for="day08" aria-label="完成第八天"></label></td>
+              </tr>
+              <tr>
+                <td class="day">DAY 09</td>
+                <td><span class="topic-name">百分数的意义</span><span class="topic-mark">25% = 1/4</span></td>
+                <td><ul class="focus-list"><li>百分数与分数互化</li><li>数据占比表达</li></ul></td>
+                <td class="practice"><strong>数据转译</strong>把调查结果转为百分数报告</td>
+                <td class="result">能读写百分数并进行常用互化</td>
+                <td class="status"><input class="day-check" id="day09" type="checkbox"><label class="check-label" for="day09" aria-label="完成第九天"></label></td>
+              </tr>
+              <tr>
+                <td class="day">DAY 10</td>
+                <td><span class="topic-name">百分数应用</span><span class="topic-mark">浓度与增减</span></td>
+                <td><ul class="focus-list"><li>浓度公式</li><li>百分率综合问题</li></ul></td>
+                <td class="practice"><strong>配液实验单</strong>设计指定浓度的计算方案</td>
+                <td class="result">会解决浓度、增长率类问题</td>
+                <td class="status"><input class="day-check" id="day10" type="checkbox"><label class="check-label" for="day10" aria-label="完成第十天"></label></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="week three">
+        <header class="week-header">
+          <div class="week-title">第三周<small>综合应用</small></div>
+          <div class="week-goal">综合运用模型解决实际问题，以复盘形成长期能力。</div>
+          <div class="week-hours">DAY 11 - 15 / 7.5 HOURS</div>
+        </header>
+        <div class="table-wrap">
+          <table aria-label="第三周课程安排">
+            <colgroup>
+              <col class="day"><col class="topic"><col class="focus"><col class="practice"><col class="result"><col class="check">
+            </colgroup>
+            <thead>
+              <tr>
+                <th>日期</th>
+                <th>学习主题</th>
+                <th>核心任务</th>
+                <th>实践活动</th>
+                <th>完成标准</th>
+                <th>状态</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="day">DAY 11</td>
+                <td><span class="topic-name">经济问题</span><span class="topic-mark">折扣 / 利润</span></td>
+                <td><ul class="focus-list"><li>折扣与成交价</li><li>成本、利润和利润率</li></ul></td>
+                <td class="practice"><strong>预算决策</strong>比较两种优惠并说明选择</td>
+                <td class="result">能解决购物情境中的数学问题</td>
+                <td class="status"><input class="day-check" id="day11" type="checkbox"><label class="check-label" for="day11" aria-label="完成第十一天"></label></td>
+              </tr>
+              <tr>
+                <td class="day">DAY 12</td>
+                <td><span class="topic-name">工程问题基础</span><span class="topic-mark">工作效率</span></td>
+                <td><ul class="focus-list"><li>总量 = 效率 × 时间</li><li>单人完成模型</li></ul></td>
+                <td class="practice"><strong>工期排程</strong>根据效率制定完成时间表</td>
+                <td class="result">准确建立基本工程问题模型</td>
+                <td class="status"><input class="day-check" id="day12" type="checkbox"><label class="check-label" for="day12" aria-label="完成第十二天"></label></td>
+              </tr>
+              <tr>
+                <td class="day">DAY 13</td>
+                <td><span class="topic-name">工程问题进阶</span><span class="topic-mark">合作与轮流</span></td>
+                <td><ul class="focus-list"><li>合作效率叠加</li><li>分段、轮流工作</li></ul></td>
+                <td class="practice"><strong>协作方案</strong>比较不同安排的完工时间</td>
+                <td class="result">会解合作类和阶段类工程问题</td>
+                <td class="status"><input class="day-check" id="day13" type="checkbox"><label class="check-label" for="day13" aria-label="完成第十三天"></label></td>
+              </tr>
+              <tr>
+                <td class="day">DAY 14</td>
+                <td><span class="topic-name">资源分配模型</span><span class="topic-mark">牛吃草问题</span></td>
+                <td><ul class="focus-list"><li>生长量与消耗量</li><li>变化中的总量建模</li></ul></td>
+                <td class="practice"><strong>条件重构</strong>绘制数量变化线索图</td>
+                <td class="result">掌握动态总量类问题的分析方法</td>
+                <td class="status"><input class="day-check" id="day14" type="checkbox"><label class="check-label" for="day14" aria-label="完成第十四天"></label></td>
+              </tr>
+              <tr>
+                <td class="day">DAY 15</td>
+                <td><span class="topic-name">综合挑战与复盘</span><span class="topic-mark">方法迁移</span></td>
+                <td><ul class="focus-list"><li>专题综合运用</li><li>错题归类与策略总结</li></ul></td>
+                <td class="practice"><strong>成果测评</strong>完成综合卷并撰写复盘摘要</td>
+                <td class="result">独立选择模型并说明解题路径</td>
+                <td class="status"><input class="day-check" id="day15" type="checkbox"><label class="check-label" for="day15" aria-label="完成第十五天"></label></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <section class="closing" aria-label="学习记录">
+      <article class="closing-card">
+        <h2>错题整理流程</h2>
+        <ol>
+          <li>记录题目来源，独立重做一次。</li>
+          <li>标注错误原因：概念、审题、计算或表达。</li>
+          <li>写下正确方法，并归纳同类型策略。</li>
+          <li>周末重新检验，直至完整讲清。</li>
+        </ol>
+      </article>
+
+      <article class="closing-card">
+        <h2>每周复盘记录</h2>
+        <div class="review-lines">
+          <div class="review-line">第一周 / 最清晰的方法与仍需练习的知识点：</div>
+          <div class="review-line">第二周 / 能连接生活情境的一个数学模型：</div>
+          <div class="review-line">第三周 / 综合挑战中的进步与下一步目标：</div>
+        </div>
+      </article>
+
+      <article class="closing-card reward">
+        <div>
+          <h2>完成目标</h2>
+          <strong>15 / 15</strong>
+          <p>保持规律学习，以准确、清晰和独立思考作为暑期成果。</p>
+        </div>
+        <div class="signature">SIGNATURE / 日期 __________</div>
+      </article>
+    </section>
+
+    <footer>
+      <span>五六年级数学 · 暑假学习计划</span>
+      <span>理解关系 / 规范表达 / 持续复盘</span>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      var storageKey = "summer-math-plan-progress-v1";
+      var checks = Array.prototype.slice.call(document.querySelectorAll(".day-check"));
+      var completedCount = document.getElementById("completedCount");
+      var progressBar = document.getElementById("progressBar");
+
+      function loadProgress() {
+        try {
+          return JSON.parse(localStorage.getItem(storageKey) || "{}");
+        } catch (error) {
+          return {};
+        }
+      }
+
+      function saveProgress(state) {
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(state));
+        } catch (error) {
+          return;
+        }
+      }
+
+      function refreshProgress() {
+        var state = {};
+        var count = 0;
+        checks.forEach(function (check) {
+          state[check.id] = check.checked;
+          check.closest("tr").classList.toggle("done", check.checked);
+          if (check.checked) {
+            count += 1;
+          }
+        });
+        completedCount.textContent = String(count);
+        progressBar.style.width = String((count / checks.length) * 100) + "%";
+        saveProgress(state);
+      }
+
+      var saved = loadProgress();
+      checks.forEach(function (check) {
+        check.checked = Boolean(saved[check.id]);
+        check.addEventListener("change", refreshProgress);
+      });
+      refreshProgress();
+
+      document.getElementById("printPlan").addEventListener("click", function () {
+        window.print();
+      });
+
+      document.getElementById("resetProgress").addEventListener("click", function () {
+        if (!window.confirm("确定清空十五天的完成记录吗？")) {
+          return;
+        }
+        checks.forEach(function (check) {
+          check.checked = false;
+        });
+        refreshProgress();
+      });
+    }());
+  </script>
+</body>
+</html>
