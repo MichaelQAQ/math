@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>数学学习成长轨迹 | Michael's Learning Lab</title>
+  <meta name="description" content="Michael 的数学学习成长轨迹，从数感、代数、几何到可视化表达。">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #101625;
+      --ink-soft: #32394c;
+      --muted: #667085;
+      --paper: #fbf3dc;
+      --paper-deep: #efe1bd;
+      --wash: #f5ecd6;
+      --line: rgba(91, 69, 36, .18);
+      --line-strong: rgba(91, 69, 36, .32);
+      --violet: #6d5dfc;
+      --blue: #2368d8;
+      --gold: #b7842d;
+      --teal: #1f8f8a;
+      --shadow: 0 22px 54px rgba(78, 56, 22, .14);
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --serif: "Songti SC", "STSong", "Noto Serif SC", serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--wash);
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.7;
+      letter-spacing: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 250, 238, .86), rgba(245, 236, 214, .92)),
+        repeating-linear-gradient(0deg, rgba(91, 69, 36, .08) 0 1px, transparent 1px 16px),
+        var(--wash);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: rgba(251, 243, 220, .88);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav,
+    .wrap {
+      width: min(1120px, calc(100% - 44px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 950;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border: 2px solid var(--line-strong);
+      border-radius: 12px;
+      overflow: hidden;
+      display: block;
+      flex: 0 0 auto;
+      background: rgba(255, 255, 255, .38);
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-size: .76rem;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .nav a.button-link {
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, .38);
+      font-size: .86rem;
+      font-weight: 900;
+    }
+
+    .hero {
+      min-height: 520px;
+      display: grid;
+      align-items: center;
+      color: #f8fbff;
+      background-image:
+        linear-gradient(90deg, rgba(10, 15, 28, .94), rgba(10, 15, 28, .68) 42%, rgba(10, 15, 28, .1)),
+        url("../assets/personal-cover.jpg");
+      background-position: center;
+      background-size: cover;
+    }
+
+    .hero-copy {
+      width: min(680px, 100%);
+      padding: 88px 0;
+      display: grid;
+      gap: 24px;
+    }
+
+    .eyebrow {
+      width: max-content;
+      max-width: 100%;
+      padding: 7px 11px;
+      border: 1px solid rgba(255, 255, 255, .22);
+      border-radius: 999px;
+      color: rgba(255, 255, 255, .82);
+      background: rgba(255, 255, 255, .08);
+      font-size: .8rem;
+      font-weight: 900;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 7vw, 5.7rem);
+      line-height: 1.05;
+      letter-spacing: 0;
+      text-shadow: 0 18px 44px rgba(0, 0, 0, .28);
+    }
+
+    .hero-copy p {
+      max-width: 620px;
+      color: rgba(248, 251, 255, .84);
+      font-size: clamp(1rem, 1.8vw, 1.18rem);
+      font-weight: 720;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      background: rgba(255, 255, 255, .08);
+      font-size: .92rem;
+      font-weight: 920;
+    }
+
+    .button.primary {
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--violet), var(--blue));
+      box-shadow: 0 18px 36px rgba(36, 90, 210, .22);
+    }
+
+    section {
+      padding: 54px 0;
+    }
+
+    .section-title {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(1.45rem, 2.6vw, 2.1rem);
+      line-height: 1.25;
+    }
+
+    .section-title p {
+      max-width: 720px;
+      color: var(--muted);
+      font-weight: 720;
+    }
+
+    .score-panel {
+      margin-top: -42px;
+      position: relative;
+      z-index: 2;
+      padding: 26px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 8% 18%, rgba(109, 93, 252, .12), transparent 28%),
+        repeating-linear-gradient(0deg, transparent 0 15px, rgba(91, 69, 36, .14) 16px, transparent 17px),
+        rgba(251, 243, 220, .92);
+      box-shadow: var(--shadow);
+    }
+
+    .score-panel h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      line-height: 1.35;
+    }
+
+    .score-panel p {
+      margin-top: 10px;
+      max-width: 860px;
+      color: var(--ink-soft);
+      font-weight: 720;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 116px 1fr;
+      gap: 22px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .56), rgba(255, 255, 255, .2)),
+        var(--paper);
+      box-shadow: 0 12px 32px rgba(78, 56, 22, .08);
+    }
+
+    .step::before {
+      content: "";
+      position: absolute;
+      left: 78px;
+      top: 58px;
+      bottom: -26px;
+      width: 1px;
+      background: var(--line-strong);
+    }
+
+    .step:last-child::before {
+      display: none;
+    }
+
+    .step-label {
+      display: grid;
+      justify-items: center;
+      align-content: start;
+      gap: 10px;
+      color: var(--blue);
+      font-weight: 950;
+    }
+
+    .step-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, var(--violet), var(--blue));
+      font-size: 1rem;
+      box-shadow: 0 12px 28px rgba(79, 70, 229, .18);
+    }
+
+    .step h3 {
+      font-size: 1.2rem;
+      line-height: 1.35;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-weight: 690;
+    }
+
+    .step ul {
+      margin: 12px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 6px;
+      color: var(--ink-soft);
+      font-size: .94rem;
+      list-style: none;
+    }
+
+    .step li::before {
+      content: "∴";
+      margin-right: 8px;
+      color: var(--gold);
+      font-weight: 950;
+    }
+
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .focus-card {
+      min-height: 210px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      align-content: space-between;
+      gap: 24px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .64), rgba(255, 255, 255, .18)),
+        var(--paper);
+      box-shadow: 0 12px 32px rgba(78, 56, 22, .08);
+    }
+
+    .focus-card strong {
+      display: block;
+      color: var(--blue);
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .focus-card h3 {
+      font-size: 1.05rem;
+    }
+
+    .focus-card p {
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .closing {
+      padding: 34px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 24px;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(251, 243, 220, .95), rgba(251, 243, 220, .62)),
+        url("../assets/personal-cover.jpg");
+      background-position: center right;
+      background-size: cover;
+      box-shadow: var(--shadow);
+    }
+
+    .closing blockquote {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 3vw, 2.6rem);
+      line-height: 1.55;
+    }
+
+    .formula-card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: #f8fbff;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(109, 93, 252, .32), transparent 24%),
+        linear-gradient(135deg, #101625, #18223a);
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: .95rem;
+      box-shadow: 0 18px 40px rgba(16, 22, 37, .22);
+    }
+
+    .formula-card span {
+      display: block;
+      color: rgba(248, 251, 255, .74);
+      margin-top: 8px;
+    }
+
+    footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .86rem;
+      font-weight: 760;
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        min-height: auto;
+        background-image:
+          linear-gradient(180deg, rgba(10, 15, 28, .96), rgba(10, 15, 28, .76)),
+          url("../assets/personal-cover.jpg");
+      }
+
+      .hero-copy {
+        padding: 64px 0 90px;
+      }
+
+      .score-panel {
+        margin-top: 0;
+      }
+
+      .step,
+      .closing {
+        grid-template-columns: 1fr;
+      }
+
+      .step::before {
+        display: none;
+      }
+
+      .step-label {
+        justify-items: start;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+      }
+
+      .focus-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav,
+      .wrap {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .hero-actions,
+      .focus-grid {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+
+      .score-panel,
+      .closing,
+      .step {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="主导航">
+      <a class="brand" href="../index.html#home">
+        <span class="brand-mark"><img src="../assets/site-logo.jpg" alt=""></span>
+        <span>Michael's Learning Lab<small>数学 · 结构 · 直观 · 表达</small></span>
+      </a>
+      <a class="button-link" href="../index.html#fields">回到探索领域</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-copy">
+          <span class="eyebrow">Mathematics Growth Map</span>
+          <h1>数学学习<br>成长轨迹</h1>
+          <p>这不是一张考试清单，而是一段把好奇心、抽象结构、几何直观和可视化表达慢慢合在一起的学习旅程。</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#timeline">查看成长线</a>
+            <a class="button" href="#focus">当前方向</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="overture-title">
+      <div class="wrap">
+        <div class="score-panel">
+          <h2 id="overture-title">像听一首主题变奏一样学习数学。</h2>
+          <p>先听见问题的旋律，再观察结构如何反复出现。一个公式、一张图、一个程序，都可以成为理解世界的入口。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="timeline" aria-labelledby="timeline-title">
+      <div class="wrap">
+        <div class="section-title">
+          <h2 id="timeline-title">成长线</h2>
+          <p>用阶段记录学习重心，而不是给自己制造压力。每一段都可以反复回来，像乐章中的主题再现。</p>
+        </div>
+
+        <div class="timeline">
+          <article class="step">
+            <div class="step-label">
+              <span class="step-mark">01</span>
+              <span>数感</span>
+            </div>
+            <div>
+              <h3>从“会算”走向“看见数量关系”</h3>
+              <p>把题目背后的关系说清楚，比单纯得到答案更重要。</p>
+              <ul>
+                <li>用图、表格和故事理解数量变化。</li>
+                <li>练习估算、分类、比较和反向检查。</li>
+                <li>把错题整理成“为什么会这样”的小笔记。</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="step">
+            <div class="step-label">
+              <span class="step-mark">02</span>
+              <span>代数</span>
+            </div>
+            <div>
+              <h3>把具体问题压缩成结构</h3>
+              <p>代数像把旋律写成谱：符号不是障碍，而是更自由的表达方式。</p>
+              <ul>
+                <li>从等式、函数、方程理解“变化中的不变”。</li>
+                <li>用参数、变量和递推描述规律。</li>
+                <li>把复杂问题拆成可以复用的小结构。</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="step">
+            <div class="step-label">
+              <span class="step-mark">03</span>
+              <span>几何</span>
+            </div>
+            <div>
+              <h3>让图形帮助思考，而不是只负责装饰</h3>
+              <p>好的几何直观会让证明突然变轻，像看见一束光照进问题内部。</p>
+              <ul>
+                <li>用面积、对称、变换理解证明。</li>
+                <li>把代数式翻译成坐标、曲线和图像。</li>
+                <li>训练“先画出来，再说清楚”的习惯。</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="step">
+            <div class="step-label">
+              <span class="step-mark">04</span>
+              <span>可视化</span>
+            </div>
+            <div>
+              <h3>用编程把抽象概念做成可观察的作品</h3>
+              <p>当公式能移动、旋转、变形，理解就不再只停留在纸面上。</p>
+              <ul>
+                <li>用 Python、Manim、GeoGebra 表达数学过程。</li>
+                <li>把一个概念做成短动画、网页或互动实验。</li>
+                <li>用作品倒逼自己解释得更准确。</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="step">
+            <div class="step-label">
+              <span class="step-mark">05</span>
+              <span>分享</span>
+            </div>
+            <div>
+              <h3>把自己的理解变成别人也能进入的路</h3>
+              <p>真正学会一件事，常常发生在你试着把它讲给别人听的时候。</p>
+              <ul>
+                <li>记录学习笔记、演示图和小项目。</li>
+                <li>把“我怎么想明白的”写成清晰路径。</li>
+                <li>建立自己的数学作品档案。</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="focus" aria-labelledby="focus-title">
+      <div class="wrap">
+        <div class="section-title">
+          <h2 id="focus-title">当前方向</h2>
+          <p>接下来的数学学习，会更重视结构、直观和表达之间的互相转化。</p>
+        </div>
+
+        <div class="focus-grid">
+          <article class="focus-card">
+            <strong>∑</strong>
+            <div>
+              <h3>结构感</h3>
+              <p>把分散知识整理成可以迁移的框架。</p>
+            </div>
+          </article>
+          <article class="focus-card">
+            <strong>△</strong>
+            <div>
+              <h3>几何直观</h3>
+              <p>用图像、变换和空间感理解证明。</p>
+            </div>
+          </article>
+          <article class="focus-card">
+            <strong>{ }</strong>
+            <div>
+              <h3>代码表达</h3>
+              <p>把抽象概念做成可以运行的实验。</p>
+            </div>
+          </article>
+          <article class="focus-card">
+            <strong>♪</strong>
+            <div>
+              <h3>节奏复盘</h3>
+              <p>像练习乐曲一样，慢练、复听、修正。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="closing-title">
+      <div class="wrap">
+        <div class="closing">
+          <div>
+            <div class="section-title">
+              <h2 id="closing-title">一句给自己的数学宣言</h2>
+            </div>
+            <blockquote>学数学不是为了更快地结束问题，<br>而是为了更深地看见问题。</blockquote>
+          </div>
+          <div class="formula-card" aria-label="数学学习公式">
+            curiosity + structure + image + code
+            <span>= a personal way of understanding mathematics</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 Michael's Learning Lab · Mathematics Growth Map</div>
+  </footer>
+</body>
+</html>
