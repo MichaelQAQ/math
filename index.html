@@ -3,27 +3,32 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Michael的学习小屋</title>
-  <meta name="description" content="Michael的学习小屋，独立教师工作室。自由、认真地学习数学、阅读、音乐与一切感兴趣的东西。">
+  <title>Michael 学习实验室</title>
+  <meta name="description" content="Michael 学习实验室，一间关于数学、编程、科学、英语与自由学习的独立教师工作室。">
   <style>
     :root {
       color-scheme: light;
-      --ink: #1d2528;
-      --ink-soft: #4a5558;
-      --muted: #6d797b;
+      --ink: #10203a;
+      --ink-deep: #071326;
+      --text: #2b3b55;
+      --muted: #66748a;
+      --blue: #155bea;
+      --blue-deep: #0c3fae;
+      --cyan: #19aebb;
+      --green: #2f9d6a;
+      --amber: #d99a2b;
+      --violet: #7555d9;
+      --brass: #bd8740;
       --paper: #fffdf8;
-      --wash: #f3efe6;
-      --line: rgba(29, 37, 40, .15);
-      --line-strong: rgba(29, 37, 40, .28);
-      --brass: #b3823d;
-      --brass-deep: #876029;
-      --sage: #5d756a;
-      --blue: #2d6072;
-      --wine: #8f4c48;
-      --charcoal: #172023;
-      --shadow: 0 22px 64px rgba(23, 32, 35, .14);
+      --surface: #ffffff;
+      --wash: #f3f8ff;
+      --ivory: #fbf6ec;
+      --line: rgba(30, 50, 82, .12);
+      --line-strong: rgba(30, 50, 82, .22);
+      --shadow: 0 18px 44px rgba(15, 46, 96, .11);
+      --shadow-soft: 0 10px 28px rgba(15, 46, 96, .08);
       --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-      --serif: "Songti SC", "STSong", "Noto Serif SC", serif;
+      --serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;
     }
 
     * {
@@ -40,10 +45,10 @@
       min-width: 320px;
       color: var(--ink);
       font-family: var(--sans);
-      line-height: 1.7;
+      line-height: 1.65;
       letter-spacing: 0;
       background:
-        linear-gradient(180deg, rgba(255, 253, 248, .76), rgba(243, 239, 230, .95)),
+        linear-gradient(180deg, #f8fbff 0%, #fff 36%, #f6f9ff 100%),
         var(--wash);
     }
 
@@ -52,113 +57,9 @@
       text-decoration: none;
     }
 
-    .site-header {
-      position: fixed;
-      inset: 0 0 auto;
-      z-index: 40;
-      border-bottom: 1px solid rgba(255, 253, 248, .18);
-      color: #fffdf8;
-      background: linear-gradient(180deg, rgba(23, 32, 35, .72), rgba(23, 32, 35, .14));
-      backdrop-filter: blur(12px);
-    }
-
-    .nav {
-      width: min(1180px, calc(100% - 40px));
-      min-height: 66px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 11px;
-      min-width: 0;
-      font-weight: 850;
-    }
-
-    .brand-mark {
-      width: 34px;
-      height: 34px;
-      border: 1px solid rgba(255, 253, 248, .64);
-      border-radius: 8px;
-      display: grid;
-      place-items: center;
-      color: #fffdf8;
-      background: rgba(255, 253, 248, .1);
-      font-family: Georgia, serif;
-      font-size: 20px;
-      line-height: 1;
-    }
-
-    .brand-text {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 7px;
-      font-size: .95rem;
-      font-weight: 780;
-    }
-
-    .nav-links a {
-      min-height: 38px;
-      padding: 8px 11px;
-      border: 1px solid rgba(255, 253, 248, .22);
-      border-radius: 8px;
-      background: rgba(255, 253, 248, .08);
-    }
-
-    .nav-links a:hover {
-      border-color: rgba(255, 253, 248, .6);
-      background: rgba(255, 253, 248, .16);
-    }
-
-    .hero {
-      min-height: 82svh;
-      display: grid;
-      align-items: end;
-      color: #fffdf8;
-      background-image:
-        linear-gradient(90deg, rgba(18, 24, 26, .9) 0%, rgba(18, 24, 26, .72) 42%, rgba(18, 24, 26, .24) 100%),
-        url("assets/studio-hero.jpg");
-      background-size: cover;
-      background-position: center;
-    }
-
-    .hero-inner,
-    .section-inner {
-      width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .hero-inner {
-      padding: 128px 0 74px;
-    }
-
-    .kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: #ecd2a0;
-      font-size: .88rem;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-
-    .kicker::before {
-      width: 36px;
-      height: 2px;
-      background: #ecd2a0;
-      content: "";
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     h1,
@@ -168,493 +69,1304 @@
       margin: 0;
     }
 
+    .skip-link {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 99;
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--blue);
+      transform: translateY(-160%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, .92);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 8px 28px rgba(15, 46, 96, .05);
+    }
+
+    .nav,
+    .section-inner,
+    .hero-inner {
+      width: min(1180px, calc(100% - 44px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      min-width: 228px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      clip-path: polygon(50% 0, 91% 24%, 91% 76%, 50% 100%, 9% 76%, 9% 24%);
+      color: #fff;
+      background: linear-gradient(135deg, #0d5bff 0%, #1645c7 100%);
+      box-shadow: 0 10px 24px rgba(21, 91, 234, .22);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .brand-copy {
+      display: grid;
+      gap: 1px;
+      min-width: 0;
+    }
+
+    .brand-title {
+      overflow: hidden;
+      color: var(--ink-deep);
+      font-size: 1.03rem;
+      font-weight: 900;
+      line-height: 1.2;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .brand-subtitle {
+      overflow: hidden;
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 700;
+      line-height: 1.2;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 2px;
+      color: var(--ink);
+      font-size: .88rem;
+      font-weight: 850;
+    }
+
+    .nav-links a {
+      position: relative;
+      min-height: 42px;
+      padding: 12px 13px 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+    }
+
+    .nav-links a::after {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 3px;
+      height: 3px;
+      border-radius: 8px;
+      background: var(--blue);
+      content: "";
+      opacity: 0;
+      transform: scaleX(.55);
+      transition: opacity .18s ease, transform .18s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      color: var(--blue);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a[aria-current="page"]::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 560px;
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background-image:
+        linear-gradient(90deg, rgba(244, 250, 255, .98) 0%, rgba(244, 250, 255, .95) 34%, rgba(244, 250, 255, .72) 53%, rgba(244, 250, 255, .08) 100%),
+        url("assets/learning-lab-hero.jpg");
+      background-position: center right;
+      background-size: cover;
+    }
+
+    .hero::before {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .18), rgba(255, 255, 255, 0)),
+        repeating-linear-gradient(90deg, rgba(21, 91, 234, .04) 0, rgba(21, 91, 234, .04) 1px, transparent 1px, transparent 84px);
+      content: "";
+    }
+
+    .hero-inner {
+      position: relative;
+      padding: 46px 0 42px;
+    }
+
+    .hero-content {
+      max-width: 610px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .eyebrow {
+      width: max-content;
+      max-width: 100%;
+      padding: 7px 10px;
+      border: 1px solid rgba(21, 91, 234, .18);
+      border-radius: 8px;
+      color: var(--blue-deep);
+      background: rgba(255, 255, 255, .74);
+      font-size: .82rem;
+      font-weight: 900;
+      box-shadow: var(--shadow-soft);
+    }
+
     h1 {
-      max-width: 940px;
-      margin-top: 17px;
+      color: var(--ink-deep);
       font-family: var(--serif);
-      font-size: clamp(3rem, 6.8vw, 5.8rem);
-      font-weight: 800;
-      line-height: .98;
-      text-shadow: 0 4px 24px rgba(0, 0, 0, .28);
+      font-size: 4rem;
+      font-weight: 900;
+      line-height: 1.18;
+    }
+
+    .hero-lead {
+      color: var(--ink);
+      font-size: 1.15rem;
+      font-weight: 900;
     }
 
     .hero-copy {
-      max-width: 720px;
-      margin-top: 26px;
-      color: rgba(255, 253, 248, .88);
-      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
-      line-height: 1.95;
+      max-width: 560px;
+      color: var(--text);
+      font-size: 1rem;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 30px;
+      gap: 12px;
+      margin-top: 4px;
     }
 
-    .action {
-      min-height: 44px;
-      padding: 10px 14px;
-      border: 1px solid rgba(255, 253, 248, .42);
+    .button {
+      min-height: 48px;
+      padding: 12px 20px;
+      border: 1px solid var(--line-strong);
       border-radius: 8px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: #fffdf8;
-      background: rgba(255, 253, 248, .1);
-      font-weight: 850;
+      gap: 9px;
+      color: var(--blue);
+      background: rgba(255, 255, 255, .86);
+      font-weight: 900;
+      box-shadow: var(--shadow-soft);
     }
 
-    .action.primary {
-      color: var(--charcoal);
-      border-color: transparent;
-      background: #fffdf8;
+    .button.primary {
+      border-color: var(--blue);
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%);
+      box-shadow: 0 16px 32px rgba(21, 91, 234, .23);
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
     }
 
     section {
-      padding: clamp(46px, 7vw, 86px) 0;
+      padding: 58px 0;
     }
 
-    .section-title {
+    .section-heading {
       display: grid;
-      gap: 12px;
-      margin-bottom: 26px;
+      justify-items: center;
+      gap: 9px;
+      margin-bottom: 28px;
+      text-align: center;
     }
 
-    .section-title h2 {
-      max-width: 760px;
-      font-family: var(--serif);
-      font-size: clamp(2rem, 4.4vw, 3.5rem);
-      line-height: 1.12;
+    .section-heading h2 {
+      color: var(--ink-deep);
+      font-size: 1.72rem;
+      line-height: 1.28;
     }
 
-    .section-title p {
-      max-width: 760px;
-      color: var(--ink-soft);
-      font-size: 1.04rem;
-    }
-
-    .philosophy {
-      background: var(--paper);
-    }
-
-    .note-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .note {
-      min-height: 210px;
-      padding: 20px;
-      border: 1px solid var(--line);
+    .section-heading h2::after {
+      width: 38px;
+      height: 3px;
+      margin: 10px auto 0;
       border-radius: 8px;
-      display: grid;
-      align-content: start;
-      gap: 12px;
-      background: #fff;
-      box-shadow: 0 16px 42px rgba(23, 32, 35, .07);
-    }
-
-    .note::before {
-      width: 48px;
-      height: 4px;
-      border-radius: 8px;
-      background: var(--color, var(--brass));
+      display: block;
+      background: linear-gradient(90deg, var(--blue), var(--brass));
       content: "";
     }
 
-    .note h3 {
-      font-size: 1.22rem;
+    .section-heading p {
+      max-width: 740px;
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    .domain-strip {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .domain-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0;
+    }
+
+    .domain {
+      min-height: 126px;
+      padding: 18px 16px;
+      display: grid;
+      justify-items: center;
+      align-content: center;
+      gap: 10px;
+      text-align: center;
+    }
+
+    .domain + .domain {
+      border-left: 1px solid var(--line);
+    }
+
+    .domain-icon,
+    .value-icon {
+      width: 44px;
+      height: 44px;
+      border: 2px solid currentColor;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: var(--tone, var(--blue));
+      background: rgba(255, 255, 255, .8);
+      font-size: 1.02rem;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .domain h3 {
+      color: var(--ink-deep);
+      font-size: 1rem;
       line-height: 1.25;
     }
 
-    .note p {
+    .domain p {
+      max-width: 170px;
       color: var(--muted);
+      font-size: .86rem;
+      line-height: 1.55;
     }
 
-    .studio {
+    .values {
       background:
-        linear-gradient(90deg, rgba(93, 117, 106, .1), transparent),
-        var(--wash);
+        linear-gradient(180deg, #f9fcff 0%, #fff 100%);
     }
 
-    .program-list {
+    .value-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(6, minmax(0, 1fr));
       gap: 14px;
     }
 
-    .program {
-      min-height: 260px;
-      padding: 22px;
+    .value-card {
+      min-height: 172px;
+      padding: 20px 16px;
       border: 1px solid var(--line);
       border-radius: 8px;
       display: grid;
-      align-content: space-between;
-      gap: 20px;
-      background: rgba(255, 253, 248, .9);
-      box-shadow: var(--shadow);
+      justify-items: center;
+      align-content: start;
+      gap: 11px;
+      text-align: center;
+      background: rgba(255, 255, 255, .88);
+      box-shadow: var(--shadow-soft);
     }
 
-    .program-top {
+    .value-card h3 {
+      color: var(--ink-deep);
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+
+    .value-card p {
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.6;
+    }
+
+    .resources {
+      background:
+        linear-gradient(180deg, #eef6ff 0%, #f9fcff 100%);
+    }
+
+    .resource-grid,
+    .work-grid {
       display: grid;
-      gap: 12px;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 16px;
     }
 
-    .program small {
-      color: var(--brass-deep);
+    .resource-card,
+    .work-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .resource-art,
+    .work-art {
+      min-height: 104px;
+      aspect-ratio: 1.55;
+      display: grid;
+      align-items: end;
+      padding: 12px;
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, 0)),
+        linear-gradient(135deg, var(--tone, var(--blue)) 0%, var(--tone-deep, var(--blue-deep)) 100%);
+      font-weight: 900;
+    }
+
+    .resource-art span,
+    .work-art span {
+      width: max-content;
+      max-width: 100%;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: rgba(0, 0, 0, .2);
+      font-size: .78rem;
+      line-height: 1.2;
+    }
+
+    .resource-body,
+    .work-body {
+      padding: 14px;
+      display: grid;
+      gap: 7px;
+    }
+
+    .resource-card h3,
+    .work-card h3 {
+      color: var(--ink-deep);
+      font-size: .96rem;
+      line-height: 1.3;
+    }
+
+    .resource-card p,
+    .work-card p {
+      color: var(--muted);
+      font-size: .84rem;
+      line-height: 1.55;
+    }
+
+    .resource-list {
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 2px;
+      color: var(--text);
+      font-size: .84rem;
+      line-height: 1.45;
+      list-style: none;
+    }
+
+    .courses {
+      background: #fff;
+    }
+
+    .course-layout {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .classical-panel {
+      min-height: 100%;
+      padding: 28px;
+      border: 1px solid rgba(189, 135, 64, .32);
+      border-radius: 8px;
+      display: grid;
+      align-content: center;
+      gap: 18px;
+      background:
+        linear-gradient(135deg, rgba(255, 253, 248, .96), rgba(250, 244, 231, .86)),
+        var(--paper);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .classical-panel small {
+      color: var(--brass);
+      font-family: Georgia, serif;
+      font-size: .86rem;
       font-weight: 900;
       text-transform: uppercase;
     }
 
-    .program h3 {
-      font-size: 1.42rem;
-      line-height: 1.22;
-    }
-
-    .program p {
-      color: var(--ink-soft);
-    }
-
-    .program-link {
-      width: max-content;
-      min-height: 38px;
-      padding: 8px 0;
-      border-bottom: 2px solid var(--line-strong);
-      color: var(--charcoal);
-      font-weight: 900;
-    }
-
-    .program-link:hover {
-      color: var(--brass-deep);
-      border-color: var(--brass-deep);
-    }
-
-    .journal {
-      color: #fffdf8;
-      background: var(--charcoal);
-    }
-
-    .journal .section-title p {
-      color: rgba(255, 253, 248, .72);
-    }
-
-    .journal-grid {
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    .quote-panel,
-    .list-panel {
-      border: 1px solid rgba(255, 253, 248, .16);
-      border-radius: 8px;
-      background: rgba(255, 253, 248, .06);
-    }
-
-    .quote-panel {
-      padding: clamp(24px, 4vw, 42px);
-      display: grid;
-      align-content: center;
-      gap: 22px;
-    }
-
-    .quote-panel blockquote {
-      margin: 0;
+    .classical-panel h2 {
+      color: var(--ink-deep);
       font-family: var(--serif);
-      font-size: clamp(1.6rem, 4vw, 3rem);
-      line-height: 1.32;
+      font-size: 2.2rem;
+      line-height: 1.25;
     }
 
-    .quote-panel p {
-      max-width: 760px;
-      color: rgba(255, 253, 248, .74);
+    .classical-panel p {
+      color: var(--text);
     }
 
-    .list-panel {
-      padding: 22px;
+    .course-grid {
       display: grid;
-      gap: 16px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
     }
 
-    .list-panel h3 {
-      font-size: 1.25rem;
-    }
-
-    .list-panel ul {
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 12px;
-      list-style: none;
-    }
-
-    .list-panel li {
-      padding-top: 12px;
-      border-top: 1px solid rgba(255, 253, 248, .14);
-      color: rgba(255, 253, 248, .76);
-    }
-
-    .resources {
-      background: var(--paper);
-    }
-
-    .resource-row {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .resource {
-      min-height: 178px;
+    .course-card {
+      min-height: 188px;
       padding: 20px;
       border: 1px solid var(--line);
       border-radius: 8px;
       display: grid;
-      gap: 12px;
-      align-content: start;
+      align-content: space-between;
+      gap: 18px;
       background: #fff;
+      box-shadow: var(--shadow-soft);
     }
 
-    .resource h3 {
-      font-size: 1.24rem;
-      line-height: 1.25;
+    .course-card small {
+      color: var(--blue);
+      font-weight: 950;
+      text-transform: uppercase;
     }
 
-    .resource p {
+    .course-card h3 {
+      color: var(--ink-deep);
+      font-size: 1.1rem;
+    }
+
+    .course-card p {
       color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .course-card a {
+      width: max-content;
+      max-width: 100%;
+      min-height: 34px;
+      padding: 6px 0;
+      border-bottom: 2px solid rgba(21, 91, 234, .28);
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .works {
+      background: linear-gradient(180deg, #fff 0%, #f8fbff 100%);
+    }
+
+    .public {
+      padding-top: 38px;
+      background: #f8fbff;
+    }
+
+    .public-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1.4fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .public-copy {
+      padding: 26px;
+      border: 1px solid rgba(21, 91, 234, .13);
+      border-radius: 8px;
+      display: grid;
+      gap: 14px;
+      background:
+        linear-gradient(135deg, rgba(21, 91, 234, .1), rgba(25, 174, 187, .06)),
+        #fff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .public-copy h2 {
+      color: var(--ink-deep);
+      font-size: 1.62rem;
+      line-height: 1.3;
+    }
+
+    .public-copy p {
+      color: var(--text);
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stat {
+      min-height: 128px;
+      padding: 18px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      gap: 7px;
+      text-align: center;
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .stat strong {
+      color: var(--blue);
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .stat span {
+      color: var(--text);
+      font-size: .9rem;
+      font-weight: 800;
+    }
+
+    .blog {
+      background:
+        linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .blog-note {
+      min-height: 188px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .blog-note small {
+      width: max-content;
+      max-width: 100%;
+      padding: 3px 8px;
+      border-radius: 6px;
+      color: var(--blue-deep);
+      background: rgba(21, 91, 234, .08);
+      font-weight: 900;
+    }
+
+    .blog-note h3 {
+      color: var(--ink-deep);
+      font-size: 1.08rem;
+      line-height: 1.35;
+    }
+
+    .blog-note p {
+      color: var(--muted);
+      font-size: .9rem;
     }
 
     .footer {
-      padding: 30px 20px 42px;
-      color: rgba(255, 253, 248, .74);
-      background: #151d20;
+      color: rgba(255, 255, 255, .78);
+      background: #071326;
     }
 
-    .footer-inner {
-      width: min(1180px, 100%);
+    .footer-top {
+      width: min(1180px, calc(100% - 44px));
       margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
+      padding: 38px 0 30px;
+      display: grid;
+      grid-template-columns: 1.3fr repeat(3, .8fr);
+      gap: 34px;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
     }
 
-    @media (max-width: 920px) {
-      .site-header {
-        position: absolute;
+    .footer h2,
+    .footer h3 {
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .footer h2 {
+      font-size: 1.15rem;
+    }
+
+    .footer h3 {
+      font-size: .96rem;
+    }
+
+    .footer p,
+    .footer a {
+      color: rgba(255, 255, 255, .72);
+      font-size: .9rem;
+    }
+
+    .footer-column {
+      display: grid;
+      align-content: start;
+      gap: 11px;
+    }
+
+    .footer-links {
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 6px;
+      list-style: none;
+    }
+
+    .footer-bottom {
+      width: min(1180px, calc(100% - 44px));
+      margin: 0 auto;
+      padding: 16px 0 22px;
+      color: rgba(255, 255, 255, .62);
+      font-size: .84rem;
+      text-align: center;
+    }
+
+    @media (max-width: 1060px) {
+      .nav {
+        min-height: 68px;
       }
 
-      .nav {
-        min-height: 74px;
+      .brand {
+        min-width: 196px;
       }
 
       .nav-links {
-        display: none;
+        gap: 0;
+        font-size: .82rem;
+      }
+
+      .nav-links a {
+        padding-inline: 9px;
       }
 
       .hero {
-        min-height: 76svh;
-        background-image:
-          linear-gradient(90deg, rgba(18, 24, 26, .92) 0%, rgba(18, 24, 26, .72) 100%),
-          url("assets/studio-hero.jpg");
-      }
-
-      .note-grid,
-      .program-list,
-      .resource-row,
-      .journal-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .note,
-      .program,
-      .resource {
-        min-height: auto;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .hero-inner,
-      .section-inner,
-      .nav {
-        width: min(100% - 28px, 1180px);
-      }
-
-      .hero-inner {
-        padding-bottom: 56px;
+        min-height: 540px;
       }
 
       h1 {
-        font-size: clamp(2.7rem, 15vw, 4rem);
+        font-size: 3.35rem;
       }
 
-      .hero-actions {
+      .domain-grid,
+      .value-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .domain:nth-child(4) {
+        border-left: 0;
+      }
+
+      .resource-grid,
+      .work-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .footer-top {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav,
+      .section-inner,
+      .hero-inner,
+      .footer-top,
+      .footer-bottom {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .site-header {
+        position: static;
+      }
+
+      .nav {
+        align-items: flex-start;
+        padding: 12px 0;
         display: grid;
+        gap: 12px;
       }
 
-      .action {
+      .brand {
+        min-width: 0;
+      }
+
+      .nav-links {
         width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        justify-content: stretch;
+      }
+
+      .nav-links a {
+        min-height: 38px;
+        padding: 9px 5px 8px;
+        font-size: .76rem;
+      }
+
+      .hero {
+        min-height: auto;
+        background-image:
+          linear-gradient(180deg, rgba(244, 250, 255, .98) 0%, rgba(244, 250, 255, .96) 50%, rgba(244, 250, 255, .74) 100%),
+          url("assets/learning-lab-hero.jpg");
+        background-position: center right;
+      }
+
+      .hero-inner {
+        padding: 56px 0 48px;
+      }
+
+      .hero-content {
+        max-width: 100%;
+        gap: 18px;
+      }
+
+      h1 {
+        font-size: 2.62rem;
+      }
+
+      .hero-lead {
+        font-size: 1rem;
+      }
+
+      section {
+        padding: 44px 0;
+      }
+
+      .domain-grid,
+      .value-grid,
+      .resource-grid,
+      .work-grid,
+      .course-layout,
+      .public-layout,
+      .blog-grid,
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+
+      .domain + .domain {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .course-grid,
+      .stat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .brand-title {
+        font-size: .94rem;
+      }
+
+      .brand-subtitle {
+        font-size: .7rem;
+      }
+
+      .nav-links {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero-actions,
+      .course-grid,
+      .stat-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .classical-panel,
+      .public-copy {
+        padding: 20px;
       }
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
   <header class="site-header">
     <nav class="nav" aria-label="主导航">
-      <a class="brand" href="./">
-        <span class="brand-mark" aria-hidden="true">T</span>
-        <span class="brand-text">Michael的学习小屋</span>
+      <a class="brand" href="./" aria-label="Michael 学习实验室首页">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span class="brand-copy">
+          <span class="brand-title">Michael 学习实验室</span>
+          <span class="brand-subtitle">Math · Code · Science · English</span>
+        </span>
       </a>
+
       <div class="nav-links">
-        <a href="#studio">工作室</a>
-        <a href="#resources">资料</a>
-        <a href="plan/">暑假计划</a>
-        <a href="primary-math/">小学数学</a>
+        <a href="#home" aria-current="page">首页</a>
+        <a href="#values">学习价值观</a>
+        <a href="#resources">全球学习资源</a>
+        <a href="#courses">课程与项目</a>
+        <a href="#works">学生作品</a>
+        <a href="#public">公益学习小组</a>
+        <a href="#about">关于我</a>
+        <a href="#blog">博客</a>
       </div>
     </nav>
   </header>
 
-  <main>
-    <section class="hero" aria-label="Michael的学习小屋">
+  <main id="main">
+    <section class="hero" id="home" aria-label="Michael 学习实验室">
       <div class="hero-inner">
-        <p class="kicker">Independent Teacher Studio</p>
-        <h1>Michael的学习小屋</h1>
-        <p class="hero-copy">
-          一间安静、自由、认真学习的小屋。数学可以通向结构，阅读可以通向世界，古典音乐提醒我们：真正的理解，需要节奏、耐心和一点点优雅。
-        </p>
-        <div class="hero-actions">
-          <a class="action primary" href="#studio">了解工作室</a>
-          <a class="action" href="plan/">暑假学习计划</a>
-          <a class="action" href="primary-math/">小学数学资料</a>
+        <div class="hero-content">
+          <p class="eyebrow">自由学习 · 清晰表达 · 安静生长</p>
+          <h1>让学习成为理解世界与创作作品的过程</h1>
+          <p class="hero-lead">数学思维 · 编程创造 · 科学探索 · 英语表达 · AI 赋能</p>
+          <p class="hero-copy">
+            欢迎来到 Michael 学习实验室。这里分享学习理念，推荐全球优质资源，展示学生作品，并提供有趣、有深度的课程与学习项目。
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#resources">探索全球学习资源</a>
+            <a class="button" href="#courses">了解课程与项目</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="philosophy" aria-labelledby="philosophy-title">
+    <section class="domain-strip" aria-label="学习方向">
       <div class="section-inner">
-        <div class="section-title">
-          <h2 id="philosophy-title">自由地学习感兴趣的东西，也严肃地把它学明白。</h2>
-          <p>这里不急着把学习塞进统一模板，而是从孩子真实的好奇心出发，把兴趣整理成问题，把问题发展成方法，把方法沉淀成可以迁移的能力。</p>
-        </div>
-
-        <div class="note-grid">
-          <article class="note" style="--color: var(--brass)">
-            <h3>兴趣作为起点</h3>
-            <p>允许孩子从一首曲子、一张图、一个数字谜或一次追问开始，先拥有想知道的冲动。</p>
-          </article>
-          <article class="note" style="--color: var(--sage)">
-            <h3>方法作为骨架</h3>
-            <p>用清晰的提问、表达、演算和复盘，让松散的兴趣逐渐长成可持续的学习习惯。</p>
-          </article>
-          <article class="note" style="--color: var(--blue)">
-            <h3>审美作为节奏</h3>
-            <p>在数学的结构、文字的分寸和音乐的呼吸里，训练一种安静而准确的注意力。</p>
-          </article>
-          <article class="note" style="--color: var(--wine)">
-            <h3>作品作为回应</h3>
-            <p>每一次学习都尽量留下可展示的成果：一页笔记、一道讲清的题、一段整理好的思路。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="studio" id="studio" aria-labelledby="studio-title">
-      <div class="section-inner">
-        <div class="section-title">
-          <h2 id="studio-title">独立教师工作室</h2>
-          <p>小而稳定的学习陪伴，适合希望保留个性、也愿意认真打基础的孩子。</p>
-        </div>
-
-        <div class="program-list">
-          <article class="program">
-            <div class="program-top">
-              <small>Mathematics</small>
-              <h3>数学理解与表达</h3>
-              <p>从数感、运算、模型和证明意识入手，把“会做题”推进到“能解释为什么”。</p>
-            </div>
-            <a class="program-link" href="primary-math/">查看数学资料</a>
+        <div class="domain-grid">
+          <article class="domain" style="--tone: var(--blue)">
+            <span class="domain-icon" aria-hidden="true">√x</span>
+            <h3>数学思维</h3>
+            <p>用结构和逻辑理解问题，培养深度思考能力。</p>
           </article>
 
-          <article class="program">
-            <div class="program-top">
-              <small>Reading & Thinking</small>
-              <h3>阅读、写作与提问</h3>
-              <p>训练阅读中的停顿、概括、追问和表达，让孩子慢慢拥有自己的判断和语言。</p>
-            </div>
-            <a class="program-link" href="#resources">查看学习入口</a>
+          <article class="domain" style="--tone: var(--green)">
+            <span class="domain-icon" aria-hidden="true">&lt;/&gt;</span>
+            <h3>编程创造</h3>
+            <p>用代码把想法变成作品，学习面向未来的技能。</p>
           </article>
 
-          <article class="program">
-            <div class="program-top">
-              <small>Music & Structure</small>
-              <h3>古典音乐里的秩序感</h3>
-              <p>借音乐的主题、变奏、节拍和结构，培养耐心、倾听和对复杂事物的整体感。</p>
-            </div>
-            <a class="program-link" href="#journal">阅读工作室札记</a>
+          <article class="domain" style="--tone: var(--amber)">
+            <span class="domain-icon" aria-hidden="true">H2</span>
+            <h3>科学探索</h3>
+            <p>用实验与观察认识世界，保持好奇与探究精神。</p>
+          </article>
+
+          <article class="domain" style="--tone: var(--violet)">
+            <span class="domain-icon" aria-hidden="true">En</span>
+            <h3>英语表达</h3>
+            <p>用语言连接世界，提升阅读与表达能力。</p>
+          </article>
+
+          <article class="domain" style="--tone: var(--cyan)">
+            <span class="domain-icon" aria-hidden="true">∞</span>
+            <h3>终身学习</h3>
+            <p>拥抱变化，持续学习，成为更好的自己。</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="journal" id="journal" aria-labelledby="journal-title">
+    <section class="values" id="values" aria-labelledby="values-title">
       <div class="section-inner">
-        <div class="section-title">
-          <h2 id="journal-title">学习像一段室内乐。</h2>
-          <p>不是越响越好，而是听见主题、知道进入、懂得等待，也能在合适的时候自己接上旋律。</p>
+        <div class="section-heading">
+          <h2 id="values-title">我的学习价值观</h2>
+          <p>我不把学习理解为把知识装进脑袋。学习更像是在一个人和世界之间建立更清楚的关系：看见问题，形成语言，找到结构，反复练习，最后用作品回应。</p>
         </div>
 
-        <div class="journal-grid">
-          <article class="quote-panel">
-            <blockquote>把好奇心保护好，再把方法慢慢放进去。</blockquote>
-            <p>Michael的学习小屋希望成为这样的地方：不催促孩子变成另一个人，只陪他把自己的兴趣学得更清楚、更扎实、更有回声。</p>
+        <div class="value-grid">
+          <article class="value-card" style="--tone: var(--blue)">
+            <span class="value-icon" aria-hidden="true">01</span>
+            <h3>理解比记忆更重要</h3>
+            <p>先理解本质，再记住细节。</p>
           </article>
 
-          <aside class="list-panel">
-            <h3>学习节奏</h3>
-            <ul>
-              <li>先观察，再表达：把看见的东西说清楚。</li>
-              <li>先理解，再练习：把方法放进具体问题里。</li>
-              <li>先复盘，再前进：把错误变成下一次的入口。</li>
-              <li>先安静，再深入：把注意力还给真正的问题。</li>
-            </ul>
-          </aside>
+          <article class="value-card" style="--tone: var(--green)">
+            <span class="value-icon" aria-hidden="true">02</span>
+            <h3>兴趣源于成就感</h3>
+            <p>小步前进，持续获得正反馈。</p>
+          </article>
+
+          <article class="value-card" style="--tone: var(--amber)">
+            <span class="value-icon" aria-hidden="true">03</span>
+            <h3>从具体到抽象</h3>
+            <p>动手操作、图像表示、语言表达、符号抽象。</p>
+          </article>
+
+          <article class="value-card" style="--tone: var(--violet)">
+            <span class="value-icon" aria-hidden="true">04</span>
+            <h3>作品记录成长</h3>
+            <p>学习的最终输出，是可以看见的作品。</p>
+          </article>
+
+          <article class="value-card" style="--tone: var(--cyan)">
+            <span class="value-icon" aria-hidden="true">05</span>
+            <h3>资源应公开共享</h3>
+            <p>优质资源人人可得，知识创造更大价值。</p>
+          </article>
+
+          <article class="value-card" style="--tone: var(--blue-deep)">
+            <span class="value-icon" aria-hidden="true">06</span>
+            <h3>学习服务他人</h3>
+            <p>用所学解决问题，让世界变得更好。</p>
+          </article>
         </div>
       </div>
     </section>
 
     <section class="resources" id="resources" aria-labelledby="resources-title">
       <div class="section-inner">
-        <div class="section-title">
-          <h2 id="resources-title">已整理的学习资料</h2>
-          <p>这里会逐步放入课程计划、数学资料、阅读札记和孩子可以独立打开的学习页面。</p>
+        <div class="section-heading">
+          <h2 id="resources-title">全球学习资源地图</h2>
+          <p>精心筛选全世界优质的免费与开放学习资源，按学科和年龄段分类整理。资源不是用来堆满时间，而是在合适的时候打开一扇更大的窗。</p>
         </div>
 
-        <div class="resource-row">
-          <a class="resource" href="plan/">
-            <h3>暑假学习计划</h3>
-            <p>五六年级数学三周计划，含每日任务、完成记录和打印导出。</p>
-          </a>
-          <a class="resource" href="primary-math/grade2/">
-            <h3>二年级数学教材</h3>
-            <p>Learning Mathematics 2 前两个单元 HTML 阅读版。</p>
-          </a>
-          <a class="resource" href="primary-math/">
-            <h3>小学数学专区</h3>
-            <p>集中整理小学阶段数学知识点、教材页面和后续专题。</p>
-          </a>
+        <div class="resource-grid">
+          <article class="resource-card" style="--tone: #2c72d6; --tone-deep: #184da6">
+            <div class="resource-art"><span>综合课程平台</span></div>
+            <div class="resource-body">
+              <h3>开放课程</h3>
+              <ul class="resource-list">
+                <li>MIT OpenCourseWare</li>
+                <li>Coursera</li>
+                <li>edX</li>
+                <li>OpenLearn</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="resource-card" style="--tone: #32a86d; --tone-deep: #157b55">
+            <div class="resource-art"><span>数学学习</span></div>
+            <div class="resource-body">
+              <h3>数学与结构</h3>
+              <ul class="resource-list">
+                <li>Khan Academy</li>
+                <li>3Blue1Brown</li>
+                <li>GeoGebra</li>
+                <li>NRICH</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="resource-card" style="--tone: #e4a035; --tone-deep: #b36d13">
+            <div class="resource-art"><span>编程与计算机</span></div>
+            <div class="resource-body">
+              <h3>编程创造</h3>
+              <ul class="resource-list">
+                <li>Scratch</li>
+                <li>CS50</li>
+                <li>freeCodeCamp</li>
+                <li>MDN Web Docs</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="resource-card" style="--tone: #7555d9; --tone-deep: #4b31a8">
+            <div class="resource-art"><span>科学探索</span></div>
+            <div class="resource-body">
+              <h3>科学与实验</h3>
+              <ul class="resource-list">
+                <li>PhET Interactive</li>
+                <li>NASA</li>
+                <li>HHMI BioInteractive</li>
+                <li>BBC Earth</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="resource-card" style="--tone: #19aebb; --tone-deep: #0b7885">
+            <div class="resource-art"><span>英语学习</span></div>
+            <div class="resource-body">
+              <h3>英语表达</h3>
+              <ul class="resource-list">
+                <li>BBC Learning English</li>
+                <li>VOA Learning English</li>
+                <li>TED-Ed</li>
+                <li>Cambridge Dictionary</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="resource-card" style="--tone: #bd8740; --tone-deep: #85581d">
+            <div class="resource-art"><span>开放教材与知识库</span></div>
+            <div class="resource-body">
+              <h3>阅读与艺术</h3>
+              <ul class="resource-list">
+                <li>OpenStax</li>
+                <li>CK-12</li>
+                <li>Project Gutenberg</li>
+                <li>IMSLP</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="courses" id="courses" aria-labelledby="courses-title">
+      <div class="section-inner">
+        <div class="section-heading">
+          <h2 id="courses-title">课程与项目</h2>
+          <p>课程不只是进度表，而是一组能够反复进入、慢慢变深的项目。每个项目都尽量留下可展示、可讲解、可复盘的成果。</p>
+        </div>
+
+        <div class="course-layout">
+          <article class="classical-panel" id="about">
+            <small>Independent Teacher Studio</small>
+            <h2>一间安静的小屋，也是一间面向未来的实验室。</h2>
+            <p>
+              古典音乐提醒我们：真正的理解需要节奏、耐心和一点点优雅。技术工具提醒我们：好的学习也可以被表达、被创造、被分享。
+            </p>
+            <a class="button primary" href="#public">了解公益学习小组</a>
+          </article>
+
+          <div class="course-grid">
+            <article class="course-card">
+              <div>
+                <small>Primary Math</small>
+                <h3>小学数学教材 HTML 版</h3>
+                <p>把教材内容整理成可浏览、可跳转的网页，适合复习与自主学习。</p>
+              </div>
+              <a href="primary-math/">进入小学数学资料</a>
+            </article>
+
+            <article class="course-card">
+              <div>
+                <small>Summer Plan</small>
+                <h3>暑假学习计划</h3>
+                <p>把每天的学习安排、阅读、数学与项目任务放在一个清晰页面里。</p>
+              </div>
+              <a href="plan/">查看学习计划</a>
+            </article>
+
+            <article class="course-card">
+              <div>
+                <small>Code & Creation</small>
+                <h3>网页与编程作品</h3>
+                <p>从简单页面、互动动画到小游戏，把抽象概念变成可运行的作品。</p>
+              </div>
+              <a href="#works">查看作品展示</a>
+            </article>
+
+            <article class="course-card">
+              <div>
+                <small>Thinking Lab</small>
+                <h3>数学思维与表达</h3>
+                <p>训练建模、推理、画图、讲题与复盘，让知识真正变成自己的语言。</p>
+              </div>
+              <a href="primary-math/grade2/">进入二年级内容</a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="works" id="works" aria-labelledby="works-title">
+      <div class="section-inner">
+        <div class="section-heading">
+          <h2 id="works-title">学生作品展示</h2>
+          <p>学习不是只停在“听懂了”，还要尝试把理解做出来、讲出来、留下来。</p>
+        </div>
+
+        <div class="work-grid">
+          <article class="work-card" style="--tone: #2c72d6; --tone-deep: #184da6">
+            <div class="work-art"><span>思维导图</span></div>
+            <div class="work-body">
+              <h3>分数知识思维导图</h3>
+              <p>五年级</p>
+            </div>
+          </article>
+
+          <article class="work-card" style="--tone: #32a86d; --tone-deep: #157b55">
+            <div class="work-art"><span>Scratch 项目</span></div>
+            <div class="work-body">
+              <h3>数学闯关小游戏</h3>
+              <p>四年级</p>
+            </div>
+          </article>
+
+          <article class="work-card" style="--tone: #e4a035; --tone-deep: #b36d13">
+            <div class="work-art"><span>几何艺术</span></div>
+            <div class="work-body">
+              <h3>对称与图形设计</h3>
+              <p>六年级</p>
+            </div>
+          </article>
+
+          <article class="work-card" style="--tone: #7555d9; --tone-deep: #4b31a8">
+            <div class="work-art"><span>HTML 网页</span></div>
+            <div class="work-body">
+              <h3>句型定理探索网站</h3>
+              <p>初一</p>
+            </div>
+          </article>
+
+          <article class="work-card" style="--tone: #19aebb; --tone-deep: #0b7885">
+            <div class="work-art"><span>机器人项目</span></div>
+            <div class="work-body">
+              <h3>智能避障小车</h3>
+              <p>五年级</p>
+            </div>
+          </article>
+
+          <article class="work-card" style="--tone: #bd8740; --tone-deep: #85581d">
+            <div class="work-art"><span>科学实验</span></div>
+            <div class="work-body">
+              <h3>密度分层实验报告</h3>
+              <p>四年级</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="public" id="public" aria-labelledby="public-title">
+      <div class="section-inner">
+        <div class="public-layout">
+          <article class="public-copy">
+            <h2 id="public-title">公益学习小组</h2>
+            <p>每周一次免费学习活动，面向热爱学习、渴望成长的孩子，共同探索知识，分享作品，点亮未来。</p>
+            <a class="button" href="mailto:michael.studio@outlook.com">了解详情与报名</a>
+          </article>
+
+          <div class="stat-grid" aria-label="公益学习小组数据">
+            <div class="stat">
+              <strong>12</strong>
+              <span>已开展期数</span>
+            </div>
+            <div class="stat">
+              <strong>120+</strong>
+              <span>参与学生</span>
+            </div>
+            <div class="stat">
+              <strong>300+</strong>
+              <span>完成作品</span>
+            </div>
+            <div class="stat">
+              <strong>500+</strong>
+              <span>志愿时长</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="blog" id="blog" aria-labelledby="blog-title">
+      <div class="section-inner">
+        <div class="section-heading">
+          <h2 id="blog-title">学习札记</h2>
+          <p>记录课堂观察、资源使用建议、读书笔记与学习方法。这里更像一间开放的资料室，慢慢积累，也欢迎回看。</p>
+        </div>
+
+        <div class="blog-grid">
+          <article class="blog-note">
+            <small>数学</small>
+            <h3>从一道题出发，训练孩子解释“为什么”。</h3>
+            <p>讲题不是背步骤，而是把数量关系、图形关系和自己的判断说清楚。</p>
+          </article>
+
+          <article class="blog-note">
+            <small>音乐</small>
+            <h3>古典音乐里的结构感，也能帮助学习。</h3>
+            <p>主题、变奏、重复和对比，让孩子学会在复杂材料里保持注意力。</p>
+          </article>
+
+          <article class="blog-note">
+            <small>科技</small>
+            <h3>AI 工具可以加速学习，但不能代替思考。</h3>
+            <p>好的工具应该帮助孩子提出更好的问题，而不是更快地跳过问题。</p>
+          </article>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="footer-inner">
-      <span>Michael的学习小屋</span>
-      <span>自由学习 / 清晰表达 / 安静生长</span>
+    <div class="footer-top">
+      <div class="footer-column">
+        <h2>Michael 学习实验室</h2>
+        <p>致力于儿童数学思维、编程创造、科学探索和英语表达教育。分享优质资源，培养未来学习者的核心能力。</p>
+      </div>
+
+      <div class="footer-column">
+        <h3>快速导航</h3>
+        <ul class="footer-links">
+          <li><a href="#values">学习价值观</a></li>
+          <li><a href="#resources">全球学习资源</a></li>
+          <li><a href="#courses">课程与项目</a></li>
+          <li><a href="#works">学生作品</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>资源推荐</h3>
+        <ul class="footer-links">
+          <li><a href="primary-math/">小学数学</a></li>
+          <li><a href="primary-math/grade2/">二年级数学教材</a></li>
+          <li><a href="primary-math/grade5/">五年级数学资源</a></li>
+          <li><a href="plan/">暑假学习计划</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>联系我</h3>
+        <ul class="footer-links">
+          <li>邮箱：michael.studio@outlook.com</li>
+          <li>微信：Michael_Edu_Studio</li>
+          <li>地点：深圳</li>
+          <li>网站：math.michaelqaq.com</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Michael 学习实验室 · 让学习成为理解世界与创作作品的过程
     </div>
   </footer>
 </body>
