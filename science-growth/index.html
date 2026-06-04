@@ -1,153 +1,1772 @@
 <!doctype html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>科学探索成长轨迹 | Michael's Learning Lab</title>
-  <meta name="description" content="Michael 的科学探索成长轨迹，记录科技往事、科学实验、自然与宇宙。">
-  <link rel="stylesheet" href="../assets/growth-page.css">
+  <title>持续学习中 | Michael's Learning Lab</title>
+  <meta name="description" content="Michael's Learning Lab 的持续学习卡片总览。">
   <style>
     :root {
-      --accent: #26a4a6;
-      --accent-deep: #147a82;
-      --gold: #a57a2a;
+      color-scheme: dark;
+      --ink: #fff1dc;
+      --ink-soft: #e4ccb0;
+      --muted: #b99c7b;
+      --quiet: #8f7354;
+      --paper: #1d1209;
+      --wash: #100b07;
+      --wash-strong: #2a1a0f;
+      --line: rgba(255, 214, 159, .14);
+      --line-strong: rgba(255, 214, 159, .26);
+      --gold: #d69245;
+      --gold-deep: #9a5a24;
+      --shadow: 0 24px 60px rgba(0, 0, 0, .42);
+      --shadow-soft: 0 12px 34px rgba(0, 0, 0, .32);
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --mono: "SFMono-Regular", Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: #171717;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.65;
+      letter-spacing: 0;
+      background:
+        radial-gradient(circle at 18% 8%, rgba(198, 106, 47, .18), transparent 28%),
+        radial-gradient(circle at 82% 18%, rgba(111, 123, 74, .13), transparent 22%),
+        radial-gradient(circle, rgba(255, 255, 255, .12) 1px, transparent 1.8px) 0 0 / 44px 44px,
+        linear-gradient(180deg, #202020 0%, #292929 48%, #202020 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, rgba(16, 11, 7, .94), rgba(41, 21, 8, .86)),
+        rgba(16, 11, 7, .9);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav,
+    .subpage-title,
+    .learning-layout,
+    .footer-inner {
+      width: min(1380px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      min-width: 280px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 58px;
+      height: 58px;
+      border: 2px solid var(--line-strong);
+      border-radius: 18px;
+      overflow: hidden;
+      display: block;
+      flex: 0 0 auto;
+      background: var(--wash-strong);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-title {
+      display: block;
+      color: var(--ink);
+      font-size: 1.02rem;
+      font-weight: 950;
+      line-height: 1.18;
+      white-space: nowrap;
+    }
+
+    .brand-subtitle {
+      display: block;
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 800;
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      font-size: .9rem;
+      font-weight: 900;
+    }
+
+    .nav-links a {
+      position: relative;
+      min-height: 42px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      color: var(--ink);
+    }
+
+    .nav-links a::after {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 4px;
+      height: 3px;
+      border-radius: 99px;
+      background: var(--gold);
+      content: "";
+      opacity: 0;
+      transform: scaleX(.54);
+      transition: opacity .16s ease, transform .16s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      color: #ffd28a;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a[aria-current="page"]::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .icon-button {
+      width: 42px;
+      height: 42px;
+      border: 1px solid transparent;
+      border-radius: 99px;
+      display: grid;
+      place-items: center;
+      color: #2a160b;
+      background: linear-gradient(135deg, #ffd28a, #c06a2f);
+      box-shadow: 0 12px 28px rgba(96, 45, 14, .28);
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .subpage-hero {
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, rgba(16, 11, 7, .88), rgba(72, 36, 11, .58)),
+        rgba(16, 11, 7, .68);
+    }
+
+    .subpage-title {
+      padding: 28px 0 30px;
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+      text-align: center;
+    }
+
+    .subpage-title h1 {
+      color: var(--ink);
+      font-size: clamp(1.85rem, 4vw, 2.7rem);
+      font-weight: 950;
+      line-height: 1.18;
+    }
+
+    .subpage-title h1::after {
+      width: 42px;
+      height: 3px;
+      border-radius: 99px;
+      display: block;
+      margin: 12px auto 0;
+      background: linear-gradient(90deg, var(--gold), var(--gold-deep));
+      content: "";
+    }
+
+    .subpage-title p {
+      max-width: 760px;
+      color: var(--muted);
+      font-weight: 760;
+    }
+
+    .learning-layout {
+      min-height: 920px;
+      padding: 24px 0 58px;
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .field-sidebar {
+      position: sticky;
+      top: 104px;
+      display: grid;
+      gap: 7px;
+      max-height: calc(100vh - 128px);
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .field-sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .field-sidebar::-webkit-scrollbar-thumb {
+      border-radius: 999px;
+      background: rgba(255, 214, 159, .18);
+    }
+
+    .field-list {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field-link {
+      width: 100%;
+      min-height: 46px;
+      padding: 7px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: 25px minmax(0, 1fr);
+      gap: 7px;
+      align-items: center;
+      background:
+        linear-gradient(135deg, rgba(255, 214, 159, .05), rgba(255, 214, 159, .02)),
+        rgba(29, 18, 9, .82);
+      box-shadow: var(--shadow-soft);
+      color: inherit;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    button.field-link {
+      appearance: none;
+    }
+
+    .field-link:hover,
+    .field-link[aria-current="page"] {
+      border-color: color-mix(in srgb, var(--tone, var(--gold)) 58%, var(--line));
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--tone, var(--gold)) 18%, transparent), rgba(255, 214, 159, .03)),
+        rgba(29, 18, 9, .92);
+    }
+
+    .field-link[draggable="true"] {
+      cursor: grab;
+    }
+
+    .field-link.dragging {
+      opacity: .5;
+      transform: scale(.98);
+    }
+
+    .field-link.drop-before {
+      box-shadow: inset 0 3px 0 var(--gold), var(--shadow-soft);
+    }
+
+    .field-link.drop-after {
+      box-shadow: inset 0 -3px 0 var(--gold), var(--shadow-soft);
+    }
+
+    .library-link {
+      min-height: 44px;
+      border-color: rgba(255, 210, 138, .3);
+    }
+
+    .add-category-button {
+      min-height: 34px;
+      border: 1px dashed var(--line-strong);
+      border-radius: 8px;
+      color: var(--ink-soft);
+      background: rgba(29, 18, 9, .58);
+      font: inherit;
+      font-size: .72rem;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .add-category-button:hover {
+      border-color: rgba(255, 210, 138, .48);
+      color: var(--ink);
+      background: rgba(42, 26, 15, .82);
+    }
+
+    .field-nav-icon {
+      width: 25px;
+      height: 25px;
+      border-radius: 7px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, var(--tone, var(--gold)), var(--tone-deep, var(--gold-deep)));
+      font-size: .72rem;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .field-nav-text {
+      min-width: 0;
+      display: grid;
+      gap: 1px;
+    }
+
+    .field-nav-text strong {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--ink);
+      font-size: .68rem;
+      line-height: 1.2;
+    }
+
+    .field-nav-text span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--muted);
+      font-size: .57rem;
+      font-weight: 760;
+      line-height: 1.2;
+    }
+
+    .library-panel {
+      min-width: 0;
+      display: grid;
+      gap: 18px;
+    }
+
+    .library-toolbar {
+      min-height: 56px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: minmax(240px, 420px) auto auto 1fr;
+      gap: 10px;
+      align-items: center;
+      background: rgba(16, 16, 16, .64);
+      backdrop-filter: blur(14px);
+    }
+
+    .search-field {
+      min-width: 0;
+      height: 38px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      padding: 0 12px;
+      color: var(--ink);
+      background: rgba(18, 18, 18, .78);
+      font: inherit;
+      font-size: .92rem;
+      outline: none;
+    }
+
+    .search-field:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(214, 146, 69, .16);
+    }
+
+    .count-pill {
+      min-height: 38px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--muted);
+      background: rgba(29, 18, 9, .76);
+      font-size: .82rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .toolbar-button,
+    .modal-button {
+      min-height: 38px;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--ink);
+      background: rgba(29, 18, 9, .76);
+      font: inherit;
+      font-size: .84rem;
+      font-weight: 900;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .toolbar-button:hover,
+    .modal-button:hover {
+      border-color: var(--line-strong);
+      background: rgba(42, 26, 15, .9);
+    }
+
+    .toolbar-button.primary,
+    .modal-button.primary {
+      border-color: rgba(255, 210, 138, .68);
+      color: #241103;
+      background: linear-gradient(135deg, #ffe0a5, #d98632);
+    }
+
+    .modal-button.danger {
+      color: #ffb4a6;
+      background: rgba(163, 81, 63, .18);
+    }
+
+    .active-summary {
+      justify-self: end;
+      color: var(--quiet);
+      font-size: .84rem;
+      font-weight: 760;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      align-items: start;
+    }
+
+    .markdown-card {
+      position: relative;
+      height: 320px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      align-content: stretch;
+      gap: 12px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(255, 214, 159, .045), rgba(255, 214, 159, .015)),
+        rgba(31, 31, 31, .88);
+      box-shadow: var(--shadow-soft);
+      cursor: pointer;
+    }
+
+    .markdown-card::after {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 58px;
+      background: linear-gradient(180deg, transparent, rgba(31, 31, 31, .96));
+      content: "";
+      pointer-events: none;
+    }
+
+    .markdown-card:hover,
+    .markdown-card:focus-visible {
+      border-color: var(--line-strong);
+      transform: translateY(-2px);
+      outline: none;
+      transition: transform .16s ease, border-color .16s ease;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--quiet);
+      font-size: .74rem;
+      font-weight: 850;
+    }
+
+    .card-meta-left {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-field {
+      max-width: 88px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--field-tone, var(--gold)), var(--field-tone-deep, var(--gold-deep)));
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .card-tag {
+      max-width: 100%;
+      padding: 3px 7px;
+      border-radius: 999px;
+      color: #ffe4b6;
+      background: rgba(214, 146, 69, .15);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .markdown-body {
+      min-width: 0;
+      display: grid;
+      gap: 8px;
+      color: var(--ink-soft);
+      font-size: .84rem;
+      max-height: 100%;
+      overflow: hidden;
+    }
+
+    .markdown-body h2 {
+      color: var(--ink);
+      font-size: 1.12rem;
+      line-height: 1.3;
+    }
+
+    .markdown-body h3 {
+      color: var(--ink);
+      font-size: .96rem;
+      line-height: 1.32;
+    }
+
+    .markdown-body p {
+      color: var(--ink-soft);
+    }
+
+    .markdown-body ul,
+    .markdown-body ol {
+      margin: 0;
+      padding-left: 1.2rem;
+      display: grid;
+      gap: 3px;
+    }
+
+    .markdown-body code {
+      padding: 1px 5px;
+      border-radius: 5px;
+      color: #ffd28a;
+      background: rgba(214, 146, 69, .12);
+      font-family: var(--mono);
+      font-size: .78rem;
+    }
+
+    .empty-state {
+      padding: 30px;
+      border: 1px dashed var(--line-strong);
+      border-radius: 8px;
+      display: none;
+      color: var(--muted);
+      text-align: center;
+      background: rgba(16, 16, 16, .56);
+      font-weight: 850;
+    }
+
+    .card-dialog {
+      width: min(940px, calc(100% - 28px));
+      max-height: min(90vh, 920px);
+      padding: 0;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      color: var(--ink);
+      background: var(--paper);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .42);
+    }
+
+    .card-dialog::backdrop {
+      background: rgba(9, 7, 5, .68);
+      backdrop-filter: blur(8px);
+    }
+
+    .dialog-shell {
+      max-height: min(90vh, 920px);
+      display: grid;
+      overflow: auto;
+    }
+
+    .dialog-header {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: color-mix(in srgb, var(--paper) 92%, transparent);
+      backdrop-filter: blur(16px);
+    }
+
+    .dialog-header h2 {
+      font-size: 1.12rem;
+      line-height: 1.3;
+    }
+
+    .modal-close {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      background: var(--wash-strong);
+      font: inherit;
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+
+    .card-form {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 7px;
+      color: var(--ink-soft);
+      font-size: .84rem;
+      font-weight: 900;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 11px 12px;
+      color: var(--ink);
+      background: rgba(16, 11, 7, .62);
+      font: inherit;
+      font-size: .92rem;
+      line-height: 1.45;
+      outline: none;
+    }
+
+    .form-field select {
+      appearance: none;
+    }
+
+    .form-field textarea {
+      min-height: 320px;
+      resize: vertical;
+      font-family: var(--mono);
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(214, 146, 69, .16);
+    }
+
+    .category-dialog {
+      width: min(560px, calc(100% - 28px));
+    }
+
+    .helper-text {
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 700;
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .footer {
+      margin: 36px auto 24px;
+      width: min(1380px, calc(100% - 48px));
+      padding: 34px 0 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(11, 15, 25, .72);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(3, .75fr) 1.05fr;
+      gap: 30px;
+    }
+
+    .footer-brand {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .footer-column,
+    .subscribe {
+      display: grid;
+      align-content: start;
+      gap: 12px;
+    }
+
+    .footer-column h3,
+    .subscribe h3 {
+      font-size: .95rem;
+      margin: 0;
+    }
+
+    .footer-column ul {
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 6px;
+      list-style: none;
+    }
+
+    .footer-column a,
+    .footer-column li,
+    .subscribe p {
+      color: var(--muted);
+      font-size: .86rem;
+      font-weight: 760;
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+    }
+
+    .socials span {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--wash-strong);
+      font-size: .78rem;
+      font-weight: 900;
+    }
+
+    .copyright {
+      width: min(1180px, calc(100% - 44px));
+      margin: 26px auto 0;
+      color: var(--quiet);
+      font-size: .82rem;
+      text-align: center;
+    }
+
+    @media (max-width: 1180px) {
+      .card-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 960px) {
+      .nav {
+        align-items: flex-start;
+        padding: 12px 0;
+        display: grid;
+      }
+
+      .nav-links {
+        justify-content: start;
+        flex-wrap: wrap;
+      }
+
+      .learning-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .field-sidebar {
+        position: static;
+        max-height: none;
+        overflow: visible;
+      }
+
+      .field-list {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .footer-inner {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav,
+      .subpage-title,
+      .learning-layout,
+      .footer,
+      .footer-inner,
+      .copyright {
+        width: min(100% - 28px, 1380px);
+      }
+
+      .brand {
+        min-width: 0;
+      }
+
+      .brand-title,
+      .brand-subtitle {
+        white-space: normal;
+      }
+
+      .nav-links {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        width: 100%;
+      }
+
+      .nav-links a {
+        justify-content: center;
+        padding-inline: 8px;
+        font-size: .78rem;
+      }
+
+      .field-sidebar,
+      .field-list,
+      .card-grid,
+      .library-toolbar,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .active-summary {
+        justify-self: start;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
-  <header class="topbar">
+  <header class="site-header">
     <nav class="nav" aria-label="主导航">
       <a class="brand" href="../index.html#home">
-        <span class="brand-mark"><img src="../assets/site-logo.jpg" alt=""></span>
-        <span>Michael's Learning Lab<small>Science · Experiment · Nature · Cosmos</small></span>
+        <span class="brand-mark" aria-hidden="true"><img src="../assets/profile-icon.jpg" alt=""></span>
+        <span>
+          <span class="brand-title">Michael's Learning Lab</span>
+          <span class="brand-subtitle">Keep Curiosity Alive</span>
+        </span>
       </a>
-      <a class="button-link" href="../index.html#fields">回到探索领域</a>
+
+      <div class="nav-links">
+        <a href="../index.html#home">首页</a>
+        <a href="../index.html#fields" aria-current="page">持续学习中</a>
+        <a href="../index.html#resources">学习资源</a>
+        <a href="../index.html#journal">分享</a>
+        <a href="../index.html#about">关于</a>
+      </div>
+
+      <button class="icon-button" type="button" aria-label="切换深色模式">☼</button>
     </nav>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="wrap">
-        <div class="hero-copy">
-          <span class="eyebrow">Science Growth Map</span>
-          <h1>科学探索<br>成长轨迹</h1>
-          <p>科学学习从观察开始，经过实验、模型和证据，慢慢学会用更可靠的方式理解自然与宇宙。</p>
-          <div class="hero-actions">
-            <a class="button primary" href="#timeline">查看成长线</a>
-            <a class="button" href="#focus">当前方向</a>
-          </div>
-        </div>
+    <section class="subpage-hero" aria-labelledby="pageTitle">
+      <div class="subpage-title">
+        <h1 id="pageTitle">持续学习中</h1>
+        <p id="pageIntro">把不同领域的学习记录收成卡片，方便回看、筛选和继续生长。</p>
       </div>
     </section>
 
-    <section aria-labelledby="overture-title">
-      <div class="wrap">
-        <div class="score-panel">
-          <h2 id="overture-title">像给好奇心配一套实验工具。</h2>
-          <p>科学不是背结论，而是学习怎样提问、观察、验证，再把证据整理成可以讨论的模型。</p>
-        </div>
-      </div>
-    </section>
+    <section class="learning-layout" aria-label="持续学习卡片总览">
+      <aside class="field-sidebar" aria-label="学习领域导航">
+        <button class="field-link library-link" type="button" id="cardLibraryButton" aria-current="false"
+          style="--tone: #d69245; --tone-deep: #9a5a24">
+          <span class="field-nav-icon">▦</span>
+          <span class="field-nav-text">
+            <strong>Card Library</strong>
+            <span>全部卡片</span>
+          </span>
+        </button>
+        <div class="field-list" id="fieldSidebar"></div>
+        <button class="add-category-button" type="button" id="addCategoryButton">+ 添加大类</button>
+      </aside>
 
-    <section id="timeline" aria-labelledby="timeline-title">
-      <div class="wrap">
-        <div class="section-title">
-          <h2 id="timeline-title">成长线</h2>
-          <p>科学探索的过程，是让“我觉得”慢慢变成“我可以验证”。</p>
+      <div class="library-panel">
+        <div class="library-toolbar">
+          <input class="search-field" id="cardSearch" type="search" placeholder="查找卡片标题、标签或内容..." aria-label="查找卡片">
+          <button class="toolbar-button primary" type="button" id="addCardButton">+ Card</button>
+          <span class="count-pill" id="cardCount">0 张卡片</span>
+          <span class="active-summary" id="activeSummary"></span>
         </div>
-        <div class="timeline">
-          <article class="step">
-            <div class="step-label"><span class="step-mark">01</span><span>观察</span></div>
-            <div>
-              <h3>从身边现象开始认真看</h3>
-              <p>一杯水、一束光、一片叶子，都可以成为科学问题的入口。</p>
-              <ul>
-                <li>记录现象、条件、变化和疑问。</li>
-                <li>练习区分观察和猜测。</li>
-                <li>用图示和表格整理看到的东西。</li>
-              </ul>
-            </div>
-          </article>
-          <article class="step">
-            <div class="step-label"><span class="step-mark">02</span><span>实验</span></div>
-            <div>
-              <h3>用小实验验证自己的想法</h3>
-              <p>实验让好奇心变得有方法，也让错误成为重要线索。</p>
-              <ul>
-                <li>设计变量、对照和记录方式。</li>
-                <li>做安全、简单、可重复的小实验。</li>
-                <li>把失败结果也写进实验报告。</li>
-              </ul>
-            </div>
-          </article>
-          <article class="step">
-            <div class="step-label"><span class="step-mark">03</span><span>模型</span></div>
-            <div>
-              <h3>把复杂现象变成可以理解的模型</h3>
-              <p>模型是科学里的桥：它不等于世界，却能帮助我们看清世界。</p>
-              <ul>
-                <li>用图、公式、动画解释现象。</li>
-                <li>理解模型的适用范围和限制。</li>
-                <li>把物理、化学、生物知识互相连接。</li>
-              </ul>
-            </div>
-          </article>
-          <article class="step">
-            <div class="step-label"><span class="step-mark">04</span><span>数据</span></div>
-            <div>
-              <h3>让证据说话</h3>
-              <p>数据不是冷冰冰的数字，而是现象留下的脚印。</p>
-              <ul>
-                <li>学习测量、记录、误差和趋势。</li>
-                <li>用图表表达实验结果。</li>
-                <li>训练根据证据修改解释的能力。</li>
-              </ul>
-            </div>
-          </article>
-          <article class="step">
-            <div class="step-label"><span class="step-mark">05</span><span>宇宙</span></div>
-            <div>
-              <h3>把眼光从实验桌延伸到星空</h3>
-              <p>科学的浪漫在于：小小的问题，最终会把我们带向广阔世界。</p>
-              <ul>
-                <li>整理太阳系、地球、生命和科技史资料。</li>
-                <li>制作自然与宇宙主题页面。</li>
-                <li>用科学故事激发更长久的好奇心。</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
 
-    <section id="focus" aria-labelledby="focus-title">
-      <div class="wrap">
-        <div class="section-title">
-          <h2 id="focus-title">当前方向</h2>
-          <p>接下来的科学学习，会更重视“观察、实验、模型、表达”。</p>
-        </div>
-        <div class="focus-grid">
-          <article class="focus-card"><strong>△</strong><div><h3>物理直观</h3><p>用力、运动、光和能量理解现象。</p></div></article>
-          <article class="focus-card"><strong>⚗</strong><div><h3>实验记录</h3><p>把实验过程写成清楚的观察档案。</p></div></article>
-          <article class="focus-card"><strong>⊙</strong><div><h3>宇宙主题</h3><p>整理太阳系、星空和空间尺度。</p></div></article>
-          <article class="focus-card"><strong>图</strong><div><h3>科学图解</h3><p>用图表和动画讲清楚复杂过程。</p></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section aria-labelledby="closing-title">
-      <div class="wrap">
-        <div class="closing">
-          <div>
-            <div class="section-title"><h2 id="closing-title">一句给自己的科学宣言</h2></div>
-            <blockquote>科学不是把世界变小，<br>而是让好奇心有办法走得更远。</blockquote>
-          </div>
-          <div class="formula-card">question + experiment + evidence + model<span>= a reliable path to wonder</span></div>
-        </div>
+        <div class="card-grid" id="cardGrid" aria-live="polite"></div>
+        <p class="empty-state" id="emptyState">没有找到匹配的卡片。</p>
       </div>
     </section>
   </main>
 
-  <footer><div class="wrap">© 2026 Michael's Learning Lab · Science Growth Map</div></footer>
+  <dialog class="card-dialog" id="cardDialog">
+    <div class="dialog-shell">
+      <div class="dialog-header">
+        <h2 id="cardDialogTitle">编辑卡片</h2>
+        <button class="modal-close" type="button" id="closeCardDialog" aria-label="关闭">×</button>
+      </div>
+      <form class="card-form" id="cardForm">
+        <input type="hidden" id="cardIndex">
+        <div class="form-grid">
+          <label class="form-field">
+            大类
+            <select id="cardCategoryInput" required></select>
+          </label>
+          <label class="form-field">
+            标签
+            <input id="cardTagInput" type="text" placeholder="例如：微积分 / 读书笔记" required>
+          </label>
+          <label class="form-field">
+            日期
+            <input id="cardDateInput" type="text" placeholder="例如：2026.06" required>
+          </label>
+          <label class="form-field field-full">
+            Markdown 内容
+            <textarea id="cardMarkdownInput" placeholder="## 标题&#10;- 第一条笔记&#10;- 第二条笔记&#10;&#10;也可以写 `代码` 或 **重点**。" required></textarea>
+            <span class="helper-text">保存后会更新当前领域的卡片总览，并存到这个浏览器本地。</span>
+          </label>
+        </div>
+        <div class="form-actions">
+          <button class="modal-button danger" type="button" id="deleteCardButton">删除</button>
+          <button class="modal-button" type="button" id="cancelCardButton">取消</button>
+          <button class="modal-button primary" type="submit">保存卡片</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog class="card-dialog category-dialog" id="categoryDialog">
+    <div class="dialog-shell">
+      <div class="dialog-header">
+        <h2>添加大类</h2>
+        <button class="modal-close" type="button" id="closeCategoryDialog" aria-label="关闭">×</button>
+      </div>
+      <form class="card-form" id="categoryForm">
+        <label class="form-field">
+          中文名称
+          <input id="categoryNameInput" type="text" placeholder="例如：艺术" required>
+        </label>
+        <label class="form-field">
+          英文名称
+          <input id="categoryEnInput" type="text" placeholder="例如：Art">
+        </label>
+        <label class="form-field">
+          图标
+          <input id="categoryIconInput" type="text" maxlength="8" placeholder="例如：✦">
+        </label>
+        <p class="helper-text">新大类会保存在这个浏览器本地，并出现在左侧导航底部；之后可以拖动调整顺序。</p>
+        <div class="form-actions">
+          <button class="modal-button" type="button" id="cancelCategoryButton">取消</button>
+          <button class="modal-button primary" type="submit">保存大类</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <footer class="footer" id="about">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="../index.html#home">
+          <span class="brand-mark" aria-hidden="true"><img src="../assets/profile-icon.jpg" alt=""></span>
+          <span>
+            <span class="brand-title">Michael's Learning Lab</span>
+            <span class="brand-subtitle">自由学习 · 清晰表达 · 安静生长</span>
+          </span>
+        </a>
+        <div class="socials" aria-label="社交链接">
+          <span>GH</span>
+          <span>YT</span>
+          <span>BL</span>
+          <span>WX</span>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h3>快速导航</h3>
+        <ul>
+          <li><a href="../index.html#fields">持续学习中</a></li>
+          <li><a href="../index.html#resources">学习资源</a></li>
+          <li><a href="../index.html#journal">成长分享</a></li>
+          <li><a href="#about">关于我</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>学习领域</h3>
+        <ul id="footerFields"></ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>更多</h3>
+        <ul>
+          <li>学习方法</li>
+          <li>思考与表达</li>
+          <li>工具箱</li>
+          <li>网站地图</li>
+        </ul>
+      </div>
+
+      <div class="subscribe">
+        <h3>GitHub 更新</h3>
+        <p>完整资料、项目与长期记录会继续在 GitHub 上整理；子页面保留卡片总览入口。</p>
+      </div>
+    </div>
+
+    <p class="copyright">© 2026 Michael's Learning Lab. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const defaultFields = [
+      { slug: "math-growth", name: "数学", en: "Mathematics", icon: "∫dx", tone: "#c6813a", toneDeep: "#744116", short: "结构、直观、证明与可视化" },
+      { slug: "code-growth", name: "编程", en: "Code", icon: ">_", tone: "#8f6a3f", toneDeep: "#4c2d14", short: "工具、算法、应用与创作" },
+      { slug: "reading-growth", name: "阅读", en: "Reading", icon: "📖", tone: "#6f7b4a", toneDeep: "#394520", short: "书、观点、摘录与问题" },
+      { slug: "music-growth", name: "音乐", en: "Music", icon: "♪", tone: "#c06a2f", toneDeep: "#713817", short: "聆听、结构、作品与练习" },
+      { slug: "science-growth", name: "科学", en: "Science", icon: "⚛", tone: "#806f4b", toneDeep: "#3f321b", short: "实验、自然、宇宙与模型" },
+      { slug: "education-growth", name: "教育", en: "Education", icon: "♡", tone: "#a3513f", toneDeep: "#5c241b", short: "儿童学习、教学设计与成长" },
+      { slug: "life-growth", name: "生活", en: "Life", icon: "⌂", tone: "#9c7650", toneDeep: "#4f321c", short: "日常、习惯、审美与记录" }
+    ];
+
+    const defaultCards = {
+      "math-growth": [
+        {
+          tag: "微积分",
+          date: "2026.06",
+          markdown: "## 为什么极限需要精确定义？\n- 先画出函数靠近某点的局部图像。\n- 用 `ε-δ` 把“越来越近”变成可验证的语言。\n- 记录一个反例：看起来靠近，但左右路径不一致。"
+        },
+        {
+          tag: "几何直观",
+          date: "2026.06",
+          markdown: "## 勾股定理的无字证明\n把四个全等三角形放进正方形。\n\n- 外层面积不变。\n- 中间空白可以重组。\n- 公式从图形里自己长出来。"
+        },
+        {
+          tag: "代数结构",
+          date: "2026.05",
+          markdown: "## 群论第一张卡\n### 关键词\n- 运算封闭\n- 单位元\n- 逆元\n- 结合律\n\n`结构 = 对象 + 保持不变的规则`"
+        },
+        {
+          tag: "问题集",
+          date: "2026.05",
+          markdown: "## 一个值得继续想的问题\n为什么同一个公式可以有代数、几何、概率三种解释？\n\n- 找例子\n- 画图\n- 写出三种语言之间的翻译"
+        }
+      ],
+      "code-growth": [
+        {
+          tag: "Web",
+          date: "2026.06",
+          markdown: "## 静态网页结构\n- `index.html` 负责内容。\n- CSS 负责视觉系统。\n- JS 负责少量交互。\n\n目标：页面能离线打开，也能发布到 GitHub Pages。"
+        },
+        {
+          tag: "Swift",
+          date: "2026.05",
+          markdown: "## iOS 学习路线\n1. Swift 语法\n2. SwiftUI 布局\n3. 数据流\n4. App Intent\n\n每一步都做一个小作品。"
+        },
+        {
+          tag: "Python",
+          date: "2026.05",
+          markdown: "## 用 Python 整理资料\n可以写脚本完成：\n- 批量改文件名\n- 生成目录索引\n- 提取 Markdown 标题\n- 输出网页卡片数据"
+        },
+        {
+          tag: "工具",
+          date: "2026.05",
+          markdown: "## 终端常用命令\n`rg` 查文本，`find` 找文件，`python3 -m http.server` 本地预览。\n\n把工具练成肌肉记忆。"
+        }
+      ],
+      "reading-growth": [
+        {
+          tag: "读书笔记",
+          date: "2026.06",
+          markdown: "## 阅读卡片模板\n- 这本书在回答什么问题？\n- 作者用了哪些例子？\n- 哪句话值得摘录？\n- 它改变了我的什么看法？"
+        },
+        {
+          tag: "心理学",
+          date: "2026.05",
+          markdown: "## 系统 1 与系统 2\n快速判断节省精力，慢速思考帮助校正偏误。\n\n学习时要给自己留出“慢下来”的空间。"
+        },
+        {
+          tag: "写作",
+          date: "2026.05",
+          markdown: "## 把摘录变成表达\n不要只收藏句子。\n\n- 写一句自己的解释。\n- 找一个生活例子。\n- 提出一个问题。"
+        },
+        {
+          tag: "书单",
+          date: "2026.05",
+          markdown: "## 可以继续整理的书架\n- 数学故事\n- 科学史\n- 儿童学习\n- 艺术与音乐\n- 编程思想"
+        }
+      ],
+      "music-growth": [
+        {
+          tag: "聆听",
+          date: "2026.06",
+          markdown: "## 小提琴协奏曲聆听卡\n先听主题，再听发展。\n\n- 旋律线如何回到开头？\n- 乐队和独奏如何对话？\n- 情绪在哪里发生转折？"
+        },
+        {
+          tag: "结构",
+          date: "2026.05",
+          markdown: "## 室内乐像一次讨论\n每个声部都有自己的观点。\n\n好的聆听不是找主角，而是听关系。"
+        },
+        {
+          tag: "练习",
+          date: "2026.05",
+          markdown: "## 练琴记录格式\n- 今天练哪一段？\n- 卡在哪里？\n- 用什么方法拆？\n- 明天如何继续？"
+        },
+        {
+          tag: "音乐与数学",
+          date: "2026.05",
+          markdown: "## 节奏中的比例\n节拍、重复、变奏都可以被看成结构。\n\n音乐不是公式，但公式能帮我们看见秩序。"
+        }
+      ],
+      "science-growth": [
+        {
+          tag: "物理",
+          date: "2026.06",
+          markdown: "## 原子模型卡\n科学模型会变化：\n- 它解释了什么？\n- 它解释不了什么？\n- 后来的模型如何改进？"
+        },
+        {
+          tag: "实验",
+          date: "2026.05",
+          markdown: "## 一个小实验的记录法\n1. 现象\n2. 猜想\n3. 变量\n4. 观察\n5. 新问题"
+        },
+        {
+          tag: "宇宙",
+          date: "2026.05",
+          markdown: "## 太阳系卡片\n把行星学习做成两层：\n- 第一层：大小、距离、周期\n- 第二层：为什么会这样"
+        },
+        {
+          tag: "科学史",
+          date: "2026.05",
+          markdown: "## 科学不是答案列表\n它更像不断修正的地图。\n\n每个理论都带着它的边界。"
+        }
+      ],
+      "education-growth": [
+        {
+          tag: "学习心理",
+          date: "2026.06",
+          markdown: "## 兴趣不是哄出来的\n兴趣常常来自：\n- 能看见进步\n- 问题刚好有挑战\n- 有表达和选择空间"
+        },
+        {
+          tag: "教学设计",
+          date: "2026.05",
+          markdown: "## 一节课的骨架\n1. 一个好问题\n2. 一个可操作任务\n3. 一次表达\n4. 一次复盘"
+        },
+        {
+          tag: "成长支持",
+          date: "2026.05",
+          markdown: "## 反馈的语气\n少说“你真聪明”。\n\n多指出：策略、过程、坚持、选择和下一步。"
+        },
+        {
+          tag: "课程",
+          date: "2026.05",
+          markdown: "## 项目式学习卡\n一个项目需要：\n- 真实目标\n- 可展示成果\n- 中途检查点\n- 最后的讲述"
+        }
+      ],
+      "life-growth": [
+        {
+          tag: "日常",
+          date: "2026.06",
+          markdown: "## 今天的生活观察\n记录一个普通但有意思的瞬间。\n\n生活卡片不求宏大，只求真实。"
+        },
+        {
+          tag: "习惯",
+          date: "2026.05",
+          markdown: "## 习惯养成的最小单位\n- 时间固定\n- 动作足够小\n- 完成后能被看见\n\n先稳定，再加量。"
+        },
+        {
+          tag: "审美",
+          date: "2026.05",
+          markdown: "## 为什么这个空间舒服？\n观察光线、材质、声音、颜色。\n\n审美可以从描述开始。"
+        },
+        {
+          tag: "旅行",
+          date: "2026.05",
+          markdown: "## 出行记录模板\n- 一张照片\n- 一个地点\n- 一句话\n- 一个后来还想追问的问题"
+        }
+      ]
+    };
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function renderInlineMarkdown(value) {
+      let output = escapeHtml(value);
+      output = output.replace(/`([^`]+)`/g, "<code>$1</code>");
+      output = output.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+      output = output.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+      return output;
+    }
+
+    function renderMarkdown(markdown) {
+      const lines = String(markdown || "").replace(/\r/g, "").split("\n");
+      const html = [];
+      let listItems = [];
+      let orderedItems = [];
+
+      function flushLists() {
+        if (listItems.length) {
+          html.push(`<ul>${listItems.map((item) => `<li>${item}</li>`).join("")}</ul>`);
+          listItems = [];
+        }
+        if (orderedItems.length) {
+          html.push(`<ol>${orderedItems.map((item) => `<li>${item}</li>`).join("")}</ol>`);
+          orderedItems = [];
+        }
+      }
+
+      lines.forEach((line) => {
+        const trimmed = line.trim();
+        if (!trimmed) {
+          flushLists();
+          return;
+        }
+
+        const headingTwo = trimmed.match(/^##\s+(.+)/);
+        const headingThree = trimmed.match(/^###\s+(.+)/);
+        const unordered = trimmed.match(/^[-*]\s+(.+)/);
+        const ordered = trimmed.match(/^\d+\.\s+(.+)/);
+
+        if (headingTwo) {
+          flushLists();
+          html.push(`<h2>${renderInlineMarkdown(headingTwo[1])}</h2>`);
+        } else if (headingThree) {
+          flushLists();
+          html.push(`<h3>${renderInlineMarkdown(headingThree[1])}</h3>`);
+        } else if (unordered) {
+          orderedItems = [];
+          listItems.push(renderInlineMarkdown(unordered[1]));
+        } else if (ordered) {
+          listItems = [];
+          orderedItems.push(renderInlineMarkdown(ordered[1]));
+        } else {
+          flushLists();
+          html.push(`<p>${renderInlineMarkdown(trimmed)}</p>`);
+        }
+      });
+
+      flushLists();
+      return html.join("");
+    }
+
+    const fieldStorageKey = "michael-learning-lab-fields-v1";
+    const cardStorageKey = "michael-learning-lab-card-store-v1";
+    const libraryView = "__card_library__";
+    const defaultFieldBySlug = new Map(defaultFields.map((field) => [field.slug, field]));
+    const categoryPalettes = [
+      { tone: "#c6813a", toneDeep: "#744116" },
+      { tone: "#8f6a3f", toneDeep: "#4c2d14" },
+      { tone: "#6f7b4a", toneDeep: "#394520" },
+      { tone: "#c06a2f", toneDeep: "#713817" },
+      { tone: "#806f4b", toneDeep: "#3f321b" },
+      { tone: "#a3513f", toneDeep: "#5c241b" },
+      { tone: "#9c7650", toneDeep: "#4f321c" }
+    ];
+
+    function normalizeField(field, index = 0) {
+      const palette = categoryPalettes[index % categoryPalettes.length];
+      const slug = String(field.slug || `custom-${Date.now()}`).trim();
+      const name = String(field.name || "新大类").trim();
+      const en = String(field.en || "Custom").trim();
+      return {
+        slug,
+        name,
+        en,
+        icon: String(field.icon || "✦").trim().slice(0, 8) || "✦",
+        tone: field.tone || palette.tone,
+        toneDeep: field.toneDeep || palette.toneDeep,
+        short: field.short || `${name} 的卡片、资料与长期记录`,
+        custom: Boolean(field.custom && !defaultFieldBySlug.has(slug))
+      };
+    }
+
+    function loadFields() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(fieldStorageKey) || "null");
+        if (Array.isArray(saved)) {
+          const seen = new Set();
+          const merged = [];
+
+          saved.forEach((field, index) => {
+            if (!field || typeof field !== "object") return;
+            const savedSlug = String(field.slug || "").trim();
+            if (!savedSlug || seen.has(savedSlug)) return;
+            const baseField = defaultFieldBySlug.get(savedSlug);
+            const normalized = normalizeField(baseField ? baseField : field, index);
+            merged.push(normalized);
+            seen.add(normalized.slug);
+          });
+
+          defaultFields.forEach((field) => {
+            if (!seen.has(field.slug)) {
+              merged.push(normalizeField(field, merged.length));
+            }
+          });
+
+          return merged.length ? merged : defaultFields.map((field, index) => normalizeField(field, index));
+        }
+      } catch (error) {
+        console.warn("Unable to load field order", error);
+      }
+
+      return defaultFields.map((field, index) => normalizeField(field, index));
+    }
+
+    function saveFields() {
+      localStorage.setItem(fieldStorageKey, JSON.stringify(fields));
+    }
+
+    let fields = loadFields();
+    const currentSlug = fields.find((field) => location.pathname.includes(`/${field.slug}/`))?.slug || "math-growth";
+    let currentView = currentSlug;
+    let editingCardRef = null;
+    let draggingSlug = "";
+
+    function cloneDefaultCards() {
+      const cloned = {};
+      fields.forEach((field) => {
+        cloned[field.slug] = JSON.parse(JSON.stringify(defaultCards[field.slug] || []));
+      });
+      return cloned;
+    }
+
+    function loadCardStore() {
+      const defaults = cloneDefaultCards();
+      try {
+        const saved = JSON.parse(localStorage.getItem(cardStorageKey) || "null");
+        if (saved && typeof saved === "object") {
+          fields.forEach((field) => {
+            if (!Array.isArray(saved[field.slug])) {
+              saved[field.slug] = defaults[field.slug] || [];
+            }
+          });
+          return saved;
+        }
+      } catch (error) {
+        console.warn("Unable to load card store", error);
+      }
+      localStorage.setItem(cardStorageKey, JSON.stringify(defaults));
+      return defaults;
+    }
+
+    function saveCardStore() {
+      localStorage.setItem(cardStorageKey, JSON.stringify(cardStore));
+    }
+
+    const cardStore = loadCardStore();
+
+    const cardLibraryButton = document.getElementById("cardLibraryButton");
+    const fieldSidebar = document.getElementById("fieldSidebar");
+    const addCategoryButton = document.getElementById("addCategoryButton");
+    const footerFields = document.getElementById("footerFields");
+    const cardGrid = document.getElementById("cardGrid");
+    const cardSearch = document.getElementById("cardSearch");
+    const addCardButton = document.getElementById("addCardButton");
+    const cardCount = document.getElementById("cardCount");
+    const activeSummary = document.getElementById("activeSummary");
+    const emptyState = document.getElementById("emptyState");
+    const cardDialog = document.getElementById("cardDialog");
+    const cardForm = document.getElementById("cardForm");
+    const cardDialogTitle = document.getElementById("cardDialogTitle");
+    const cardIndex = document.getElementById("cardIndex");
+    const cardCategoryInput = document.getElementById("cardCategoryInput");
+    const cardTagInput = document.getElementById("cardTagInput");
+    const cardDateInput = document.getElementById("cardDateInput");
+    const cardMarkdownInput = document.getElementById("cardMarkdownInput");
+    const closeCardDialog = document.getElementById("closeCardDialog");
+    const cancelCardButton = document.getElementById("cancelCardButton");
+    const deleteCardButton = document.getElementById("deleteCardButton");
+    const categoryDialog = document.getElementById("categoryDialog");
+    const categoryForm = document.getElementById("categoryForm");
+    const closeCategoryDialog = document.getElementById("closeCategoryDialog");
+    const cancelCategoryButton = document.getElementById("cancelCategoryButton");
+    const categoryNameInput = document.getElementById("categoryNameInput");
+    const categoryEnInput = document.getElementById("categoryEnInput");
+    const categoryIconInput = document.getElementById("categoryIconInput");
+
+    function getFieldBySlug(slug) {
+      return fields.find((field) => field.slug === slug) || null;
+    }
+
+    function getDefaultEditorSlug() {
+      if (currentView !== libraryView && getFieldBySlug(currentView)) return currentView;
+      if (getFieldBySlug(currentSlug)) return currentSlug;
+      return fields[0]?.slug || "math-growth";
+    }
+
+    function renderHeaderState() {
+      if (currentView === libraryView) {
+        document.title = "Card Library | Michael's Learning Lab";
+        document.getElementById("pageTitle").textContent = "Card Library · 全部卡片";
+        document.getElementById("pageIntro").textContent = "从所有学习大类中查看、搜索、编辑和整理卡片。";
+        activeSummary.textContent = "全部大类 / Card Library";
+        return;
+      }
+
+      const activeField = getFieldBySlug(currentView) || fields[0];
+      document.title = `${activeField.name}卡片总览 | Michael's Learning Lab`;
+      document.getElementById("pageTitle").textContent = `${activeField.name} · 卡片总览`;
+      document.getElementById("pageIntro").textContent = activeField.short;
+      activeSummary.textContent = `${activeField.name} / ${activeField.en}`;
+    }
+
+    function renderSidebar() {
+      cardLibraryButton.setAttribute("aria-current", currentView === libraryView ? "page" : "false");
+      fieldSidebar.innerHTML = fields.map((field) => `
+      <button class="field-link" type="button" draggable="true" data-field-slug="${escapeHtml(field.slug)}"
+        aria-current="${field.slug === currentView ? "page" : "false"}"
+        style="--tone: ${escapeHtml(field.tone)}; --tone-deep: ${escapeHtml(field.toneDeep)}">
+        <span class="field-nav-icon">${escapeHtml(field.icon)}</span>
+        <span class="field-nav-text">
+          <strong>${escapeHtml(field.name)}</strong>
+          <span>${escapeHtml(field.en)}</span>
+        </span>
+      </button>
+    `).join("");
+    }
+
+    function renderFooterFields() {
+      footerFields.innerHTML = fields.map((field) => `<li>${escapeHtml(field.name)}</li>`).join("");
+    }
+
+    function currentMonthLabel() {
+      const now = new Date();
+      return `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, "0")}`;
+    }
+
+    function renderCategoryOptions(selectedSlug) {
+      cardCategoryInput.innerHTML = fields.map((field) => `
+        <option value="${escapeHtml(field.slug)}">${escapeHtml(field.name)} / ${escapeHtml(field.en)}</option>
+      `).join("");
+      cardCategoryInput.value = getFieldBySlug(selectedSlug) ? selectedSlug : getDefaultEditorSlug();
+    }
+
+    function openCardEditor(reference = null) {
+      const isNew = !reference;
+      const sourceSlug = isNew ? getDefaultEditorSlug() : reference.slug;
+      const sourceField = getFieldBySlug(sourceSlug) || fields[0];
+      const sourceCards = cardStore[sourceSlug] || [];
+      const card = isNew ? {
+        tag: sourceField.name,
+        date: currentMonthLabel(),
+        markdown: `## 新卡片标题\n- 写下第一条笔记\n- 写下第二条笔记\n\n可以使用 \`代码\`、**重点** 和列表。`
+      } : sourceCards[reference.index];
+
+      if (!card) return;
+      editingCardRef = isNew ? null : { slug: sourceSlug, index: reference.index };
+      cardDialogTitle.textContent = isNew ? "新增卡片" : "编辑卡片";
+      cardIndex.value = isNew ? "" : String(reference.index);
+      renderCategoryOptions(sourceSlug);
+      cardTagInput.value = card.tag || sourceField.name;
+      cardDateInput.value = card.date || currentMonthLabel();
+      cardMarkdownInput.value = card.markdown || "";
+      deleteCardButton.hidden = isNew;
+      cardDialog.showModal();
+      cardMarkdownInput.focus();
+    }
+
+    function closeEditor() {
+      cardDialog.close();
+    }
+
+    function getCardEntries() {
+      const sourceFields = currentView === libraryView ? fields : [getFieldBySlug(currentView)].filter(Boolean);
+      return sourceFields.flatMap((field) => (cardStore[field.slug] || []).map((card, index) => ({
+        card,
+        field,
+        index,
+        slug: field.slug
+      })));
+    }
+
+    function renderCards() {
+      const query = cardSearch.value.trim().toLowerCase();
+      const entries = getCardEntries();
+      const filtered = entries.filter(({ card, field }) => {
+        const haystack = `${card.tag} ${card.date} ${card.markdown}`.toLowerCase();
+        return !query || `${field.name} ${field.en} ${haystack}`.toLowerCase().includes(query);
+      });
+
+      cardGrid.innerHTML = filtered.map(({ card, field, index, slug }) => `
+        <article class="markdown-card" tabindex="0" data-card-slug="${escapeHtml(slug)}" data-card-index="${index}"
+          aria-label="编辑 ${escapeHtml(card.tag)} 卡片">
+          <div class="card-meta">
+            <span class="card-meta-left">
+              ${currentView === libraryView ? `<span class="card-field" style="--field-tone: ${escapeHtml(field.tone)}; --field-tone-deep: ${escapeHtml(field.toneDeep)}">${escapeHtml(field.name)}</span>` : ""}
+              <span class="card-tag">${escapeHtml(card.tag)}</span>
+            </span>
+            <time>${escapeHtml(card.date)}</time>
+          </div>
+          <div class="markdown-body">${renderMarkdown(card.markdown)}</div>
+        </article>
+      `).join("");
+
+      cardCount.textContent = `${filtered.length} / ${entries.length} 张卡片`;
+      emptyState.style.display = filtered.length ? "none" : "block";
+    }
+
+    function selectView(nextView) {
+      currentView = nextView;
+      cardSearch.value = "";
+      renderHeaderState();
+      renderSidebar();
+      renderCards();
+    }
+
+    function clearDropMarks() {
+      fieldSidebar.querySelectorAll(".drop-before, .drop-after").forEach((item) => {
+        item.classList.remove("drop-before", "drop-after");
+      });
+    }
+
+    function moveField(sourceSlug, targetSlug, placeAfter) {
+      if (!sourceSlug || !targetSlug || sourceSlug === targetSlug) return;
+      const sourceIndex = fields.findIndex((field) => field.slug === sourceSlug);
+      if (sourceIndex < 0) return;
+      const [moved] = fields.splice(sourceIndex, 1);
+      const targetIndex = fields.findIndex((field) => field.slug === targetSlug);
+      if (targetIndex < 0) {
+        fields.splice(sourceIndex, 0, moved);
+        return;
+      }
+      fields.splice(placeAfter ? targetIndex + 1 : targetIndex, 0, moved);
+      saveFields();
+      renderSidebar();
+      renderFooterFields();
+      renderCards();
+    }
+
+    function slugifyCategory(value) {
+      return String(value || "")
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+    }
+
+    function createCategorySlug(name, en) {
+      const base = slugifyCategory(en) || slugifyCategory(name) || `category-${Date.now()}`;
+      let slug = `custom-${base}`;
+      let suffix = 2;
+      while (getFieldBySlug(slug)) {
+        slug = `custom-${base}-${suffix}`;
+        suffix += 1;
+      }
+      return slug;
+    }
+
+    function openCategoryEditor() {
+      categoryForm.reset();
+      categoryIconInput.value = "✦";
+      categoryDialog.showModal();
+      categoryNameInput.focus();
+    }
+
+    addCardButton.addEventListener("click", () => openCardEditor());
+    cardLibraryButton.addEventListener("click", () => selectView(libraryView));
+    addCategoryButton.addEventListener("click", openCategoryEditor);
+    cardSearch.addEventListener("input", renderCards);
+
+    fieldSidebar.addEventListener("click", (event) => {
+      const fieldButton = event.target.closest("[data-field-slug]");
+      if (!fieldButton) return;
+      selectView(fieldButton.dataset.fieldSlug);
+    });
+
+    fieldSidebar.addEventListener("dragstart", (event) => {
+      const fieldButton = event.target.closest("[data-field-slug]");
+      if (!fieldButton) return;
+      draggingSlug = fieldButton.dataset.fieldSlug;
+      fieldButton.classList.add("dragging");
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.setData("text/plain", draggingSlug);
+    });
+
+    fieldSidebar.addEventListener("dragover", (event) => {
+      const fieldButton = event.target.closest("[data-field-slug]");
+      if (!fieldButton || !draggingSlug || fieldButton.dataset.fieldSlug === draggingSlug) return;
+      event.preventDefault();
+      clearDropMarks();
+      const rect = fieldButton.getBoundingClientRect();
+      fieldButton.classList.add(event.clientY > rect.top + rect.height / 2 ? "drop-after" : "drop-before");
+    });
+
+    fieldSidebar.addEventListener("dragleave", (event) => {
+      if (!event.relatedTarget || !fieldSidebar.contains(event.relatedTarget)) {
+        clearDropMarks();
+      }
+    });
+
+    fieldSidebar.addEventListener("drop", (event) => {
+      const fieldButton = event.target.closest("[data-field-slug]");
+      if (!fieldButton || !draggingSlug) return;
+      event.preventDefault();
+      const rect = fieldButton.getBoundingClientRect();
+      moveField(draggingSlug, fieldButton.dataset.fieldSlug, event.clientY > rect.top + rect.height / 2);
+      draggingSlug = "";
+      clearDropMarks();
+    });
+
+    fieldSidebar.addEventListener("dragend", () => {
+      draggingSlug = "";
+      fieldSidebar.querySelectorAll(".dragging").forEach((item) => item.classList.remove("dragging"));
+      clearDropMarks();
+    });
+
+    cardGrid.addEventListener("click", (event) => {
+      const card = event.target.closest("[data-card-index]");
+      if (!card) return;
+      openCardEditor({ slug: card.dataset.cardSlug, index: Number(card.dataset.cardIndex) });
+    });
+
+    cardGrid.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      const card = event.target.closest("[data-card-index]");
+      if (!card) return;
+      event.preventDefault();
+      openCardEditor({ slug: card.dataset.cardSlug, index: Number(card.dataset.cardIndex) });
+    });
+
+    closeCardDialog.addEventListener("click", closeEditor);
+    cancelCardButton.addEventListener("click", closeEditor);
+    closeCategoryDialog.addEventListener("click", () => categoryDialog.close());
+    cancelCategoryButton.addEventListener("click", () => categoryDialog.close());
+
+    cardForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const targetSlug = getFieldBySlug(cardCategoryInput.value)?.slug || getDefaultEditorSlug();
+      const targetField = getFieldBySlug(targetSlug) || fields[0];
+      const nextCard = {
+        tag: cardTagInput.value.trim() || targetField.name,
+        date: cardDateInput.value.trim() || currentMonthLabel(),
+        markdown: cardMarkdownInput.value.trim()
+      };
+
+      if (!Array.isArray(cardStore[targetSlug])) {
+        cardStore[targetSlug] = [];
+      }
+
+      if (editingCardRef && cardStore[editingCardRef.slug]?.[editingCardRef.index]) {
+        if (editingCardRef.slug === targetSlug) {
+          cardStore[targetSlug][editingCardRef.index] = nextCard;
+        } else {
+          cardStore[editingCardRef.slug].splice(editingCardRef.index, 1);
+          cardStore[targetSlug].unshift(nextCard);
+        }
+      } else {
+        cardStore[targetSlug].unshift(nextCard);
+      }
+
+      if (currentView !== libraryView) {
+        currentView = targetSlug;
+      }
+      saveCardStore();
+      renderHeaderState();
+      renderSidebar();
+      renderCards();
+      closeEditor();
+    });
+
+    deleteCardButton.addEventListener("click", () => {
+      if (!editingCardRef) return;
+      const sourceCards = cardStore[editingCardRef.slug] || [];
+      if (!Number.isInteger(editingCardRef.index) || !sourceCards[editingCardRef.index]) return;
+      if (!window.confirm("确定删除这张卡片吗？")) return;
+      sourceCards.splice(editingCardRef.index, 1);
+      saveCardStore();
+      renderCards();
+      closeEditor();
+    });
+
+    categoryForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const name = categoryNameInput.value.trim();
+      if (!name) return;
+      const en = categoryEnInput.value.trim() || "Custom";
+      const icon = categoryIconInput.value.trim() || "✦";
+      const palette = categoryPalettes[fields.length % categoryPalettes.length];
+      const field = normalizeField({
+        slug: createCategorySlug(name, en),
+        name,
+        en,
+        icon,
+        tone: palette.tone,
+        toneDeep: palette.toneDeep,
+        short: `${name} 的卡片、资料与长期记录`,
+        custom: true
+      }, fields.length);
+
+      fields.push(field);
+      cardStore[field.slug] = [];
+      saveFields();
+      saveCardStore();
+      renderFooterFields();
+      categoryDialog.close();
+      selectView(field.slug);
+    });
+
+    renderHeaderState();
+    renderSidebar();
+    renderFooterFields();
+    renderCards();
+  </script>
 </body>
+
 </html>
