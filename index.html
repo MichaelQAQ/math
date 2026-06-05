@@ -753,6 +753,13 @@
     }
 
     @media (max-width: 760px) {
+      .site-header {
+        background: rgba(16, 11, 7, .94);
+      }
+
+      body.dark .site-header {
+        background: rgba(16, 11, 7, .94);
+      }
 
       .nav,
       .section-inner,
@@ -762,8 +769,29 @@
         width: min(100% - 28px, 1180px);
       }
 
+      .nav {
+        min-height: 114px;
+        padding: 16px 0 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
       .brand {
         min-width: 0;
+        gap: 12px;
+      }
+
+      .site-header .brand {
+        max-width: calc(100% - 74px);
+      }
+
+      .site-header .brand-mark {
+        width: 70px;
+        height: 70px;
+        border-radius: 22px;
+        border-color: rgba(255, 210, 138, .28);
       }
 
       .brand-title,
@@ -771,75 +799,345 @@
         white-space: normal;
       }
 
+      .site-header .brand-title {
+        color: #fff4e2;
+        font-size: clamp(1.08rem, 5vw, 1.34rem);
+        line-height: 1.08;
+      }
+
+      .site-header .brand-subtitle {
+        color: rgba(255, 218, 161, .68);
+        font-size: .92rem;
+        line-height: 1.18;
+      }
+
       .nav-links {
+        position: fixed;
+        left: 12px;
+        top: 134px;
+        bottom: 18px;
+        z-index: 25;
+        width: 58px;
+        height: calc(100svh - 152px);
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        width: 100%;
+        grid-template-columns: 1fr;
+        align-content: start;
+        gap: 10px;
+        padding: 8px 6px;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: rgba(255, 248, 236, .76);
+        box-shadow: var(--shadow-soft);
+        backdrop-filter: blur(16px);
+        overflow-y: auto;
+      }
+
+      body.dark .nav-links {
+        border-color: rgba(255, 214, 159, .16);
+        background: rgba(16, 11, 7, .72);
       }
 
       .nav-links a {
-        justify-content: center;
-        padding-inline: 8px;
-        font-size: .78rem;
+        width: 44px;
+        height: 44px;
+        min-height: 44px;
+        padding: 0;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        background: rgba(255, 248, 236, .82);
+        box-shadow: 0 8px 18px rgba(62, 37, 15, .1);
+        font-size: 0;
+      }
+
+      body.dark .nav-links a {
+        border-color: rgba(255, 214, 159, .14);
+        background: rgba(42, 26, 15, .9);
+      }
+
+      .nav-links a::before {
+        color: currentColor;
+        font-size: 1rem;
+        font-weight: 950;
+        line-height: 1;
+        content: attr(data-icon);
+      }
+
+      .nav-links a::after {
+        display: none;
+      }
+
+      .nav-links a:hover,
+      .nav-links a[aria-current="page"] {
+        color: #2a160b;
+        border-color: transparent;
+        background: linear-gradient(135deg, #ffd28a, #c06a2f);
+      }
+
+      body.dark .nav-links a:hover,
+      body.dark .nav-links a[aria-current="page"] {
+        color: #2a160b;
+        border-color: transparent;
+        background: linear-gradient(135deg, #ffd28a, #c06a2f);
       }
 
       .nav-tools {
-        right: 14px;
+        position: static;
+        margin-left: auto;
       }
 
-      .hero {
-        min-height: auto;
-        background-image:
-          linear-gradient(180deg, rgba(19, 9, 3, .94), rgba(55, 27, 9, .72)),
-          url("assets/personal-cover.png");
-        background-position: center right;
+      .icon-button {
+        width: 54px;
+        height: 54px;
       }
 
+      main {
+        padding-left: 76px;
+      }
+
+      .hero,
       body.dark .hero {
-        background-image:
-          linear-gradient(180deg, rgba(12, 7, 4, .98), rgba(45, 22, 8, .86)),
-          url("assets/personal-cover.png");
+        min-height: auto;
+        display: block;
+        border-bottom: 0;
+        background: none;
+      }
+
+      .hero::before {
+        display: none;
+      }
+
+      .hero-inner,
+      .section-inner {
+        width: calc(100% - 14px);
+        margin: 0 14px 0 0;
       }
 
       .hero-inner {
-        padding: 54px 0 76px;
+        padding: 18px 0 8px;
+      }
+
+      .hero-copy {
+        max-width: none;
+        gap: 14px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background:
+          radial-gradient(circle at 8% 0%, rgba(214, 146, 69, .16), transparent 34%),
+          linear-gradient(135deg, rgba(255, 255, 255, .76), rgba(255, 255, 255, .38)),
+          var(--paper);
+        box-shadow: var(--shadow-soft);
+      }
+
+      body.dark .hero-copy {
+        background:
+          radial-gradient(circle at 8% 0%, rgba(214, 146, 69, .16), transparent 34%),
+          linear-gradient(135deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02)),
+          var(--paper);
+      }
+
+      .hero h1 {
+        color: var(--ink);
+        font-size: clamp(1.34rem, 7vw, 1.9rem);
+        line-height: 1.13;
+        text-shadow: none;
+      }
+
+      .hero .accent {
+        color: var(--violet);
+      }
+
+      .hero-text {
+        max-width: none;
+        color: var(--muted);
+        font-size: .9rem;
+        line-height: 1.58;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .button {
+        min-height: 42px;
+        padding: 10px 14px;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+
+      .quote {
+        width: 100%;
+        grid-template-columns: 1fr;
+        padding: 10px 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--muted);
+        background: var(--wash);
+        font-size: .86rem;
+        line-height: 1.45;
+      }
+
+      .quote::before,
+      .quote::after {
+        display: none;
+      }
+
+      section {
+        padding: 24px 0;
+      }
+
+      .section-head {
+        align-items: center;
+        justify-items: stretch;
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+        margin-bottom: 14px;
+        text-align: left;
+      }
+
+      .section-title,
+      .section-title.center {
+        justify-items: start;
+        text-align: left;
+      }
+
+      .section-title h2 {
+        font-size: 1.2rem;
+      }
+
+      .section-title h2::after,
+      .section-title.center h2::after {
+        width: 32px;
+        margin-inline: 0;
+      }
+
+      .link-pill {
+        min-height: 34px;
+        padding: 7px 11px;
+        font-size: .76rem;
       }
 
       .field-section {
         margin-top: 0;
+        padding-top: 12px;
       }
 
       .field-panel {
-        padding: 22px 16px;
-      }
-
-      .section-head {
-        align-items: start;
-        display: grid;
+        padding: 0;
       }
 
       .field-grid,
-      .resource-grid,
+      .resource-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .field-grid {
+        margin-top: 16px;
+      }
+
+      .field-card {
+        min-height: 154px;
+        padding: 14px 10px;
+        gap: 8px;
+      }
+
+      .field-icon,
+      .resource-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        font-size: 1.05rem;
+      }
+
+      .field-card h3 {
+        font-size: .92rem;
+      }
+
+      .field-card h3 span {
+        display: block;
+        margin-top: 2px;
+        font-size: .68rem;
+      }
+
+      .field-card p {
+        font-size: .74rem;
+        line-height: 1.45;
+      }
+
+      .resource-card {
+        min-height: 180px;
+        padding: 14px;
+        gap: 12px;
+      }
+
+      .resource-title {
+        display: grid;
+        justify-items: start;
+        gap: 8px;
+        font-size: .9rem;
+        line-height: 1.25;
+      }
+
+      .resource-card ul {
+        font-size: .74rem;
+      }
+
       .journal-layout {
         grid-template-columns: 1fr;
       }
 
+      .note-list {
+        padding: 16px;
+      }
+
       .note-item {
-        grid-template-columns: 54px 1fr;
+        grid-template-columns: 46px 1fr;
+        gap: 10px;
+        align-items: start;
+      }
+
+      .mini-thumb {
+        width: 46px;
+        height: 46px;
+        border-radius: 8px;
       }
 
       .note-item time {
         grid-column: 2;
+        font-size: .72rem;
+      }
+
+      .footer {
+        margin-left: 76px;
+      }
+
+      .footer-inner,
+      .copyright {
+        width: calc(100% - 14px);
+        margin-right: 14px;
+        margin-left: 0;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 18px;
       }
     }
 
     @media (max-width: 520px) {
       .nav-links {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
       }
 
       .hero-actions {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         display: grid;
       }
 
@@ -849,6 +1147,36 @@
 
       .footer-inner {
         grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 360px) {
+      main {
+        padding-left: 70px;
+      }
+
+      .nav-links {
+        left: 10px;
+        width: 54px;
+      }
+
+      .field-grid,
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .footer {
+        margin-left: 70px;
+      }
+    }
+
+    @media (min-width: 761px) and (max-width: 1060px) {
+      .nav-links a {
+        justify-content: center;
       }
     }
   </style>
@@ -866,11 +1194,11 @@
       </a>
 
       <div class="nav-links">
-        <a href="#home" aria-current="page">首页</a>
-        <a href="#fields">持续学习中</a>
-        <a href="#resources">学习资源</a>
-        <a href="#journal">分享</a>
-        <a href="#about">关于</a>
+        <a href="#home" data-icon="⌂" aria-current="page">首页</a>
+        <a href="#fields" data-icon="✦">持续学习中</a>
+        <a href="#resources" data-icon="◈">学习资源</a>
+        <a href="#journal" data-icon="✎">分享</a>
+        <a href="#about" data-icon="?">关于</a>
       </div>
 
       <div class="nav-tools" aria-label="页面工具">
