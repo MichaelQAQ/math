@@ -561,6 +561,10 @@
       gap: 18px;
     }
 
+    .resource-card.primary-resource {
+      grid-column: span 2;
+    }
+
     .resource-top {
       display: grid;
       gap: 12px;
@@ -582,6 +586,41 @@
       font-size: .82rem;
       line-height: 1.45;
       list-style: none;
+    }
+
+    .resource-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .resource-button {
+      min-height: 40px;
+      padding: 9px 13px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #2a160b;
+      background: linear-gradient(135deg, #ffd28a, #c06a2f);
+      font-size: .84rem;
+      font-weight: 920;
+      line-height: 1.15;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .resource-button.secondary {
+      color: var(--ink);
+      background: var(--wash);
+    }
+
+    .resource-button:hover,
+    .resource-button:focus-visible {
+      transform: translateY(-2px);
+      outline: none;
+      border-color: color-mix(in srgb, var(--violet) 45%, var(--line-strong));
     }
 
     .resource-card .arrow {
@@ -745,6 +784,10 @@
       .field-grid,
       .resource-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .resource-card.primary-resource {
+        grid-column: span 2;
       }
 
       .footer-inner {
@@ -1093,6 +1136,10 @@
         grid-template-columns: 1fr;
       }
 
+      .resource-card.primary-resource {
+        grid-column: 1 / -1;
+      }
+
       .note-list {
         padding: 16px;
       }
@@ -1217,6 +1264,7 @@
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#resources">进入学习资源 →</a>
+            <a class="button" href="primary-math/">小学数学专区</a>
             <a class="button" href="#about">关于 Michael</a>
           </div>
           <p class="quote">
@@ -1297,18 +1345,23 @@
         </div>
 
         <div class="resource-grid">
-          <article class="resource-card">
+          <article class="resource-card primary-resource">
             <div class="resource-top">
               <div class="resource-title"><span class="resource-icon">∫dx</span>数学资源</div>
               <ul>
+                <li>小学数学专区</li>
+                <li>暑假数学学习计划</li>
+                <li>二年级教材前两个单元</li>
+                <li>五年级数学知识点大全</li>
                 <li>Khan Academy</li>
                 <li>NRICH</li>
-                <li>GeoGebra</li>
-                <li>3Blue1Brown</li>
-                <li>Mathigon</li>
               </ul>
             </div>
-            <span class="arrow">→</span>
+            <div class="resource-actions" aria-label="小学数学页面入口">
+              <a class="resource-button" href="plan/">暑假学习计划</a>
+              <a class="resource-button secondary" href="primary-math/grade2/">二年级教材</a>
+              <a class="resource-button secondary" href="primary-math/grade5/">五年级知识点</a>
+            </div>
           </article>
 
           <article class="resource-card">
