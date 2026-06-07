@@ -472,15 +472,17 @@
     }
 
     .field-card {
-      min-height: 132px;
-      padding: 18px 14px;
+      min-height: 278px;
+      padding: 0 0 18px;
       border: 1px solid var(--line);
       border-radius: 8px;
       display: grid;
+      grid-template-rows: auto auto 1fr;
       justify-items: center;
       align-content: start;
       gap: 10px;
       text-align: center;
+      overflow: hidden;
       background:
         linear-gradient(135deg, rgba(255, 255, 255, .76), rgba(255, 255, 255, .42)),
         var(--paper);
@@ -508,6 +510,27 @@
         var(--paper);
     }
 
+    .field-cover {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      display: block;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background: var(--wash);
+    }
+
+    .field-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .22s ease;
+    }
+
+    a.field-card:hover .field-cover img,
+    a.field-card:focus-visible .field-cover img {
+      transform: scale(1.04);
+    }
+
     .field-icon,
     .resource-icon {
       width: 42px;
@@ -523,6 +546,7 @@
     }
 
     .field-card h3 {
+      padding: 0 14px;
       font-size: .98rem;
       line-height: 1.3;
     }
@@ -534,6 +558,7 @@
     }
 
     .field-card p {
+      padding: 0 14px;
       color: var(--muted);
       font-size: .82rem;
       line-height: 1.52;
@@ -1086,9 +1111,13 @@
       }
 
       .field-card {
-        min-height: 154px;
-        padding: 14px 10px;
+        min-height: 248px;
+        padding: 0 0 14px;
         gap: 8px;
+      }
+
+      .field-cover {
+        aspect-ratio: 4 / 3;
       }
 
       .field-icon,
@@ -1100,6 +1129,7 @@
       }
 
       .field-card h3 {
+        padding: 0 10px;
         font-size: .92rem;
       }
 
@@ -1110,6 +1140,7 @@
       }
 
       .field-card p {
+        padding: 0 10px;
         font-size: .74rem;
         line-height: 1.45;
       }
@@ -1284,49 +1315,49 @@
           <div class="field-grid">
             <a class="field-card" href="math-growth/" aria-label="查看数学学习成长轨迹"
               style="--tone: #c6813a; --tone-deep: #744116">
-              <span class="field-icon">∫dx</span>
+              <span class="field-cover"><img src="assets/field-math-cover.png" alt="数学封面"></span>
               <h3>数学 <span>Mathematics</span></h3>
               <p>代数结构、几何直观、数学思维与可视化。</p>
             </a>
 
             <a class="field-card" href="code-growth/" aria-label="查看编程创作成长轨迹"
               style="--tone: #8f6a3f; --tone-deep: #4c2d14">
-              <span class="field-icon">&gt;_</span>
+              <span class="field-cover"><img src="assets/field-code-cover.png" alt="编程封面"></span>
               <h3>编程 <span>Code</span></h3>
               <p>Python、Swift、Web、算法和创意编程。</p>
             </a>
 
             <a class="field-card" href="reading-growth/" aria-label="查看阅读思想成长轨迹"
               style="--tone: #6f7b4a; --tone-deep: #394520">
-              <span class="field-icon">📖</span>
+              <span class="field-cover"><img src="assets/field-reading-cover.png" alt="阅读封面"></span>
               <h3>阅读 <span>Reading</span></h3>
               <p>哲学、心理学、社会学、学习方法与写作。</p>
             </a>
 
             <a class="field-card" href="music-growth/" aria-label="查看音乐聆听成长轨迹"
               style="--tone: #c06a2f; --tone-deep: #713817">
-              <span class="field-icon">♪</span>
+              <span class="field-cover"><img src="assets/field-music-cover.png" alt="音乐封面"></span>
               <h3>音乐 <span>Music</span></h3>
               <p>古典音乐、钢琴、小提琴、结构与聆听。</p>
             </a>
 
             <a class="field-card" href="science-growth/" aria-label="查看科学探索成长轨迹"
               style="--tone: #806f4b; --tone-deep: #3f321b">
-              <span class="field-icon">⚛</span>
+              <span class="field-cover"><img src="assets/field-science-cover.png" alt="科学封面"></span>
               <h3>科学 <span>Science</span></h3>
               <p>科技往事、科学实验、自然与宇宙。</p>
             </a>
 
             <a class="field-card" href="education-growth/" aria-label="查看教育理解成长轨迹"
               style="--tone: #a3513f; --tone-deep: #5c241b">
-              <span class="field-icon">♡</span>
+              <span class="field-cover"><img src="assets/field-education-cover.png" alt="教育封面"></span>
               <h3>教育 <span>Education</span></h3>
               <p>儿童学习、教学设计、学习心理与成长支持。</p>
             </a>
 
             <a class="field-card" href="life-growth/" aria-label="查看生活成长轨迹"
               style="--tone: #9c7650; --tone-deep: #4f321c">
-              <span class="field-icon">⌂</span>
+              <span class="field-cover"><img src="assets/field-life-cover.png" alt="生活封面"></span>
               <h3>生活 <span>Life</span></h3>
               <p>日常观察、习惯养成、审美、旅行与生活记录。</p>
             </a>
