@@ -24,6 +24,8 @@
       --shadow-soft: 0 12px 34px rgba(0, 0, 0, .32);
       --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
       --mono: "SFMono-Regular", Consolas, monospace;
+      --page-gutter: clamp(20px, 2vw, 40px);
+      --header-height: 82px;
     }
 
     * {
@@ -31,12 +33,14 @@
     }
 
     html {
+      min-height: 100%;
       scroll-behavior: smooth;
       background: #171717;
     }
 
     body {
       margin: 0;
+      min-height: 100vh;
       min-width: 320px;
       color: var(--ink);
       font-family: var(--sans);
@@ -81,12 +85,12 @@
     .subpage-title,
     .learning-layout,
     .footer-inner {
-      width: min(1380px, calc(100% - 48px));
+      width: calc(100% - var(--page-gutter) * 2);
       margin: 0 auto;
     }
 
     .nav {
-      min-height: 82px;
+      min-height: var(--header-height);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -234,8 +238,8 @@
     }
 
     .learning-layout {
-      min-height: 920px;
-      padding: 24px 0 58px;
+      min-height: calc(100vh - var(--header-height));
+      padding: clamp(16px, 2vh, 24px) 0 clamp(28px, 5vh, 58px);
       display: grid;
       grid-template-columns: 112px minmax(0, 1fr);
       gap: 18px;
@@ -378,7 +382,9 @@
 
     .library-panel {
       min-width: 0;
+      min-height: calc(100vh - var(--header-height) - 44px);
       display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
       gap: 18px;
     }
 
@@ -471,55 +477,69 @@
 
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      align-items: start;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-auto-rows: clamp(218px, 27vh, 340px);
+      gap: 16px;
+      align-items: stretch;
+      align-content: start;
+      align-self: start;
     }
 
     .markdown-card {
+      --card-tone: var(--gold);
+      --card-tone-deep: var(--gold-deep);
       position: relative;
-      height: 320px;
-      padding: 18px;
+      min-height: clamp(218px, 27vh, 340px);
+      height: 100%;
+      padding: 14px;
       border: 1px solid var(--line);
       border-radius: 8px;
       display: grid;
-      grid-template-rows: auto minmax(0, 1fr);
-      align-content: stretch;
-      gap: 12px;
+      grid-template-columns: minmax(0, .98fr) minmax(96px, 44%);
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      column-gap: 12px;
+      row-gap: 8px;
       overflow: hidden;
       background:
-        linear-gradient(135deg, rgba(255, 214, 159, .045), rgba(255, 214, 159, .015)),
-        rgba(31, 31, 31, .88);
-      box-shadow: var(--shadow-soft);
+        radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--card-tone) 18%, transparent), transparent 44%),
+        linear-gradient(135deg, rgba(255, 242, 220, .09), rgba(255, 214, 159, .025)),
+        rgba(31, 28, 23, .92);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, .26);
       cursor: pointer;
+      isolation: isolate;
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
     }
 
     .markdown-card::after {
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 58px;
-      background: linear-gradient(180deg, transparent, rgba(31, 31, 31, .96));
+      inset: 1px;
+      border-radius: 7px;
+      background:
+        linear-gradient(90deg, color-mix(in srgb, var(--card-tone) 13%, transparent), transparent 42%),
+        linear-gradient(180deg, rgba(255, 255, 255, .055), transparent);
       content: "";
       pointer-events: none;
+      z-index: -1;
     }
 
     .markdown-card:hover,
     .markdown-card:focus-visible {
       border-color: var(--line-strong);
-      transform: translateY(-2px);
+      box-shadow: 0 24px 58px rgba(0, 0, 0, .34);
+      transform: translateY(-5px);
       outline: none;
-      transition: transform .16s ease, border-color .16s ease;
     }
 
     .card-meta {
+      grid-column: 1;
+      grid-row: 1;
+      min-width: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
       color: var(--quiet);
-      font-size: .74rem;
+      font-size: .68rem;
       font-weight: 850;
     }
 
@@ -531,7 +551,7 @@
     }
 
     .card-field {
-      max-width: 88px;
+      max-width: 72px;
       padding: 3px 7px;
       border-radius: 999px;
       color: #fff;
@@ -539,60 +559,123 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      font-size: .62rem;
     }
 
     .card-tag {
-      max-width: 100%;
+      max-width: 92px;
       padding: 3px 7px;
       border-radius: 999px;
       color: #ffe4b6;
-      background: rgba(214, 146, 69, .15);
+      background: color-mix(in srgb, var(--card-tone) 22%, transparent);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      font-size: .62rem;
     }
 
-    .markdown-body {
+    .card-date {
+      flex: 0 0 auto;
+      color: color-mix(in srgb, var(--card-tone) 62%, var(--muted));
+      font-size: .66rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .card-copy {
+      grid-column: 1;
+      grid-row: 2 / 4;
       min-width: 0;
       display: grid;
+      grid-template-rows: auto auto minmax(0, 1fr) auto;
+      align-content: start;
       gap: 8px;
+      padding-top: 4px;
+    }
+
+    .card-title {
+      color: var(--ink);
+      font-size: clamp(1.06rem, 1.18vw, 1.34rem);
+      font-weight: 950;
+      line-height: 1.15;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .card-rule {
+      width: 30px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--card-tone), var(--card-tone-deep));
+    }
+
+    .card-subtitle {
       color: var(--ink-soft);
-      font-size: .84rem;
-      max-height: 100%;
+      font-size: .74rem;
+      font-weight: 760;
+      line-height: 1.5;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    }
+
+    .card-icon-badge {
+      align-self: end;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #fff8ea;
+      background: linear-gradient(135deg, var(--card-tone), var(--card-tone-deep));
+      box-shadow: 0 10px 24px color-mix(in srgb, var(--card-tone-deep) 44%, transparent);
+      font-size: .68rem;
+      font-weight: 950;
+      line-height: 1;
       overflow: hidden;
     }
 
-    .markdown-body h2 {
-      color: var(--ink);
-      font-size: 1.12rem;
-      line-height: 1.3;
-    }
-
-    .markdown-body h3 {
-      color: var(--ink);
-      font-size: .96rem;
-      line-height: 1.32;
-    }
-
-    .markdown-body p {
-      color: var(--ink-soft);
-    }
-
-    .markdown-body ul,
-    .markdown-body ol {
+    .card-media {
+      grid-column: 2;
+      grid-row: 1 / 4;
       margin: 0;
-      padding-left: 1.2rem;
+      min-width: 0;
+      min-height: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
       display: grid;
-      gap: 3px;
+      place-items: center;
+      background: color-mix(in srgb, var(--card-tone-deep) 32%, rgba(16, 11, 7, .82));
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08);
     }
 
-    .markdown-body code {
-      padding: 1px 5px;
-      border-radius: 5px;
-      color: #ffd28a;
-      background: rgba(214, 146, 69, .12);
-      font-family: var(--mono);
-      font-size: .78rem;
+    .card-media::after {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, .04), rgba(0, 0, 0, .16)),
+        linear-gradient(90deg, rgba(16, 11, 7, .18), transparent);
+      content: "";
+      pointer-events: none;
+    }
+
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      filter: saturate(.9) contrast(.98);
+    }
+
+    .card-media-placeholder {
+      color: color-mix(in srgb, var(--card-tone) 70%, #fff8ea);
+      font-size: 1.4rem;
+      font-weight: 950;
     }
 
     .empty-state {
@@ -698,6 +781,12 @@
       outline: none;
     }
 
+    .form-field input[type="color"] {
+      height: 44px;
+      padding: 4px;
+      cursor: pointer;
+    }
+
     .form-field select {
       appearance: none;
     }
@@ -734,7 +823,7 @@
 
     .footer {
       margin: 36px auto 24px;
-      width: min(1380px, calc(100% - 48px));
+      width: calc(100% - var(--page-gutter) * 2);
       padding: 34px 0 22px;
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -975,10 +1064,34 @@
             日期
             <input id="cardDateInput" type="text" placeholder="例如：2026.06" required>
           </label>
+          <label class="form-field">
+            大标题
+            <input id="cardTitleInput" type="text" placeholder="例如：为什么极限需要精确定义？">
+          </label>
+          <label class="form-field">
+            小标题
+            <input id="cardSubtitleInput" type="text" placeholder="例如：用一张图和一句话记录核心问题">
+          </label>
+          <label class="form-field">
+            图片路径
+            <input id="cardImageInput" type="text" placeholder="../assets/field-math-cover.png">
+          </label>
+          <label class="form-field">
+            图标
+            <input id="cardIconInput" type="text" maxlength="8" placeholder="例如：∫dx / ★">
+          </label>
+          <label class="form-field">
+            卡片主色
+            <input id="cardToneInput" type="color" value="#c6813a">
+          </label>
+          <label class="form-field">
+            卡片深色
+            <input id="cardToneDeepInput" type="color" value="#744116">
+          </label>
           <label class="form-field field-full">
             Markdown 内容
             <textarea id="cardMarkdownInput" placeholder="## 标题&#10;- 第一条笔记&#10;- 第二条笔记&#10;&#10;也可以写 `代码` 或 **重点**。" required></textarea>
-            <span class="helper-text">保存后会更新当前领域的卡片总览，并存到这个浏览器本地。</span>
+            <span class="helper-text">卡片封面优先使用上面的标题、小标题、图片、图标和颜色；Markdown 内容继续作为详细笔记保存在本地。</span>
           </label>
         </div>
         <div class="form-actions">
@@ -1072,13 +1185,13 @@
 
   <script>
     const defaultFields = [
-      { slug: "math-growth", name: "数学", en: "Mathematics", icon: "∫dx", tone: "#c6813a", toneDeep: "#744116", short: "结构、直观、证明与可视化" },
-      { slug: "code-growth", name: "编程", en: "Code", icon: ">_", tone: "#8f6a3f", toneDeep: "#4c2d14", short: "工具、算法、应用与创作" },
-      { slug: "reading-growth", name: "阅读", en: "Reading", icon: "📖", tone: "#6f7b4a", toneDeep: "#394520", short: "书、观点、摘录与问题" },
-      { slug: "music-growth", name: "音乐", en: "Music", icon: "♪", tone: "#c06a2f", toneDeep: "#713817", short: "聆听、结构、作品与练习" },
-      { slug: "science-growth", name: "科学", en: "Science", icon: "⚛", tone: "#806f4b", toneDeep: "#3f321b", short: "实验、自然、宇宙与模型" },
-      { slug: "education-growth", name: "教育", en: "Education", icon: "♡", tone: "#a3513f", toneDeep: "#5c241b", short: "儿童学习、教学设计与成长" },
-      { slug: "life-growth", name: "生活", en: "Life", icon: "⌂", tone: "#9c7650", toneDeep: "#4f321c", short: "日常、习惯、审美与记录" }
+      { slug: "math-growth", name: "数学", en: "Mathematics", icon: "∫dx", tone: "#c6813a", toneDeep: "#744116", image: "../assets/field-math-cover.png", short: "结构、直观、证明与可视化" },
+      { slug: "code-growth", name: "编程", en: "Code", icon: ">_", tone: "#8f6a3f", toneDeep: "#4c2d14", image: "../assets/field-code-cover.png", short: "工具、算法、应用与创作" },
+      { slug: "reading-growth", name: "阅读", en: "Reading", icon: "📖", tone: "#6f7b4a", toneDeep: "#394520", image: "../assets/field-reading-cover.png", short: "书、观点、摘录与问题" },
+      { slug: "music-growth", name: "音乐", en: "Music", icon: "♪", tone: "#c06a2f", toneDeep: "#713817", image: "../assets/field-music-cover.png", short: "聆听、结构、作品与练习" },
+      { slug: "science-growth", name: "科学", en: "Science", icon: "⚛", tone: "#806f4b", toneDeep: "#3f321b", image: "../assets/field-science-cover.png", short: "实验、自然、宇宙与模型" },
+      { slug: "education-growth", name: "教育", en: "Education", icon: "♡", tone: "#a3513f", toneDeep: "#5c241b", image: "../assets/field-education-cover.png", short: "儿童学习、教学设计与成长" },
+      { slug: "life-growth", name: "生活", en: "Life", icon: "⌂", tone: "#9c7650", toneDeep: "#4f321c", image: "../assets/field-life-cover.png", short: "日常、习惯、审美与记录" }
     ];
 
     const defaultCards = {
@@ -1306,6 +1419,54 @@
       return html.join("");
     }
 
+    function stripMarkdownSyntax(value) {
+      return String(value || "")
+        .replace(/^#{1,6}\s+/, "")
+        .replace(/^[-*]\s+/, "")
+        .replace(/^\d+\.\s+/, "")
+        .replace(/`([^`]+)`/g, "$1")
+        .replace(/\*\*([^*]+)\*\*/g, "$1")
+        .replace(/\*([^*]+)\*/g, "$1")
+        .trim();
+    }
+
+    function getMarkdownTitle(markdown, fallback = "未命名卡片") {
+      const lines = String(markdown || "").replace(/\r/g, "").split("\n");
+      const heading = lines.find((line) => /^##\s+/.test(line.trim()));
+      if (heading) return stripMarkdownSyntax(heading) || fallback;
+      const firstLine = lines.map(stripMarkdownSyntax).find(Boolean);
+      return firstLine || fallback;
+    }
+
+    function getMarkdownSubtitle(markdown, fallback = "写下这张卡片的核心问题。") {
+      const lines = String(markdown || "").replace(/\r/g, "").split("\n");
+      const firstDetail = lines.find((line) => {
+        const trimmed = line.trim();
+        return trimmed && !/^#{1,6}\s+/.test(trimmed);
+      });
+      return stripMarkdownSyntax(firstDetail) || fallback;
+    }
+
+    function normalizeHexColor(value, fallback) {
+      const color = String(value || "").trim();
+      return /^#[0-9a-f]{6}$/i.test(color) ? color : fallback;
+    }
+
+    function getCardVisual(card, field) {
+      const title = String(card.title || "").trim() || getMarkdownTitle(card.markdown, card.tag || field.name);
+      const subtitle = String(card.subtitle || "").trim() || getMarkdownSubtitle(card.markdown, field.short);
+      return {
+        title,
+        subtitle,
+        tag: String(card.tag || field.name || "卡片").trim(),
+        date: String(card.date || "").trim(),
+        icon: String(card.icon || field.icon || "✦").trim().slice(0, 8) || "✦",
+        image: String(card.image || field.image || "").trim(),
+        tone: normalizeHexColor(card.tone, field.tone || "#c6813a"),
+        toneDeep: normalizeHexColor(card.toneDeep, field.toneDeep || "#744116")
+      };
+    }
+
     const fieldStorageKey = "michael-learning-lab-fields-v1";
     const cardStorageKey = "michael-learning-lab-card-store-v1";
     const libraryView = "__card_library__";
@@ -1332,6 +1493,7 @@
         icon: String(field.icon || "✦").trim().slice(0, 8) || "✦",
         tone: field.tone || palette.tone,
         toneDeep: field.toneDeep || palette.toneDeep,
+        image: String(field.image || "").trim(),
         short: field.short || `${name} 的卡片、资料与长期记录`,
         custom: Boolean(field.custom && !defaultFieldBySlug.has(slug))
       };
@@ -1429,6 +1591,12 @@
     const cardCategoryInput = document.getElementById("cardCategoryInput");
     const cardTagInput = document.getElementById("cardTagInput");
     const cardDateInput = document.getElementById("cardDateInput");
+    const cardTitleInput = document.getElementById("cardTitleInput");
+    const cardSubtitleInput = document.getElementById("cardSubtitleInput");
+    const cardImageInput = document.getElementById("cardImageInput");
+    const cardIconInput = document.getElementById("cardIconInput");
+    const cardToneInput = document.getElementById("cardToneInput");
+    const cardToneDeepInput = document.getElementById("cardToneDeepInput");
     const cardMarkdownInput = document.getElementById("cardMarkdownInput");
     const closeCardDialog = document.getElementById("closeCardDialog");
     const cancelCardButton = document.getElementById("cancelCardButton");
@@ -1506,20 +1674,33 @@
       const card = isNew ? {
         tag: sourceField.name,
         date: currentMonthLabel(),
+        title: "新卡片标题",
+        subtitle: "写下这张卡片的一句话说明。",
+        icon: sourceField.icon,
+        image: sourceField.image,
+        tone: sourceField.tone,
+        toneDeep: sourceField.toneDeep,
         markdown: `## 新卡片标题\n- 写下第一条笔记\n- 写下第二条笔记\n\n可以使用 \`代码\`、**重点** 和列表。`
       } : sourceCards[reference.index];
 
       if (!card) return;
+      const visual = getCardVisual(card, sourceField);
       editingCardRef = isNew ? null : { slug: sourceSlug, index: reference.index };
       cardDialogTitle.textContent = isNew ? "新增卡片" : "编辑卡片";
       cardIndex.value = isNew ? "" : String(reference.index);
       renderCategoryOptions(sourceSlug);
-      cardTagInput.value = card.tag || sourceField.name;
-      cardDateInput.value = card.date || currentMonthLabel();
+      cardTagInput.value = visual.tag;
+      cardDateInput.value = visual.date || currentMonthLabel();
+      cardTitleInput.value = visual.title;
+      cardSubtitleInput.value = visual.subtitle;
+      cardImageInput.value = visual.image;
+      cardIconInput.value = visual.icon;
+      cardToneInput.value = visual.tone;
+      cardToneDeepInput.value = visual.toneDeep;
       cardMarkdownInput.value = card.markdown || "";
       deleteCardButton.hidden = isNew;
       cardDialog.showModal();
-      cardMarkdownInput.focus();
+      cardTitleInput.focus();
     }
 
     function closeEditor() {
@@ -1540,23 +1721,37 @@
       const query = cardSearch.value.trim().toLowerCase();
       const entries = getCardEntries();
       const filtered = entries.filter(({ card, field }) => {
-        const haystack = `${card.tag} ${card.date} ${card.markdown}`.toLowerCase();
+        const haystack = `${card.title} ${card.subtitle} ${card.tag} ${card.date} ${card.icon} ${card.image} ${card.markdown}`.toLowerCase();
         return !query || `${field.name} ${field.en} ${haystack}`.toLowerCase().includes(query);
       });
 
-      cardGrid.innerHTML = filtered.map(({ card, field, index, slug }) => `
-        <article class="markdown-card" tabindex="0" data-card-slug="${escapeHtml(slug)}" data-card-index="${index}"
-          aria-label="编辑 ${escapeHtml(card.tag)} 卡片">
-          <div class="card-meta">
-            <span class="card-meta-left">
-              ${currentView === libraryView ? `<span class="card-field" style="--field-tone: ${escapeHtml(field.tone)}; --field-tone-deep: ${escapeHtml(field.toneDeep)}">${escapeHtml(field.name)}</span>` : ""}
-              <span class="card-tag">${escapeHtml(card.tag)}</span>
-            </span>
-            <time>${escapeHtml(card.date)}</time>
-          </div>
-          <div class="markdown-body">${renderMarkdown(card.markdown)}</div>
-        </article>
-      `).join("");
+      cardGrid.innerHTML = filtered.map(({ card, field, index, slug }) => {
+        const visual = getCardVisual(card, field);
+        const media = visual.image
+          ? `<figure class="card-media"><img src="${escapeHtml(visual.image)}" alt="${escapeHtml(visual.title)}" loading="lazy"></figure>`
+          : `<figure class="card-media"><span class="card-media-placeholder">${escapeHtml(visual.icon)}</span></figure>`;
+
+        return `
+          <article class="markdown-card" tabindex="0" data-card-slug="${escapeHtml(slug)}" data-card-index="${index}"
+            style="--card-tone: ${escapeHtml(visual.tone)}; --card-tone-deep: ${escapeHtml(visual.toneDeep)}"
+            aria-label="编辑 ${escapeHtml(visual.title)} 卡片">
+            <div class="card-meta">
+              <span class="card-meta-left">
+                ${currentView === libraryView ? `<span class="card-field" style="--field-tone: ${escapeHtml(field.tone)}; --field-tone-deep: ${escapeHtml(field.toneDeep)}">${escapeHtml(field.name)}</span>` : ""}
+                <span class="card-tag">${escapeHtml(visual.tag)}</span>
+              </span>
+              <time class="card-date">${escapeHtml(visual.date)}</time>
+            </div>
+            <div class="card-copy">
+              <h2 class="card-title">${escapeHtml(visual.title)}</h2>
+              <span class="card-rule" aria-hidden="true"></span>
+              <p class="card-subtitle">${escapeHtml(visual.subtitle)}</p>
+              <span class="card-icon-badge" aria-hidden="true">${escapeHtml(visual.icon)}</span>
+            </div>
+            ${media}
+          </article>
+        `;
+      }).join("");
 
       cardCount.textContent = `${filtered.length} / ${entries.length} 张卡片`;
       emptyState.style.display = filtered.length ? "none" : "block";
@@ -1696,6 +1891,12 @@
       const nextCard = {
         tag: cardTagInput.value.trim() || targetField.name,
         date: cardDateInput.value.trim() || currentMonthLabel(),
+        title: cardTitleInput.value.trim(),
+        subtitle: cardSubtitleInput.value.trim(),
+        icon: cardIconInput.value.trim().slice(0, 8) || targetField.icon,
+        image: cardImageInput.value.trim() || targetField.image,
+        tone: normalizeHexColor(cardToneInput.value, targetField.tone),
+        toneDeep: normalizeHexColor(cardToneDeepInput.value, targetField.toneDeep),
         markdown: cardMarkdownInput.value.trim()
       };
 

@@ -1,0 +1,2441 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Michael's Learning Lab</title>
+  <meta name="description" content="Michael 的个人学习记录网站，记录数学、编程、阅读、音乐、科学与教育的探索。">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #101625;
+      --ink-soft: #30384d;
+      --muted: #667085;
+      --quiet: #8a91a3;
+      --paper: #ffffff;
+      --wash: #f6f7fb;
+      --wash-strong: #eef1f8;
+      --line: rgba(20, 26, 40, .1);
+      --line-strong: rgba(20, 26, 40, .18);
+      --violet: #6d5dfc;
+      --violet-deep: #4f46e5;
+      --blue: #3274e8;
+      --cyan: #20a7a8;
+      --green: #1e9b7b;
+      --orange: #d97a22;
+      --rose: #d84f86;
+      --navy: #101625;
+      --shadow: 0 20px 50px rgba(18, 26, 48, .09);
+      --shadow-soft: 0 10px 30px rgba(18, 26, 48, .07);
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --serif: "Songti SC", "STSong", "Noto Serif SC", serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--wash);
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.68;
+      letter-spacing: 0;
+      background:
+        radial-gradient(circle at 16% 8%, rgba(109, 93, 252, .09), transparent 28%),
+        radial-gradient(circle at 88% 20%, rgba(32, 167, 168, .08), transparent 24%),
+        linear-gradient(180deg, #fbfcff 0%, #f6f7fb 52%, #ffffff 100%);
+    }
+
+    body.dark {
+      color-scheme: dark;
+      --ink: #eef2ff;
+      --ink-soft: #cbd5e1;
+      --muted: #9aa8bd;
+      --quiet: #7c8798;
+      --paper: #111827;
+      --wash: #0b1020;
+      --wash-strong: #141b2f;
+      --line: rgba(255, 255, 255, .1);
+      --line-strong: rgba(255, 255, 255, .18);
+      --shadow: 0 20px 50px rgba(0, 0, 0, .35);
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, .28);
+      background:
+        radial-gradient(circle at 16% 8%, rgba(109, 93, 252, .18), transparent 28%),
+        radial-gradient(circle at 88% 20%, rgba(32, 167, 168, .12), transparent 24%),
+        linear-gradient(180deg, #0b1020 0%, #101827 54%, #0b1020 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, .82);
+      backdrop-filter: blur(18px);
+    }
+
+    body.dark .site-header {
+      background: rgba(11, 16, 32, .78);
+    }
+
+    .nav,
+    .section-inner,
+    .hero-inner,
+    .footer-inner {
+      width: min(1180px, calc(100% - 44px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      min-width: 248px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border: 2px solid var(--line-strong);
+      border-radius: 12px;
+      overflow: hidden;
+      display: block;
+      flex: 0 0 auto;
+      background: var(--wash-strong);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-title {
+      display: block;
+      color: var(--ink);
+      font-size: 1rem;
+      font-weight: 950;
+      line-height: 1.18;
+      white-space: nowrap;
+    }
+
+    .brand-subtitle {
+      display: block;
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 700;
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      font-size: .88rem;
+      font-weight: 860;
+    }
+
+    .nav-links a {
+      position: relative;
+      min-height: 42px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .nav-links a::after {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 4px;
+      height: 3px;
+      border-radius: 99px;
+      background: var(--violet);
+      content: "";
+      opacity: 0;
+      transform: scaleX(.54);
+      transition: opacity .16s ease, transform .16s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      color: var(--violet-deep);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a[aria-current="page"]::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .nav-tools {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-button {
+      width: 42px;
+      height: 42px;
+      border: 1px solid transparent;
+      border-radius: 99px;
+      display: grid;
+      place-items: center;
+      color: var(--ink);
+      background: transparent;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .theme-button {
+      color: #fff;
+      background: var(--navy);
+      box-shadow: 0 12px 28px rgba(16, 22, 37, .14);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 620px;
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background-image:
+        linear-gradient(90deg, rgba(10, 15, 28, .94) 0%, rgba(10, 15, 28, .82) 34%, rgba(10, 15, 28, .46) 57%, rgba(10, 15, 28, .1) 100%),
+        url("assets/personal-cover.jpg");
+      background-position: center right;
+      background-size: cover;
+    }
+
+    body.dark .hero {
+      background-image:
+        linear-gradient(90deg, rgba(11, 16, 32, .98) 0%, rgba(11, 16, 32, .91) 38%, rgba(11, 16, 32, .55) 58%, rgba(11, 16, 32, .18) 100%),
+        url("assets/personal-cover.jpg");
+    }
+
+    .hero::before {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .04), transparent),
+        repeating-linear-gradient(90deg, rgba(141, 130, 255, .07) 0 1px, transparent 1px 86px);
+      pointer-events: none;
+      content: "";
+    }
+
+    .hero-inner {
+      position: relative;
+      padding: 76px 0 70px;
+    }
+
+    .hero-copy {
+      max-width: 660px;
+      display: grid;
+      gap: 24px;
+    }
+
+    h1 {
+      color: var(--ink);
+      max-width: 660px;
+      font-size: clamp(2.45rem, 4.15vw, 3.25rem);
+      font-weight: 950;
+      line-height: 1.17;
+    }
+
+    .hero h1 {
+      color: #f8fbff;
+      text-shadow: 0 18px 42px rgba(0, 0, 0, .32);
+    }
+
+    .accent {
+      color: var(--violet);
+    }
+
+    .hero .accent {
+      color: #9c8cff;
+    }
+
+    .hero-text {
+      max-width: 520px;
+      color: rgba(248, 251, 255, .84);
+      font-size: 1.05rem;
+      font-weight: 520;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      min-height: 48px;
+      padding: 12px 22px;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, .76);
+      font-weight: 900;
+      box-shadow: var(--shadow-soft);
+    }
+
+    body.dark .button {
+      background: rgba(17, 24, 39, .74);
+    }
+
+    .button.primary {
+      border-color: var(--navy);
+      color: #fff;
+      background: var(--navy);
+    }
+
+    .quote {
+      display: grid;
+      gap: 8px;
+      color: rgba(248, 251, 255, .82);
+      font-family: var(--serif);
+      font-size: 1.03rem;
+      line-height: 1.85;
+    }
+
+    .quote::before {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, #a695ff, var(--violet));
+      display: grid;
+      place-items: center;
+      font-family: Georgia, serif;
+      font-size: 1.7rem;
+      line-height: 1;
+      content: "“";
+    }
+
+    .quote cite {
+      color: rgba(248, 251, 255, .66);
+      font-family: var(--sans);
+      font-size: .9rem;
+      font-style: normal;
+    }
+
+    section {
+      padding: 44px 0;
+    }
+
+    .section-head {
+      display: grid;
+      justify-items: center;
+      gap: 18px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .section-title {
+      display: grid;
+      gap: 8px;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .section-title.center {
+      justify-items: center;
+      text-align: center;
+    }
+
+    .section-title h2 {
+      color: var(--ink);
+      font-size: clamp(1.45rem, 2.6vw, 2rem);
+      font-weight: 950;
+      line-height: 1.2;
+    }
+
+    .section-title h2::after {
+      width: 38px;
+      height: 3px;
+      border-radius: 99px;
+      display: block;
+      margin-inline: auto;
+      margin-top: 8px;
+      background: linear-gradient(90deg, var(--violet), var(--blue));
+      content: "";
+    }
+
+    .section-title.center h2::after {
+      margin-inline: auto;
+    }
+
+    .section-title p {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .link-pill {
+      min-height: 40px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+      background: var(--paper);
+      font-size: .86rem;
+      font-weight: 900;
+      box-shadow: var(--shadow-soft);
+      white-space: nowrap;
+    }
+
+    .field-section {
+      margin-top: 24px;
+      position: relative;
+      z-index: 2;
+      padding-top: 0;
+    }
+
+    .field-panel {
+      padding: 24px 30px 28px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .9);
+      box-shadow: var(--shadow);
+    }
+
+    body.dark .field-panel {
+      background: rgba(17, 24, 39, .92);
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .field-card {
+      min-height: 132px;
+      padding: 18px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      justify-items: center;
+      align-content: start;
+      gap: 10px;
+      text-align: center;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .76), rgba(255, 255, 255, .42)),
+        var(--paper);
+      box-shadow: var(--shadow-soft);
+    }
+
+    a.field-card {
+      position: relative;
+      color: inherit;
+      cursor: pointer;
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+
+    a.field-card::after {
+      content: "进入成长轨迹 →";
+      color: var(--tone-deep, var(--violet-deep));
+      font-size: .74rem;
+      font-weight: 950;
+      line-height: 1;
+      opacity: .82;
+    }
+
+    a.field-card:hover,
+    a.field-card:focus-visible {
+      transform: translateY(-4px);
+      border-color: color-mix(in srgb, var(--tone, var(--violet)) 54%, var(--line));
+      box-shadow: 0 18px 42px rgba(79, 70, 229, .18);
+      outline: none;
+    }
+
+    body.dark .field-card {
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02)),
+        var(--paper);
+    }
+
+    .field-icon,
+    .resource-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, var(--tone, var(--violet)), var(--tone-deep, var(--blue)));
+      font-size: 1.25rem;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .field-card h3 {
+      font-size: .98rem;
+      line-height: 1.3;
+    }
+
+    .field-card h3 span {
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .field-card p {
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.52;
+    }
+
+    .card-grid,
+    .work-grid,
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .post-card,
+    .work-card,
+    .resource-card,
+    .note-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .thumb {
+      min-height: 116px;
+      aspect-ratio: 1.5;
+      padding: 12px;
+      display: flex;
+      align-items: flex-end;
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, 0)),
+        linear-gradient(135deg, var(--tone, var(--violet)), var(--tone-deep, var(--blue)));
+    }
+
+    .thumb.math {
+      background:
+        radial-gradient(circle at 70% 32%, rgba(255, 255, 255, .18), transparent 18%),
+        linear-gradient(135deg, #101625, #242536);
+    }
+
+    .thumb.music {
+      background:
+        repeating-linear-gradient(0deg, transparent 0 16px, rgba(255, 255, 255, .16) 17px, transparent 18px),
+        linear-gradient(135deg, #94623e, #d97a22);
+    }
+
+    .thumb.reading {
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .1), transparent),
+        linear-gradient(135deg, #64748b, #b68c63);
+    }
+
+    .tag {
+      width: max-content;
+      max-width: 100%;
+      padding: 4px 8px;
+      border-radius: 6px;
+      color: #fff;
+      background: rgba(16, 22, 37, .52);
+      font-size: .74rem;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .card-body {
+      padding: 14px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .post-card h3,
+    .work-card h3 {
+      color: var(--ink);
+      font-size: .98rem;
+      line-height: 1.35;
+    }
+
+    .post-card p,
+    .work-card p {
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.55;
+    }
+
+    .date {
+      color: var(--quiet);
+      font-size: .78rem;
+      font-weight: 700;
+    }
+
+    .diary-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .link-pill.button-like {
+      border: 1px solid var(--line);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .diary-card {
+      cursor: pointer;
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+
+    .diary-card:hover,
+    .diary-card:focus-visible {
+      transform: translateY(-4px);
+      border-color: var(--line-strong);
+      box-shadow: 0 18px 42px rgba(18, 26, 48, .13);
+      outline: none;
+    }
+
+    .diary-preview-card {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .thumb {
+      position: relative;
+    }
+
+    .thumb.has-cover {
+      background-position: center;
+      background-size: cover;
+    }
+
+    .thumb.has-cover::after {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(16, 22, 37, .08), rgba(16, 22, 37, .42));
+      content: "";
+    }
+
+    .thumb.has-cover .tag,
+    .thumb.has-cover .media-badge {
+      position: relative;
+      z-index: 1;
+    }
+
+    .media-badge {
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(16, 22, 37, .5);
+      font-size: .72rem;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 2px;
+    }
+
+    .card-actions button,
+    .modal-button {
+      min-height: 32px;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      background: var(--wash);
+      font: inherit;
+      font-size: .76rem;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .card-actions button:hover,
+    .modal-button:hover {
+      border-color: var(--line-strong);
+    }
+
+    .card-actions .danger,
+    .modal-button.danger {
+      color: #b42318;
+      background: rgba(244, 63, 94, .08);
+    }
+
+    body.dark .card-actions button,
+    body.dark .modal-button {
+      background: var(--wash-strong);
+    }
+
+    .empty-state {
+      padding: 28px;
+      border: 1px dashed var(--line-strong);
+      border-radius: 8px;
+      color: var(--muted);
+      text-align: center;
+      background: rgba(255, 255, 255, .42);
+      font-weight: 760;
+    }
+
+    .diary-dialog {
+      width: min(940px, calc(100% - 28px));
+      max-height: min(88vh, 900px);
+      padding: 0;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      color: var(--ink);
+      background: var(--paper);
+      box-shadow: 0 30px 80px rgba(16, 22, 37, .28);
+    }
+
+    .diary-dialog::backdrop {
+      background: rgba(11, 16, 32, .58);
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-shell {
+      display: grid;
+      max-height: min(88vh, 900px);
+      overflow: auto;
+    }
+
+    .modal-header {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      background: color-mix(in srgb, var(--paper) 92%, transparent);
+      backdrop-filter: blur(16px);
+    }
+
+    .modal-header h3 {
+      font-size: 1.15rem;
+      line-height: 1.3;
+    }
+
+    .modal-close {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      background: var(--wash);
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+
+    .diary-form,
+    .diary-viewer {
+      padding: 20px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 7px;
+      color: var(--ink-soft);
+      font-size: .85rem;
+      font-weight: 900;
+    }
+
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 11px 12px;
+      color: var(--ink);
+      background: var(--wash);
+      font: inherit;
+      font-size: .92rem;
+      line-height: 1.45;
+    }
+
+    .form-field textarea {
+      min-height: 210px;
+      resize: vertical;
+      font-family: "SFMono-Regular", Consolas, monospace;
+    }
+
+    .helper-text {
+      color: var(--muted);
+      font-size: .8rem;
+      font-weight: 650;
+      line-height: 1.5;
+    }
+
+    .attachment-list {
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .attachment-list li {
+      padding: 9px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      background: var(--wash);
+      font-size: .82rem;
+      font-weight: 760;
+    }
+
+    .attachment-list button {
+      border: 0;
+      color: #b42318;
+      background: transparent;
+      font: inherit;
+      font-weight: 950;
+      cursor: pointer;
+    }
+
+    .form-actions,
+    .viewer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      padding-top: 2px;
+    }
+
+    .modal-button.primary {
+      border-color: transparent;
+      color: #fff;
+      background: var(--navy);
+    }
+
+    .viewer-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 850;
+    }
+
+    .markdown-body {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink-soft);
+      background: var(--wash);
+    }
+
+    .markdown-body h2,
+    .markdown-body h3 {
+      color: var(--ink);
+      margin: 0 0 10px;
+      line-height: 1.35;
+    }
+
+    .markdown-body p,
+    .markdown-body ul {
+      margin: 0 0 12px;
+    }
+
+    .markdown-body ul {
+      padding-left: 1.15rem;
+    }
+
+    .markdown-body img {
+      max-height: 360px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      margin: 12px 0;
+      object-fit: contain;
+      background: #fff;
+    }
+
+    .markdown-body code {
+      padding: 2px 5px;
+      border-radius: 5px;
+      background: rgba(109, 93, 252, .1);
+      font-family: "SFMono-Regular", Consolas, monospace;
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .media-item {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--wash);
+    }
+
+    .media-item img,
+    .media-item video,
+    .media-item iframe {
+      width: 100%;
+      min-height: 220px;
+      max-height: 420px;
+      display: block;
+      object-fit: contain;
+      background: #0b1020;
+    }
+
+    .media-caption {
+      padding: 10px 12px;
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 820;
+      overflow-wrap: anywhere;
+    }
+
+    .resource-card {
+      min-height: 188px;
+      padding: 18px;
+      display: grid;
+      align-content: space-between;
+      gap: 18px;
+    }
+
+    .resource-top {
+      display: grid;
+      gap: 12px;
+    }
+
+    .resource-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 950;
+    }
+
+    .resource-card ul {
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 4px;
+      color: var(--ink-soft);
+      font-size: .82rem;
+      line-height: 1.45;
+      list-style: none;
+    }
+
+    .resource-card .arrow {
+      width: 26px;
+      height: 26px;
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      display: grid;
+      place-items: center;
+      justify-self: end;
+      color: var(--ink);
+      background: var(--wash);
+      font-weight: 900;
+    }
+
+    .journal-layout {
+      display: grid;
+      grid-template-columns: .92fr 1.18fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .note-list {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      gap: 14px;
+      background: var(--paper);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .note-item {
+      display: grid;
+      grid-template-columns: 62px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .note-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .mini-thumb {
+      width: 62px;
+      height: 42px;
+      border-radius: 6px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .18), transparent),
+        linear-gradient(135deg, var(--tone, var(--violet)), var(--tone-deep, var(--blue)));
+    }
+
+    .note-item h3 {
+      font-size: .92rem;
+      line-height: 1.35;
+    }
+
+    .note-item time {
+      color: var(--quiet);
+      font-size: .78rem;
+      white-space: nowrap;
+    }
+
+    .quote-panel {
+      min-height: 290px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: 1fr .9fr;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .quote-panel-text {
+      padding: clamp(24px, 4vw, 52px);
+      display: grid;
+      align-content: center;
+      gap: 18px;
+      background:
+        linear-gradient(90deg, var(--paper), rgba(255, 255, 255, .58));
+    }
+
+    body.dark .quote-panel-text {
+      background:
+        linear-gradient(90deg, var(--paper), rgba(17, 24, 39, .52));
+    }
+
+    .quote-mark {
+      color: rgba(109, 93, 252, .34);
+      font-family: Georgia, serif;
+      font-size: 4.2rem;
+      line-height: .7;
+    }
+
+    .quote-panel blockquote {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3vw, 2.6rem);
+      line-height: 1.55;
+    }
+
+    .quote-panel cite {
+      color: var(--muted);
+      font-style: normal;
+      font-weight: 800;
+    }
+
+    .quote-visual {
+      min-height: 100%;
+      background-image:
+        linear-gradient(90deg, rgba(255, 255, 255, .72), rgba(255, 255, 255, 0)),
+        url("assets/personal-cover.jpg");
+      background-position: center right;
+      background-size: cover;
+    }
+
+    body.dark .quote-visual {
+      background-image:
+        linear-gradient(90deg, rgba(17, 24, 39, .72), rgba(17, 24, 39, 0)),
+        url("assets/personal-cover.jpg");
+    }
+
+    .footer {
+      margin-top: 30px;
+      padding: 34px 0 22px;
+      border-top: 1px solid var(--line);
+      background: rgba(255, 255, 255, .64);
+    }
+
+    body.dark .footer {
+      background: rgba(17, 24, 39, .64);
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(3, .75fr) 1.05fr;
+      gap: 30px;
+    }
+
+    .footer-brand {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .footer-brand p,
+    .footer-column a,
+    .footer-column li,
+    .subscribe p {
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+    }
+
+    .socials span {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--navy);
+      font-size: .78rem;
+      font-weight: 900;
+    }
+
+    .footer-column,
+    .subscribe {
+      display: grid;
+      align-content: start;
+      gap: 12px;
+    }
+
+    .footer-column h3,
+    .subscribe h3 {
+      font-size: .95rem;
+    }
+
+    .footer-column ul {
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 6px;
+      list-style: none;
+    }
+
+    .subscribe-form {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .subscribe-form input {
+      min-width: 0;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0 14px;
+      color: var(--ink);
+      background: var(--paper);
+      font: inherit;
+    }
+
+    .subscribe-form button {
+      border: 0;
+      border-radius: 999px;
+      padding: 0 18px;
+      color: #fff;
+      background: var(--navy);
+      font: inherit;
+      font-weight: 900;
+    }
+
+    .copyright {
+      width: min(1180px, calc(100% - 44px));
+      margin: 26px auto 0;
+      color: var(--quiet);
+      font-size: .82rem;
+      text-align: center;
+    }
+
+    @media (max-width: 1060px) {
+      .nav {
+        align-items: flex-start;
+        padding: 12px 0;
+        display: grid;
+      }
+
+      .nav-links {
+        justify-content: start;
+        flex-wrap: wrap;
+      }
+
+      .nav-tools {
+        position: absolute;
+        right: 22px;
+        top: 15px;
+      }
+
+      .field-grid,
+      .card-grid,
+      .work-grid,
+      .resource-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .footer-inner {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+
+      .nav,
+      .section-inner,
+      .hero-inner,
+      .footer-inner,
+      .copyright {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .brand {
+        min-width: 0;
+      }
+
+      .brand-title,
+      .brand-subtitle {
+        white-space: normal;
+      }
+
+      .nav-links {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        width: 100%;
+      }
+
+      .nav-links a {
+        justify-content: center;
+        padding-inline: 8px;
+        font-size: .78rem;
+      }
+
+      .nav-tools {
+        right: 14px;
+      }
+
+      .hero {
+        min-height: auto;
+        background-image:
+          linear-gradient(180deg, rgba(10, 15, 28, .94), rgba(10, 15, 28, .72)),
+          url("assets/personal-cover.jpg");
+        background-position: center right;
+      }
+
+      body.dark .hero {
+        background-image:
+          linear-gradient(180deg, rgba(11, 16, 32, .98), rgba(11, 16, 32, .86)),
+          url("assets/personal-cover.jpg");
+      }
+
+      .hero-inner {
+        padding: 54px 0 76px;
+      }
+
+      .field-section {
+        margin-top: 0;
+      }
+
+      .field-panel {
+        padding: 22px 16px;
+      }
+
+      .section-head {
+        align-items: start;
+        display: grid;
+      }
+
+      .field-grid,
+      .card-grid,
+      .work-grid,
+      .resource-grid,
+      .journal-layout,
+      .quote-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .quote-visual {
+        min-height: 220px;
+      }
+
+      .note-item {
+        grid-template-columns: 54px 1fr;
+      }
+
+      .note-item time {
+        grid-column: 2;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .nav-links {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-actions,
+      .subscribe-form {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+
+      .form-grid,
+      .media-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .button,
+      .subscribe-form button {
+        width: 100%;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body class="dark">
+  <header class="site-header">
+    <nav class="nav" aria-label="主导航">
+      <a class="brand" href="./">
+        <span class="brand-mark" aria-hidden="true"><img src="assets/site-logo.jpg" alt=""></span>
+        <span>
+          <span class="brand-title">Michael's Learning Lab</span>
+          <span class="brand-subtitle">探索 · 收集 · 思考 · 创造 · 分享</span>
+        </span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#home" aria-current="page">首页</a>
+        <a href="#records">学习日记</a>
+        <a href="#works">实验室</a>
+        <a href="#resources">资源地图</a>
+        <a href="#journal">分享</a>
+        <a href="#about">关于</a>
+      </div>
+
+      <div class="nav-tools" aria-label="页面工具">
+        <button class="icon-button" type="button" aria-label="搜索">⌕</button>
+        <button class="icon-button theme-button" type="button" aria-label="切换深色模式" id="themeButton">☼</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home" aria-label="个人学习记录网站">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <h1>欢迎加入<span class="accent">探险家协会</span>！<br>自由的<span class="accent">学习☀️</span>！</h1>
+          <p class="hero-text">
+            记录一些对于学习的探索，整理笔记和资源，希望它们能帮助更多人开始属于自己的学习之旅。
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#records">浏览学习日记 →</a>
+            <a class="button" href="#works">探索实验室</a>
+          </div>
+          <p class="quote">
+            保护好自己的好奇心和求知欲。
+            <cite>— Michael</cite>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="field-section" id="fields" aria-labelledby="fields-title">
+      <div class="section-inner">
+        <div class="field-panel">
+          <div class="section-title center">
+            <h2 id="fields-title">正在探索的领域</h2>
+          </div>
+
+          <div class="field-grid">
+            <a class="field-card" href="math-growth/" aria-label="查看数学学习成长轨迹"
+              style="--tone: #7c5df7; --tone-deep: #4f46e5">
+              <span class="field-icon">∑x</span>
+              <h3>数学 <span>Mathematics</span></h3>
+              <p>代数结构、几何直观、数学思维与可视化。</p>
+            </a>
+
+            <a class="field-card" href="code-growth/" aria-label="查看编程创作成长轨迹"
+              style="--tone: #4f8df7; --tone-deep: #2662c9">
+              <span class="field-icon">&lt;/&gt;</span>
+              <h3>编程 <span>Code</span></h3>
+              <p>Python、Swift、Web、算法和创意编程。</p>
+            </a>
+
+            <a class="field-card" href="reading-growth/" aria-label="查看阅读思想成长轨迹"
+              style="--tone: #21a47b; --tone-deep: #14795c">
+              <span class="field-icon">▣</span>
+              <h3>阅读 <span>Reading</span></h3>
+              <p>哲学、心理学、社会学、学习方法与写作。</p>
+            </a>
+
+            <a class="field-card" href="music-growth/" aria-label="查看音乐聆听成长轨迹"
+              style="--tone: #de7d26; --tone-deep: #b45718">
+              <span class="field-icon">♪</span>
+              <h3>音乐 <span>Music</span></h3>
+              <p>古典音乐、钢琴、小提琴、结构与聆听。</p>
+            </a>
+
+            <a class="field-card" href="science-growth/" aria-label="查看科学探索成长轨迹"
+              style="--tone: #26a4a6; --tone-deep: #147a82">
+              <span class="field-icon">△</span>
+              <h3>科学 <span>Science</span></h3>
+              <p>科技往事、科学实验、自然与宇宙。</p>
+            </a>
+
+            <a class="field-card" href="education-growth/" aria-label="查看教育理解成长轨迹"
+              style="--tone: #dc5a8a; --tone-deep: #b9346c">
+              <span class="field-icon">●</span>
+              <h3>教育 <span>Education</span></h3>
+              <p>儿童学习、教学设计、学习心理与成长支持。</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="records" aria-labelledby="records-title">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-title">
+            <h2 id="records-title">学习日记</h2>
+          </div>
+          <div class="diary-actions" aria-label="学习日记操作">
+            <button class="link-pill button-like" type="button" id="addDiaryButton">＋ 添加学习日记</button>
+            <a class="link-pill" href="diary/">查看全部日记 →</a>
+          </div>
+        </div>
+        <div class="card-grid" id="diaryGrid" data-diary-mode="preview" data-diary-limit="6" aria-live="polite"></div>
+        <p class="empty-state" id="diaryEmpty" hidden>还没有学习日记。点击上方按钮，添加第一张卡片。</p>
+      </div>
+    </section>
+
+    <section id="works" aria-labelledby="works-title">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-title">
+            <h2 id="works-title">实验室</h2>
+          </div>
+          <a class="link-pill" href="#works">查看全部作品 →</a>
+        </div>
+
+        <div class="work-grid">
+          <article class="work-card">
+            <div class="thumb" style="--tone: #0f172a; --tone-deep: #27456e"><span class="tag">ManimGL</span></div>
+            <div class="card-body">
+              <h3>傅里叶级数动画</h3>
+              <p>用动画理解周期函数的分解。</p>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="thumb" style="--tone: #78d66c; --tone-deep: #249d5f"><span class="tag">Scratch</span></div>
+            <div class="card-body">
+              <h3>数学闯关小游戏</h3>
+              <p>练习逻辑与条件判断。</p>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="thumb" style="--tone: #dae8ff; --tone-deep: #7da7df"><span class="tag">数学资料</span></div>
+            <div class="card-body">
+              <h3>初中函数知识图谱</h3>
+              <p>知识结构与例题整理。</p>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="thumb" style="--tone: #111827; --tone-deep: #2e3a59"><span class="tag">网页工具</span></div>
+            <div class="card-body">
+              <h3>二次函数图像生成器</h3>
+              <p>输入参数，自动绘制图像。</p>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="thumb" style="--tone: #f0b4c9; --tone-deep: #d15f8e"><span class="tag">课程设计</span></div>
+            <div class="card-body">
+              <h3>数独技巧思维导图</h3>
+              <p>方法梳理与可视化总结。</p>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="thumb" style="--tone: #a5d8ff; --tone-deep: #2c7da0"><span class="tag">科学可视</span></div>
+            <div class="card-body">
+              <h3>鲸的世界科学讲解稿</h3>
+              <p>科普视频内容整理。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources" aria-labelledby="resources-title">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-title">
+            <h2 id="resources-title">学习资源地图</h2>
+          </div>
+          <a class="link-pill" href="#resources">探索更多资源 →</a>
+        </div>
+
+        <div class="resource-grid">
+          <article class="resource-card">
+            <div class="resource-top">
+              <div class="resource-title"><span class="resource-icon">∑x</span>数学资源</div>
+              <ul>
+                <li>Khan Academy</li>
+                <li>NRICH</li>
+                <li>GeoGebra</li>
+                <li>3Blue1Brown</li>
+                <li>Mathigon</li>
+              </ul>
+            </div>
+            <span class="arrow">→</span>
+          </article>
+
+          <article class="resource-card">
+            <div class="resource-top">
+              <div class="resource-title"><span class="resource-icon"
+                  style="--tone: var(--blue); --tone-deep: #2662c9">&lt;/&gt;</span>编程资源</div>
+              <ul>
+                <li>MDN Web Docs</li>
+                <li>freeCodeCamp</li>
+                <li>CS50</li>
+                <li>Scratch</li>
+                <li>Code.org</li>
+              </ul>
+            </div>
+            <span class="arrow">→</span>
+          </article>
+
+          <article class="resource-card">
+            <div class="resource-top">
+              <div class="resource-title"><span class="resource-icon"
+                  style="--tone: var(--green); --tone-deep: #14795c">▣</span>英语资源</div>
+              <ul>
+                <li>BBC Learning English</li>
+                <li>TED-Ed</li>
+                <li>VOA Learning English</li>
+                <li>Cambridge Dictionary</li>
+                <li>Grammarly</li>
+              </ul>
+            </div>
+            <span class="arrow">→</span>
+          </article>
+
+          <article class="resource-card">
+            <div class="resource-top">
+              <div class="resource-title"><span class="resource-icon"
+                  style="--tone: var(--orange); --tone-deep: #b45718">△</span>科学资源</div>
+              <ul>
+                <li>PhET Interactive</li>
+                <li>NASA</li>
+                <li>HHMI BioInteractive</li>
+                <li>Exploratorium</li>
+                <li>Kurzgesagt</li>
+              </ul>
+            </div>
+            <span class="arrow">→</span>
+          </article>
+
+          <article class="resource-card">
+            <div class="resource-top">
+              <div class="resource-title"><span class="resource-icon"
+                  style="--tone: #5567e9; --tone-deep: #3841b9">◈</span>开放课程</div>
+              <ul>
+                <li>MIT OCW</li>
+                <li>edX</li>
+                <li>Coursera</li>
+                <li>OpenLearn</li>
+                <li>FutureLearn</li>
+              </ul>
+            </div>
+            <span class="arrow">→</span>
+          </article>
+
+          <article class="resource-card">
+            <div class="resource-top">
+              <div class="resource-title"><span class="resource-icon"
+                  style="--tone: var(--rose); --tone-deep: #b9346c">✦</span>创作工具</div>
+              <ul>
+                <li>Manim</li>
+                <li>Figma</li>
+                <li>Notion</li>
+                <li>Obsidian</li>
+                <li>GitHub</li>
+              </ul>
+            </div>
+            <span class="arrow">→</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="journal" aria-labelledby="journal-title">
+      <div class="section-inner">
+        <div class="journal-layout">
+          <article class="note-list">
+            <div class="section-title">
+              <h2 id="journal-title">教学分享</h2>
+            </div>
+
+            <div class="note-item">
+              <span class="mini-thumb" style="--tone: #b68c63; --tone-deep: #6b4b2b"></span>
+              <h3>如何让孩子产生真正的学习兴趣？</h3>
+              <time>2026.05.14</time>
+            </div>
+
+            <div class="note-item">
+              <span class="mini-thumb" style="--tone: #305f9f; --tone-deep: #15254a"></span>
+              <h3>独立教师工作室的设计与日常</h3>
+              <time>2026.05.07</time>
+            </div>
+
+            <div class="note-item">
+              <span class="mini-thumb" style="--tone: #8b6a43; --tone-deep: #3d2b18"></span>
+              <h3>作业托管，不只是看作业</h3>
+              <time>2026.04.28</time>
+            </div>
+
+            <a class="button" href="#journal">阅读更多札记 →</a>
+          </article>
+
+          <article class="quote-panel" id="about">
+            <div class="quote-panel-text">
+              <span class="quote-mark">“</span>
+              <blockquote>学习像一段室内乐。<br>自由学习，清晰表达，安静生长。</blockquote>
+              <cite>— Michael</cite>
+            </div>
+            <div class="quote-visual" aria-hidden="true"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="diary-dialog" id="diaryEditor">
+    <div class="modal-shell">
+      <div class="modal-header">
+        <h3 id="diaryEditorTitle">添加学习日记</h3>
+        <button class="modal-close" type="button" data-close-dialog="diaryEditor" aria-label="关闭">×</button>
+      </div>
+      <form class="diary-form" id="diaryForm">
+        <input type="hidden" id="diaryId">
+        <div class="form-grid">
+          <label class="form-field">
+            标题
+            <input id="diaryTitleInput" type="text" placeholder="例如：今天理解了函数图像" required>
+          </label>
+          <label class="form-field">
+            分类
+            <input id="diaryCategoryInput" type="text" placeholder="数学 / 编程" required>
+          </label>
+          <label class="form-field">
+            日期
+            <input id="diaryDateInput" type="date" required>
+          </label>
+          <label class="form-field field-full">
+            摘要
+            <input id="diarySummaryInput" type="text" placeholder="写一句卡片上显示的摘要">
+          </label>
+          <label class="form-field field-full">
+            卡片封面
+            <input id="diaryCoverInput" type="file" accept="image/*">
+            <span class="helper-text">上传一张图片作为日记卡片封面；不上传时使用系统配色封面。</span>
+          </label>
+          <label class="form-field field-full">
+            Markdown 内容
+            <textarea id="diaryMarkdownInput"
+              placeholder="## 今天学了什么&#10;- 一个重要问题&#10;- 一个新的理解&#10;&#10;也可以写图片：![说明](图片地址)" required></textarea>
+            <span class="helper-text">支持标题、列表、加粗、链接和 Markdown 图片。上传的图片、视频、PDF 会作为附件显示在详情里。</span>
+          </label>
+          <label class="form-field field-full">
+            添加附件
+            <input id="diaryFileInput" type="file" accept="image/*,video/*,application/pdf" multiple>
+            <span class="helper-text">本地草稿会把附件保存到浏览器数据库中，适合在这台电脑上预览和设计。</span>
+          </label>
+        </div>
+        <ul class="attachment-list" id="coverAttachmentList" aria-label="当前封面"></ul>
+        <ul class="attachment-list" id="existingAttachmentList" aria-label="已有附件"></ul>
+        <div class="form-actions">
+          <button class="modal-button" type="button" data-close-dialog="diaryEditor">取消</button>
+          <button class="modal-button primary" type="submit">保存日记</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog class="diary-dialog" id="diaryViewer">
+    <div class="modal-shell">
+      <div class="modal-header">
+        <h3 id="viewerTitle">学习日记</h3>
+        <button class="modal-close" type="button" data-close-dialog="diaryViewer" aria-label="关闭">×</button>
+      </div>
+      <article class="diary-viewer">
+        <div class="viewer-meta" id="viewerMeta"></div>
+        <div class="markdown-body" id="viewerMarkdown"></div>
+        <div class="media-grid" id="viewerMedia"></div>
+        <div class="viewer-actions">
+          <button class="modal-button" type="button" id="viewerEditButton">编辑</button>
+          <button class="modal-button danger" type="button" id="viewerDeleteButton">删除</button>
+        </div>
+      </article>
+    </div>
+  </dialog>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="./">
+          <span class="brand-mark" aria-hidden="true"><img src="assets/site-logo.jpg" alt=""></span>
+          <span>
+            <span class="brand-title">Michael's Learning Lab</span>
+            <span class="brand-subtitle">自由学习 · 清晰表达 · 安静生长</span>
+          </span>
+        </a>
+        <div class="socials" aria-label="社交链接">
+          <span>GH</span>
+          <span>YT</span>
+          <span>BL</span>
+          <span>WX</span>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h3>快速导航</h3>
+        <ul>
+          <li><a href="#records">学习日记</a></li>
+          <li><a href="#works">实验室</a></li>
+          <li><a href="#resources">资源地图</a></li>
+          <li><a href="#journal">教学分享</a></li>
+          <li><a href="#about">关于我</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>学习领域</h3>
+        <ul>
+          <li>数学</li>
+          <li>编程</li>
+          <li>阅读</li>
+          <li>音乐</li>
+          <li>科学</li>
+          <li>教育</li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>更多</h3>
+        <ul>
+          <li>学习方法</li>
+          <li>思考与表达</li>
+          <li>工具箱</li>
+          <li>网站地图</li>
+        </ul>
+      </div>
+
+      <div class="subscribe">
+        <h3>订阅学习周报</h3>
+        <p>每周分享学习笔记、资源与思考。</p>
+        <form class="subscribe-form">
+          <input type="email" placeholder="输入你的邮箱地址" aria-label="邮箱地址">
+          <button type="button">订阅</button>
+        </form>
+      </div>
+    </div>
+
+    <p class="copyright">© 2026 Michael's Learning Lab. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const themeButton = document.getElementById("themeButton");
+    themeButton.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      themeButton.textContent = document.body.classList.contains("dark") ? "☼" : "◐";
+    });
+
+    const diaryStorageKey = "michael-learning-lab-diaries-v1";
+    const mediaDbName = "michael-learning-lab-media";
+    const mediaStoreName = "attachments";
+    let diaries = [];
+    let editingRemovedAttachments = new Set();
+    let editingCoverRemoved = false;
+    let activeViewerId = null;
+    let viewerObjectUrls = [];
+    let coverObjectUrls = [];
+    let mediaDbPromise = null;
+
+    const defaultDiaries = [
+      {
+        id: "sample-a5",
+        title: "A5 交错群为什么不可解？",
+        category: "数学",
+        date: "2026-05-20",
+        summary: "从正规子群、商群和同态的角度，理解抽象代数里不可解群的意思。",
+        thumbClass: "math",
+        markdown: "## 今天的核心问题\nA5 交错群为什么不可解？\n\n- 先看正规子群结构。\n- 再看商群和同态如何限制可解性。\n- 最后把抽象代数里的“不可解”翻译成可以理解的结构语言。\n\n**收获：** 不可解不是“没有办法”，而是某种结构无法被逐层拆成交换群。",
+        attachments: []
+      },
+      {
+        id: "sample-buffon",
+        title: "布丰投针实验网页实现",
+        category: "编程 / 数学",
+        date: "2026-05-18",
+        summary: "用 HTML 和 JavaScript 做随机模拟，理解 π 和概率之间的关系。",
+        tone: "#f1c89b",
+        toneDeep: "#df7e3b",
+        markdown: "## 项目记录\n今天用网页模拟布丰投针实验。\n\n- 用随机数生成投针位置和角度。\n- 统计穿线次数。\n- 观察实验次数变多后，估计值如何接近 π。\n\n可以继续做成一个互动页面，让用户调节针长、线距和实验次数。",
+        attachments: []
+      },
+      {
+        id: "sample-complex",
+        title: "复变函数 f(z)=z² 可视化",
+        category: "数学 / 可视化",
+        date: "2026-05-15",
+        summary: "用动画展示复平面的局部变形，观察角度和尺度如何变化。",
+        tone: "#101625",
+        toneDeep: "#244165",
+        markdown: "## 可视化想法\n把复平面上的网格输入到函数 f(z)=z² 中，观察图像怎样变形。\n\n- 原点附近被压缩。\n- 角度会翻倍。\n- 网格线变成更有曲率的结构。\n\n这类动画很适合用 Manim 或 Web Canvas 做成作品。",
+        attachments: []
+      },
+      {
+        id: "sample-plan",
+        title: "小学五六年级三周计划",
+        category: "教育",
+        date: "2026-05-12",
+        summary: "把学习节奏、任务记录和复盘安排放在一个清晰系统里。",
+        tone: "#eceff8",
+        toneDeep: "#b8bfd5",
+        markdown: "## 计划重点\n三周计划要避免塞满任务，而是建立稳定节奏。\n\n- 每天有明确的小目标。\n- 每周有一次复盘。\n- 把作业、阅读、数学思考和表达练习分开记录。\n\n好的计划应该让孩子更清楚，而不是更焦虑。",
+        attachments: []
+      },
+      {
+        id: "sample-swift",
+        title: "学习 Swift 制作卡片 App",
+        category: "编程 / Swift",
+        date: "2026-05-10",
+        summary: "记录学习笔记、关键词和复盘，用小应用整理学习线索。",
+        tone: "#756df0",
+        toneDeep: "#4c42b8",
+        markdown: "## Swift 学习\n今天的目标是做一个卡片式学习 App 原型。\n\n- 卡片记录标题、关键词和复盘。\n- 列表负责浏览。\n- 详情页负责展开内容。\n\n这个网页日记系统也可以作为 App 设计的参考。",
+        attachments: []
+      },
+      {
+        id: "sample-reading",
+        title: "《思考，快与慢》读书笔记",
+        category: "阅读",
+        date: "2026-05-08",
+        summary: "关于系统 1 与系统 2 的理解，整理常见判断偏误。",
+        thumbClass: "reading",
+        markdown: "## 阅读笔记\n系统 1 很快，系统 2 很慢，但真正困难的是知道什么时候需要慢下来。\n\n- 快速判断节省精力。\n- 慢速思考帮助检查偏误。\n- 学习时要给自己留出复盘空间。\n\n这本书适合做成一组主题卡片。",
+        attachments: []
+      }
+    ];
+
+    const tonePresets = [
+      { pattern: /数学/, thumbClass: "math", tone: "#101625", toneDeep: "#242536" },
+      { pattern: /编程|代码|Swift|Web/i, tone: "#756df0", toneDeep: "#4c42b8" },
+      { pattern: /阅读|书/, thumbClass: "reading", tone: "#64748b", toneDeep: "#b68c63" },
+      { pattern: /音乐|钢琴|小提琴/, thumbClass: "music", tone: "#94623e", toneDeep: "#d97a22" },
+      { pattern: /科学|实验/, tone: "#26a4a6", toneDeep: "#147a82" },
+      { pattern: /教育|教学/, tone: "#eceff8", toneDeep: "#b8bfd5" }
+    ];
+
+    const diaryGrid = document.getElementById("diaryGrid");
+    const diaryEmpty = document.getElementById("diaryEmpty");
+    const addDiaryButton = document.getElementById("addDiaryButton");
+    const diaryEditor = document.getElementById("diaryEditor");
+    const diaryViewer = document.getElementById("diaryViewer");
+    const diaryForm = document.getElementById("diaryForm");
+    const diaryIdInput = document.getElementById("diaryId");
+    const diaryTitleInput = document.getElementById("diaryTitleInput");
+    const diaryCategoryInput = document.getElementById("diaryCategoryInput");
+    const diaryDateInput = document.getElementById("diaryDateInput");
+    const diarySummaryInput = document.getElementById("diarySummaryInput");
+    const diaryMarkdownInput = document.getElementById("diaryMarkdownInput");
+    const diaryCoverInput = document.getElementById("diaryCoverInput");
+    const diaryFileInput = document.getElementById("diaryFileInput");
+    const diaryEditorTitle = document.getElementById("diaryEditorTitle");
+    const coverAttachmentList = document.getElementById("coverAttachmentList");
+    const existingAttachmentList = document.getElementById("existingAttachmentList");
+    const viewerTitle = document.getElementById("viewerTitle");
+    const viewerMeta = document.getElementById("viewerMeta");
+    const viewerMarkdown = document.getElementById("viewerMarkdown");
+    const viewerMedia = document.getElementById("viewerMedia");
+    const viewerEditButton = document.getElementById("viewerEditButton");
+    const viewerDeleteButton = document.getElementById("viewerDeleteButton");
+
+    function cloneDefaultDiaries() {
+      return defaultDiaries.map((diary) => ({ ...diary, attachments: [] }));
+    }
+
+    function loadDiaries() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(diaryStorageKey) || "null");
+        if (Array.isArray(saved)) {
+          return saved;
+        }
+      } catch (error) {
+        console.warn("Unable to load diary data", error);
+      }
+      const initial = cloneDefaultDiaries();
+      localStorage.setItem(diaryStorageKey, JSON.stringify(initial));
+      return initial;
+    }
+
+    function saveDiaries() {
+      localStorage.setItem(diaryStorageKey, JSON.stringify(diaries));
+    }
+
+    function openMediaDb() {
+      if (!("indexedDB" in window)) {
+        return Promise.resolve(null);
+      }
+      if (!mediaDbPromise) {
+        mediaDbPromise = new Promise((resolve, reject) => {
+          const request = indexedDB.open(mediaDbName, 1);
+          request.onupgradeneeded = () => {
+            const db = request.result;
+            if (!db.objectStoreNames.contains(mediaStoreName)) {
+              db.createObjectStore(mediaStoreName, { keyPath: "id" });
+            }
+          };
+          request.onsuccess = () => resolve(request.result);
+          request.onerror = () => reject(request.error);
+        });
+      }
+      return mediaDbPromise;
+    }
+
+    async function putAttachment(record) {
+      const db = await openMediaDb();
+      if (!db) return;
+      return new Promise((resolve, reject) => {
+        const transaction = db.transaction(mediaStoreName, "readwrite");
+        transaction.objectStore(mediaStoreName).put(record);
+        transaction.oncomplete = resolve;
+        transaction.onerror = () => reject(transaction.error);
+      });
+    }
+
+    async function getAttachment(id) {
+      const db = await openMediaDb();
+      if (!db) return null;
+      return new Promise((resolve, reject) => {
+        const transaction = db.transaction(mediaStoreName, "readonly");
+        const request = transaction.objectStore(mediaStoreName).get(id);
+        request.onsuccess = () => resolve(request.result || null);
+        request.onerror = () => reject(request.error);
+      });
+    }
+
+    async function deleteAttachment(id) {
+      const db = await openMediaDb();
+      if (!db) return;
+      return new Promise((resolve, reject) => {
+        const transaction = db.transaction(mediaStoreName, "readwrite");
+        transaction.objectStore(mediaStoreName).delete(id);
+        transaction.oncomplete = resolve;
+        transaction.onerror = () => reject(transaction.error);
+      });
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function sanitizeUrl(value) {
+      const url = String(value || "").trim();
+      if (/^(https?:|data:image\/|blob:|\.\/|\.\.\/|\/|assets\/)/i.test(url)) {
+        return escapeHtml(url);
+      }
+      return "";
+    }
+
+    function renderInlineMarkdown(value) {
+      let output = escapeHtml(value);
+      output = output.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_, alt, url) => {
+        const safeUrl = sanitizeUrl(url);
+        return safeUrl ? `<img src="${safeUrl}" alt="${alt}">` : "";
+      });
+      output = output.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, text, url) => {
+        const safeUrl = sanitizeUrl(url);
+        return safeUrl ? `<a href="${safeUrl}" target="_blank" rel="noopener">${text}</a>` : text;
+      });
+      output = output.replace(/`([^`]+)`/g, "<code>$1</code>");
+      output = output.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+      output = output.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+      return output;
+    }
+
+    function renderMarkdown(markdown) {
+      const lines = String(markdown || "").replace(/\r/g, "").split("\n");
+      const html = [];
+      let listItems = [];
+
+      function flushList() {
+        if (listItems.length) {
+          html.push(`<ul>${listItems.map((item) => `<li>${item}</li>`).join("")}</ul>`);
+          listItems = [];
+        }
+      }
+
+      lines.forEach((line) => {
+        const trimmed = line.trim();
+        if (!trimmed) {
+          flushList();
+          return;
+        }
+        const headingTwo = trimmed.match(/^##\s+(.+)/);
+        const headingThree = trimmed.match(/^###\s+(.+)/);
+        const list = trimmed.match(/^[-*]\s+(.+)/);
+        if (headingTwo) {
+          flushList();
+          html.push(`<h2>${renderInlineMarkdown(headingTwo[1])}</h2>`);
+        } else if (headingThree) {
+          flushList();
+          html.push(`<h3>${renderInlineMarkdown(headingThree[1])}</h3>`);
+        } else if (list) {
+          listItems.push(renderInlineMarkdown(list[1]));
+        } else {
+          flushList();
+          html.push(`<p>${renderInlineMarkdown(trimmed)}</p>`);
+        }
+      });
+      flushList();
+      return html.join("");
+    }
+
+    function formatDate(date) {
+      return date ? date.replaceAll("-", ".") : "";
+    }
+
+    function createDiaryId() {
+      return `diary-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    }
+
+    function getToneForCategory(category) {
+      return tonePresets.find((preset) => preset.pattern.test(category || "")) || {
+        tone: "#7c5df7",
+        toneDeep: "#4f46e5"
+      };
+    }
+
+    function getDiaryById(id) {
+      return diaries.find((diary) => diary.id === id);
+    }
+
+    function clearCoverObjectUrls() {
+      coverObjectUrls.forEach((url) => URL.revokeObjectURL(url));
+      coverObjectUrls = [];
+    }
+
+    async function applyCoverImages() {
+      clearCoverObjectUrls();
+      const coverThumbs = Array.from(diaryGrid.querySelectorAll("[data-cover-id]"));
+      for (const thumb of coverThumbs) {
+        const stored = await getAttachment(thumb.dataset.coverId);
+        if (!stored?.blob) continue;
+        const url = URL.createObjectURL(stored.blob);
+        coverObjectUrls.push(url);
+        thumb.classList.add("has-cover");
+        thumb.style.backgroundImage = `linear-gradient(180deg, rgba(16, 22, 37, .08), rgba(16, 22, 37, .42)), url("${url}")`;
+      }
+    }
+
+    function renderDiaries() {
+      const sorted = [...diaries].sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
+      const mode = diaryGrid.dataset.diaryMode || "manage";
+      const limit = Number(diaryGrid.dataset.diaryLimit || sorted.length);
+      const visibleDiaries = mode === "preview" ? sorted.slice(0, limit) : sorted;
+      diaryGrid.innerHTML = visibleDiaries.map((diary) => {
+        const tone = getToneForCategory(diary.category);
+        const thumbClass = diary.thumbClass || tone.thumbClass || "";
+        const toneStyle = `--tone: ${diary.tone || tone.tone}; --tone-deep: ${diary.toneDeep || tone.toneDeep}`;
+        const attachmentCount = diary.attachments?.length || 0;
+        const coverAttr = diary.coverId ? ` data-cover-id="${escapeHtml(diary.coverId)}"` : "";
+        const thumb = mode === "preview"
+          ? `<div class="thumb ${escapeHtml(thumbClass)}" style="${toneStyle}"${coverAttr}></div>`
+          : `<div class="thumb ${escapeHtml(thumbClass)}" style="${toneStyle}"${coverAttr}>
+              <span class="tag">${escapeHtml(diary.category || "学习")}</span>
+              ${attachmentCount ? `<span class="media-badge">${attachmentCount} 个附件</span>` : ""}
+            </div>`;
+        const body = `
+          ${thumb}
+          <div class="card-body">
+            <h3>${escapeHtml(diary.title)}</h3>
+            <p>${escapeHtml(diary.summary || "点击查看完整 Markdown 日记。")}</p>
+            <time class="date">${formatDate(diary.date)}</time>
+            ${mode === "manage" ? `
+              <div class="card-actions" aria-label="日记管理">
+                <button type="button" data-diary-action="view" data-diary-id="${escapeHtml(diary.id)}">查看</button>
+                <button type="button" data-diary-action="edit" data-diary-id="${escapeHtml(diary.id)}">编辑</button>
+                <button class="danger" type="button" data-diary-action="delete" data-diary-id="${escapeHtml(diary.id)}">删除</button>
+              </div>
+            ` : ""}
+          </div>
+        `;
+        if (mode === "preview") {
+          return `
+            <a class="post-card diary-card diary-preview-card" href="diary/?id=${encodeURIComponent(diary.id)}" data-diary-id="${escapeHtml(diary.id)}" aria-label="查看 ${escapeHtml(diary.title)}">
+              ${body}
+            </a>
+          `;
+        }
+        return `
+          <article class="post-card diary-card" tabindex="0" data-diary-id="${escapeHtml(diary.id)}" aria-label="查看 ${escapeHtml(diary.title)}">
+            ${body}
+          </article>
+        `;
+      }).join("");
+      diaryEmpty.hidden = visibleDiaries.length > 0;
+      applyCoverImages();
+    }
+
+    function renderExistingAttachments(diary) {
+      const attachments = (diary?.attachments || []).filter((item) => !editingRemovedAttachments.has(item.id));
+      existingAttachmentList.innerHTML = attachments.map((item) => `
+        <li>
+          <span>${escapeHtml(item.name)} · ${escapeHtml(item.type || "file")}</span>
+          <button type="button" data-remove-attachment="${escapeHtml(item.id)}">移除</button>
+        </li>
+      `).join("");
+    }
+
+    function renderCoverAttachment(diary) {
+      const hasCover = diary?.coverId && !editingCoverRemoved;
+      coverAttachmentList.innerHTML = hasCover ? `
+        <li>
+          <span>当前封面 · ${escapeHtml(diary.coverName || "封面图片")}</span>
+          <button type="button" data-remove-cover="true">移除</button>
+        </li>
+      ` : "";
+    }
+
+    function openEditor(id) {
+      const diary = id ? getDiaryById(id) : null;
+      editingRemovedAttachments = new Set();
+      editingCoverRemoved = false;
+      diaryEditorTitle.textContent = diary ? "编辑学习日记" : "添加学习日记";
+      diaryIdInput.value = diary?.id || "";
+      diaryTitleInput.value = diary?.title || "";
+      diaryCategoryInput.value = diary?.category || "";
+      diaryDateInput.value = diary?.date || new Date().toISOString().slice(0, 10);
+      diarySummaryInput.value = diary?.summary || "";
+      diaryMarkdownInput.value = diary?.markdown || "## 今天学到了什么\n- \n\n## 一个新的问题\n- \n\n## 下一步\n- ";
+      diaryCoverInput.value = "";
+      diaryFileInput.value = "";
+      renderCoverAttachment(diary);
+      renderExistingAttachments(diary);
+      diaryEditor.showModal();
+      diaryTitleInput.focus();
+    }
+
+    async function saveDiaryFromForm(event) {
+      event.preventDefault();
+      const id = diaryIdInput.value || createDiaryId();
+      const previous = getDiaryById(id);
+      const category = diaryCategoryInput.value.trim() || "学习";
+      const tone = getToneForCategory(category);
+      const attachments = (previous?.attachments || []).filter((item) => !editingRemovedAttachments.has(item.id));
+      let coverId = previous?.coverId || "";
+      let coverName = previous?.coverName || "";
+      let coverType = previous?.coverType || "";
+
+      for (const attachmentId of editingRemovedAttachments) {
+        await deleteAttachment(attachmentId);
+      }
+
+      if (editingCoverRemoved && coverId) {
+        await deleteAttachment(coverId);
+        coverId = "";
+        coverName = "";
+        coverType = "";
+      }
+
+      const coverFile = diaryCoverInput.files?.[0];
+      if (coverFile) {
+        if (coverId) {
+          await deleteAttachment(coverId);
+        }
+        coverId = `${id}-cover-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+        coverName = coverFile.name;
+        coverType = coverFile.type || "image/*";
+        await putAttachment({
+          id: coverId,
+          diaryId: id,
+          role: "cover",
+          name: coverName,
+          type: coverType,
+          size: coverFile.size,
+          blob: coverFile
+        });
+      }
+
+      for (const file of Array.from(diaryFileInput.files || [])) {
+        const attachmentId = `${id}-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+        const metadata = {
+          id: attachmentId,
+          diaryId: id,
+          name: file.name,
+          type: file.type || "application/octet-stream",
+          size: file.size
+        };
+        await putAttachment({ ...metadata, blob: file });
+        attachments.push(metadata);
+      }
+
+      const diary = {
+        id,
+        title: diaryTitleInput.value.trim(),
+        category,
+        date: diaryDateInput.value,
+        summary: diarySummaryInput.value.trim(),
+        markdown: diaryMarkdownInput.value.trim(),
+        thumbClass: tone.thumbClass || "",
+        tone: tone.tone,
+        toneDeep: tone.toneDeep,
+        coverId,
+        coverName,
+        coverType,
+        attachments
+      };
+
+      const existingIndex = diaries.findIndex((item) => item.id === id);
+      if (existingIndex >= 0) {
+        diaries[existingIndex] = diary;
+      } else {
+        diaries.unshift(diary);
+      }
+      saveDiaries();
+      renderDiaries();
+      diaryEditor.close();
+    }
+
+    function revokeViewerUrls() {
+      viewerObjectUrls.forEach((url) => URL.revokeObjectURL(url));
+      viewerObjectUrls = [];
+    }
+
+    async function renderAttachmentMedia(attachments) {
+      revokeViewerUrls();
+      const mediaItems = [];
+      for (const attachment of attachments || []) {
+        const stored = await getAttachment(attachment.id);
+        if (!stored?.blob) {
+          mediaItems.push(`
+            <div class="media-item">
+              <div class="media-caption">${escapeHtml(attachment.name)} 暂时无法读取</div>
+            </div>
+          `);
+          continue;
+        }
+        const url = URL.createObjectURL(stored.blob);
+        viewerObjectUrls.push(url);
+        const type = attachment.type || stored.type || "";
+        let media = "";
+        if (type.startsWith("image/")) {
+          media = `<img src="${url}" alt="${escapeHtml(attachment.name)}">`;
+        } else if (type.startsWith("video/")) {
+          media = `<video src="${url}" controls></video>`;
+        } else if (type === "application/pdf") {
+          media = `<iframe src="${url}" title="${escapeHtml(attachment.name)}"></iframe>`;
+        } else {
+          media = `<a class="button" href="${url}" download="${escapeHtml(attachment.name)}">下载附件</a>`;
+        }
+        mediaItems.push(`
+          <div class="media-item">
+            ${media}
+            <div class="media-caption">${escapeHtml(attachment.name)}</div>
+          </div>
+        `);
+      }
+      viewerMedia.innerHTML = mediaItems.join("");
+    }
+
+    async function openViewer(id) {
+      const diary = getDiaryById(id);
+      if (!diary) return;
+      activeViewerId = id;
+      viewerTitle.textContent = diary.title;
+      viewerMeta.innerHTML = `
+        <span>${escapeHtml(diary.category || "学习")}</span>
+        <span>${formatDate(diary.date)}</span>
+        <span>${diary.attachments?.length || 0} 个附件</span>
+      `;
+      viewerMarkdown.innerHTML = renderMarkdown(diary.markdown || diary.summary || "");
+      await renderAttachmentMedia(diary.attachments || []);
+      diaryViewer.showModal();
+    }
+
+    async function deleteDiary(id) {
+      const diary = getDiaryById(id);
+      if (!diary) return;
+      if (!window.confirm(`确定删除《${diary.title}》吗？`)) return;
+      if (diary.coverId) {
+        await deleteAttachment(diary.coverId);
+      }
+      for (const attachment of diary.attachments || []) {
+        await deleteAttachment(attachment.id);
+      }
+      diaries = diaries.filter((item) => item.id !== id);
+      saveDiaries();
+      renderDiaries();
+      if (diaryViewer.open) diaryViewer.close();
+    }
+
+    addDiaryButton.addEventListener("click", () => openEditor());
+    diaryForm.addEventListener("submit", saveDiaryFromForm);
+    diaryViewer.addEventListener("close", revokeViewerUrls);
+
+    document.querySelectorAll("[data-close-dialog]").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.getElementById(button.dataset.closeDialog)?.close();
+      });
+    });
+
+    existingAttachmentList.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-remove-attachment]");
+      if (!button) return;
+      editingRemovedAttachments.add(button.dataset.removeAttachment);
+      renderExistingAttachments(getDiaryById(diaryIdInput.value));
+    });
+
+    coverAttachmentList.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-remove-cover]");
+      if (!button) return;
+      editingCoverRemoved = true;
+      renderCoverAttachment(getDiaryById(diaryIdInput.value));
+    });
+
+    diaryGrid.addEventListener("click", (event) => {
+      if (diaryGrid.dataset.diaryMode === "preview") return;
+      const actionButton = event.target.closest("[data-diary-action]");
+      const card = event.target.closest("[data-diary-id]");
+      if (!card) return;
+      const id = actionButton?.dataset.diaryId || card.dataset.diaryId;
+      const action = actionButton?.dataset.diaryAction || "view";
+      if (action === "edit") {
+        openEditor(id);
+      } else if (action === "delete") {
+        deleteDiary(id);
+      } else {
+        openViewer(id);
+      }
+    });
+
+    diaryGrid.addEventListener("keydown", (event) => {
+      if (diaryGrid.dataset.diaryMode === "preview") {
+        const card = event.target.closest("[data-diary-id]");
+        if (!card || (event.key !== "Enter" && event.key !== " ")) return;
+        event.preventDefault();
+        window.location.href = `diary/?id=${encodeURIComponent(card.dataset.diaryId)}`;
+        return;
+      }
+      if (event.key !== "Enter" && event.key !== " ") return;
+      const card = event.target.closest("[data-diary-id]");
+      if (!card || event.target.closest("button")) return;
+      event.preventDefault();
+      openViewer(card.dataset.diaryId);
+    });
+
+    viewerEditButton.addEventListener("click", () => {
+      if (!activeViewerId) return;
+      diaryViewer.close();
+      openEditor(activeViewerId);
+    });
+
+    viewerDeleteButton.addEventListener("click", () => {
+      if (activeViewerId) deleteDiary(activeViewerId);
+    });
+
+    diaries = loadDiaries();
+    renderDiaries();
+  </script>
+</body>
+
+</html>

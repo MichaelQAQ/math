@@ -1,0 +1,324 @@
+{
+  "site": {
+    "title": "Michael's Learning Lab",
+    "subtitle": "Keep Curiosity Alive",
+    "footerSubtitle": "自由地学习",
+    "description": "分享学习经验。",
+    "logo": "assets/profile-icon.jpg"
+  },
+  "nav": [
+    {
+      "label": "首页",
+      "href": "#home",
+      "icon": "⌂",
+      "current": true
+    },
+    {
+      "label": "Learning",
+      "href": "#fields",
+      "icon": "✦"
+    },
+    {
+      "label": "学习资源",
+      "href": "#resources",
+      "icon": "◈"
+    },
+    {
+      "label": "分享",
+      "href": "#journal",
+      "icon": "✎"
+    },
+    {
+      "label": "关于",
+      "href": "#about",
+      "icon": "?"
+    }
+  ],
+  "hero": {
+    "titlePrefix": "Keep ",
+    "titleAccent": "Curiosity",
+    "titleSuffix": " Alive.",
+    "titleSecondLine": "保持好奇心和求知欲！",
+    "text": "分享学习经验。",
+    "quote": "学习感兴趣的东西，做喜欢的事情",
+    "actions": [
+      {
+        "label": "学习资源 →",
+        "href": "#resources",
+        "primary": true
+      },
+      {
+        "label": "小学数学专区",
+        "href": "primary-math/index.html",
+        "primary": true
+      },
+      {
+        "label": "关于Michael's Learning Lab",
+        "href": "#about",
+        "primary": true
+      }
+    ]
+  },
+  "fields": {
+    "title": "Learning",
+    "items": [
+      {
+        "title": "数学",
+        "subtitle": "Mathematics",
+        "description": "",
+        "href": "math-growth/index.html",
+        "image": "assets/field-math-cover.png",
+        "alt": "数学封面",
+        "ariaLabel": "查看数学学习成长轨迹",
+        "tone": "#c6813a",
+        "toneDeep": "#744116"
+      },
+      {
+        "title": "编程",
+        "subtitle": "Code",
+        "description": "",
+        "href": "code-growth/index.html",
+        "image": "assets/field-code-cover.png",
+        "alt": "编程封面",
+        "ariaLabel": "查看编程创作成长轨迹",
+        "tone": "#8f6a3f",
+        "toneDeep": "#4c2d14"
+      },
+      {
+        "title": "阅读",
+        "subtitle": "Reading",
+        "description": "",
+        "href": "reading-growth/index.html",
+        "image": "assets/field-reading-cover.png",
+        "alt": "阅读封面",
+        "ariaLabel": "查看阅读思想成长轨迹",
+        "tone": "#6f7b4a",
+        "toneDeep": "#394520"
+      },
+      {
+        "title": "音乐",
+        "subtitle": "Music",
+        "description": "",
+        "href": "music-growth/index.html",
+        "image": "assets/field-music-cover.png",
+        "alt": "音乐封面",
+        "ariaLabel": "查看音乐聆听成长轨迹",
+        "tone": "#c06a2f",
+        "toneDeep": "#713817"
+      },
+      {
+        "title": "科学",
+        "subtitle": "Science",
+        "description": "",
+        "href": "science-growth/index.html",
+        "image": "assets/field-science-cover.png",
+        "alt": "科学封面",
+        "ariaLabel": "查看科学探索成长轨迹",
+        "tone": "#806f4b",
+        "toneDeep": "#3f321b"
+      },
+      {
+        "title": "教育",
+        "subtitle": "Education",
+        "description": "",
+        "href": "education-growth/index.html",
+        "image": "assets/field-education-cover.png",
+        "alt": "教育封面",
+        "ariaLabel": "查看教育理解成长轨迹",
+        "tone": "#a3513f",
+        "toneDeep": "#5c241b"
+      },
+      {
+        "title": "生活",
+        "subtitle": "Life",
+        "description": "",
+        "href": "life-growth/index.html",
+        "image": "assets/field-life-cover.png",
+        "alt": "生活封面",
+        "ariaLabel": "查看生活成长轨迹",
+        "tone": "#9c7650",
+        "toneDeep": "#4f321c"
+      }
+    ]
+  },
+  "resources": {
+    "title": "学习资源",
+    "status": "持续整理中",
+    "items": [
+      {
+        "title": "数学资源",
+        "icon": "∫dx",
+        "primary": true,
+        "entries": [
+          "小学数学专区",
+          "暑假数学学习计划",
+          "二年级教材前两个单元",
+          "五年级数学知识点大全",
+          "Khan Academy",
+          "NRICH"
+        ],
+        "actions": [
+          {
+            "label": "暑假学习计划",
+            "href": "plan/index.html"
+          },
+          {
+            "label": "二年级教材",
+            "href": "primary-math/grade2/index.html",
+            "secondary": true
+          },
+          {
+            "label": "五年级知识点",
+            "href": "primary-math/grade5/index.html",
+            "secondary": true
+          }
+        ]
+      },
+      {
+        "title": "编程资源",
+        "icon": ">_",
+        "tone": "var(--blue)",
+        "toneDeep": "#4c2d14",
+        "entries": [
+          "MDN Web Docs",
+          "freeCodeCamp",
+          "CS50",
+          "Scratch",
+          "Code.org"
+        ]
+      },
+      {
+        "title": "英语资源",
+        "icon": "▣",
+        "tone": "var(--green)",
+        "toneDeep": "#394520",
+        "entries": [
+          "BBC Learning English",
+          "TED-Ed",
+          "VOA Learning English",
+          "Cambridge Dictionary",
+          "Grammarly"
+        ]
+      },
+      {
+        "title": "科学资源",
+        "icon": "⚛",
+        "tone": "var(--orange)",
+        "toneDeep": "#713817",
+        "entries": [
+          "PhET Interactive",
+          "NASA",
+          "HHMI BioInteractive",
+          "Exploratorium",
+          "Kurzgesagt"
+        ]
+      },
+      {
+        "title": "开放课程",
+        "icon": "◈",
+        "tone": "#806f4b",
+        "toneDeep": "#3f321b",
+        "entries": [
+          "MIT OCW",
+          "edX",
+          "Coursera",
+          "OpenLearn",
+          "FutureLearn"
+        ]
+      },
+      {
+        "title": "创作工具",
+        "icon": "✦",
+        "tone": "var(--rose)",
+        "toneDeep": "#5c241b",
+        "entries": [
+          "Manim",
+          "Figma",
+          "Notion",
+          "Obsidian",
+          "GitHub"
+        ]
+      }
+    ]
+  },
+  "journal": {
+    "title": "成长分享",
+    "moreLabel": "阅读更多札记 →",
+    "moreHref": "#journal",
+    "entries": [
+      {
+        "title": "如何让孩子产生真正的学习兴趣？",
+        "date": "2026.05.14",
+        "tone": "#b68c63",
+        "toneDeep": "#6b4b2b"
+      },
+      {
+        "title": "独立教师工作室的设计与日常",
+        "date": "2026.05.07",
+        "tone": "#8f6a3f",
+        "toneDeep": "#4c2d14"
+      },
+      {
+        "title": "作业托管，不只是看作业",
+        "date": "2026.04.28",
+        "tone": "#8b6a43",
+        "toneDeep": "#3d2b18"
+      }
+    ]
+  },
+  "footer": {
+    "socials": [
+      "GH",
+      "YT",
+      "BL",
+      "WX"
+    ],
+    "columns": [
+      {
+        "title": "快速导航",
+        "links": [
+          {
+            "label": "Learning",
+            "href": "#fields"
+          },
+          {
+            "label": "学习资源",
+            "href": "#resources"
+          },
+          {
+            "label": "成长分享",
+            "href": "#journal"
+          },
+          {
+            "label": "关于我",
+            "href": "#about"
+          }
+        ]
+      },
+      {
+        "title": "学习领域",
+        "links": [
+          "数学",
+          "编程",
+          "阅读",
+          "音乐",
+          "科学",
+          "教育",
+          "生活"
+        ]
+      },
+      {
+        "title": "更多",
+        "links": [
+          "学习方法",
+          "思考与表达",
+          "工具箱",
+          "网站地图"
+        ]
+      }
+    ],
+    "subscribeTitle": "GitHub 更新",
+    "subscribeText": "微信号",
+    "copyright": "© 2026 Michael's Learning Lab. All rights reserved."
+  }
+}

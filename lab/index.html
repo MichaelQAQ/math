@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>学习日记管理 | Michael's Learning Lab</title>
-  <meta name="description" content="Michael's Learning Lab 的学习日记卡片系统，支持 Markdown、封面、图片、视频和 PDF 附件。">
+  <title>实验室作品管理 | Michael's Learning Lab</title>
+  <meta name="description" content="Michael's Learning Lab 的实验室作品卡片系统，支持 Markdown、封面、图片、视频和 PDF 附件。">
   <link rel="icon" type="image/jpeg" href="../assets/site-logo.jpg">
   <link rel="apple-touch-icon" href="../assets/site-logo.jpg">
   <style>
@@ -603,29 +603,29 @@
         <span class="brand-mark" aria-hidden="true"><img src="../assets/site-logo.jpg" alt=""></span>
         <span>
           <span class="brand-title">Michael's Learning Lab</span>
-          <span class="brand-subtitle">学习日记 · Markdown · 图文视频 PDF</span>
+          <span class="brand-subtitle">作品实验 · Markdown · 图文视频 PDF</span>
         </span>
       </a>
-      <a class="link-pill" href="../index.html#records">返回主页</a>
+      <a class="link-pill" href="../index.html#works">返回主页</a>
     </nav>
   </header>
 
   <main>
     <section class="hero">
       <div class="section-inner">
-        <h1>学习日记</h1>
-        <p>这里陈列全部日记卡片，并集中管理内容、封面、Markdown 正文、图片、视频和 PDF 附件。</p>
+        <h1>实验室</h1>
+        <p>这里陈列全部作品卡片，并集中管理作品说明、封面、Markdown 正文、图片、视频和 PDF 附件。</p>
         <div class="diary-actions">
-          <button class="link-pill primary" type="button" id="addDiaryButton">＋ 添加学习日记</button>
-          <a class="link-pill" href="../index.html#records">查看主页预览</a>
+          <button class="link-pill primary" type="button" id="addDiaryButton">＋ 添加作品</button>
+          <a class="link-pill" href="../index.html#works">查看主页预览</a>
         </div>
       </div>
     </section>
 
-    <section aria-label="全部学习日记">
+    <section aria-label="全部实验室作品">
       <div class="section-inner">
         <div class="card-grid" id="diaryGrid" data-diary-mode="manage" aria-live="polite"></div>
-        <p class="empty-state" id="diaryEmpty" hidden>还没有学习日记。点击上方按钮，添加第一张卡片。</p>
+        <p class="empty-state" id="diaryEmpty" hidden>还没有实验室作品。点击上方按钮，添加第一张卡片。</p>
       </div>
     </section>
   </main>
@@ -633,19 +633,19 @@
   <dialog class="diary-dialog" id="diaryEditor">
     <div class="modal-shell">
       <div class="modal-header">
-        <h3 id="diaryEditorTitle">添加学习日记</h3>
+        <h3 id="diaryEditorTitle">添加作品</h3>
         <button class="modal-close" type="button" data-close-dialog="diaryEditor" aria-label="关闭">×</button>
       </div>
       <form class="diary-form" id="diaryForm">
         <input type="hidden" id="diaryId">
         <div class="form-grid">
           <label class="form-field">
-            标题
-            <input id="diaryTitleInput" type="text" placeholder="例如：今天理解了函数图像" required>
+            作品名称
+            <input id="diaryTitleInput" type="text" placeholder="例如：二次函数图像生成器" required>
           </label>
           <label class="form-field">
-            分类
-            <input id="diaryCategoryInput" type="text" placeholder="数学 / 编程" required>
+            类型
+            <input id="diaryCategoryInput" type="text" placeholder="网页工具 / ManimGL" required>
           </label>
           <label class="form-field">
             日期
@@ -653,17 +653,17 @@
           </label>
           <label class="form-field field-full">
             摘要
-            <input id="diarySummaryInput" type="text" placeholder="写一句卡片上显示的小标题">
+            <input id="diarySummaryInput" type="text" placeholder="写一句卡片上显示的作品说明">
           </label>
           <label class="form-field field-full">
-            卡片封面
+            作品封面
             <input id="diaryCoverInput" type="file" accept="image/*">
-            <span class="helper-text">上传一张图片作为日记卡片封面；不上传时使用系统配色封面。</span>
+            <span class="helper-text">上传一张图片作为作品卡片封面；不上传时使用系统配色封面。</span>
           </label>
           <label class="form-field field-full">
             Markdown 内容
-            <textarea id="diaryMarkdownInput" placeholder="## 今天学了什么&#10;- 一个重要问题&#10;- 一个新的理解&#10;&#10;也可以写图片：![说明](图片地址)" required></textarea>
-            <span class="helper-text">支持标题、列表、加粗、链接和 Markdown 图片。上传的图片、视频、PDF 会作为附件显示在详情里。</span>
+            <textarea id="diaryMarkdownInput" placeholder="## 作品说明&#10;- 这个作品解决了什么问题&#10;- 使用了哪些工具&#10;&#10;也可以写图片：![说明](图片地址)" required></textarea>
+            <span class="helper-text">支持标题、列表、加粗、链接和 Markdown 图片。上传的图片、视频、PDF 会作为作品素材显示在详情里。</span>
           </label>
           <label class="form-field field-full">
             添加附件
@@ -675,7 +675,7 @@
         <ul class="attachment-list" id="existingAttachmentList" aria-label="已有附件"></ul>
         <div class="form-actions">
           <button class="modal-button" type="button" data-close-dialog="diaryEditor">取消</button>
-          <button class="modal-button primary" type="submit">保存日记</button>
+          <button class="modal-button primary" type="submit">保存作品</button>
         </div>
       </form>
     </div>
@@ -684,7 +684,7 @@
   <dialog class="diary-dialog" id="diaryViewer">
     <div class="modal-shell">
       <div class="modal-header">
-        <h3 id="viewerTitle">学习日记</h3>
+        <h3 id="viewerTitle">实验室作品</h3>
         <button class="modal-close" type="button" data-close-dialog="diaryViewer" aria-label="关闭">×</button>
       </div>
       <article class="diary-viewer">
@@ -700,7 +700,7 @@
   </dialog>
 
   <script>
-    const diaryStorageKey = "michael-learning-lab-diaries-v1";
+    const diaryStorageKey = "michael-learning-lab-works-v1";
     const mediaDbName = "michael-learning-lab-media";
     const mediaStoreName = "attachments";
     let diaries = [];
@@ -712,12 +712,12 @@
     let mediaDbPromise = null;
 
     const defaultDiaries = [
-      { id: "sample-a5", title: "A5 交错群为什么不可解？", category: "数学", date: "2026-05-20", summary: "从正规子群、商群和同态的角度，理解抽象代数里不可解群的意思。", thumbClass: "math", markdown: "## 今天的核心问题\nA5 交错群为什么不可解？\n\n- 先看正规子群结构。\n- 再看商群和同态如何限制可解性。\n- 最后把抽象代数里的“不可解”翻译成可以理解的结构语言。\n\n**收获：** 不可解不是“没有办法”，而是某种结构无法被逐层拆成交换群。", attachments: [] },
-      { id: "sample-buffon", title: "布丰投针实验网页实现", category: "编程 / 数学", date: "2026-05-18", summary: "用 HTML 和 JavaScript 做随机模拟，理解 π 和概率之间的关系。", tone: "#f1c89b", toneDeep: "#df7e3b", markdown: "## 项目记录\n今天用网页模拟布丰投针实验。\n\n- 用随机数生成投针位置和角度。\n- 统计穿线次数。\n- 观察实验次数变多后，估计值如何接近 π。", attachments: [] },
-      { id: "sample-complex", title: "复变函数 f(z)=z² 可视化", category: "数学 / 可视化", date: "2026-05-15", summary: "用动画展示复平面的局部变形，观察角度和尺度如何变化。", tone: "#101625", toneDeep: "#244165", markdown: "## 可视化想法\n把复平面上的网格输入到函数 f(z)=z² 中，观察图像怎样变形。\n\n- 原点附近被压缩。\n- 角度会翻倍。\n- 网格线变成更有曲率的结构。", attachments: [] },
-      { id: "sample-plan", title: "小学五六年级三周计划", category: "教育", date: "2026-05-12", summary: "把学习节奏、任务记录和复盘安排放在一个清晰系统里。", tone: "#eceff8", toneDeep: "#b8bfd5", markdown: "## 计划重点\n三周计划要避免塞满任务，而是建立稳定节奏。\n\n- 每天有明确的小目标。\n- 每周有一次复盘。\n- 把作业、阅读、数学思考和表达练习分开记录。", attachments: [] },
-      { id: "sample-swift", title: "学习 Swift 制作卡片 App", category: "编程 / Swift", date: "2026-05-10", summary: "记录学习笔记、关键词和复盘，用小应用整理学习线索。", tone: "#756df0", toneDeep: "#4c42b8", markdown: "## Swift 学习\n今天的目标是做一个卡片式学习 App 原型。\n\n- 卡片记录标题、关键词和复盘。\n- 列表负责浏览。\n- 详情页负责展开内容。", attachments: [] },
-      { id: "sample-reading", title: "《思考，快与慢》读书笔记", category: "阅读", date: "2026-05-08", summary: "关于系统 1 与系统 2 的理解，整理常见判断偏误。", thumbClass: "reading", markdown: "## 阅读笔记\n系统 1 很快，系统 2 很慢，但真正困难的是知道什么时候需要慢下来。\n\n- 快速判断节省精力。\n- 慢速思考帮助检查偏误。\n- 学习时要给自己留出复盘空间。", attachments: [] }
+      { id: "work-fourier", title: "傅里叶级数动画", category: "ManimGL", date: "2026-05-20", summary: "用动画理解周期函数的分解。", tone: "#0f172a", toneDeep: "#27456e", markdown: "## 作品说明\n用 ManimGL 展示傅里叶级数如何把复杂周期函数拆成一组旋转向量。\n\n- 先展示正弦波叠加。\n- 再展示向量端点画出曲线。\n- 最后把公式和图像对应起来。\n\n这个作品适合继续扩展成一节数学可视化课程。", attachments: [] },
+      { id: "work-scratch-game", title: "数学闯关小游戏", category: "Scratch", date: "2026-05-18", summary: "练习逻辑与条件判断。", tone: "#78d66c", toneDeep: "#249d5f", markdown: "## 作品说明\n一个面向小学生的数学闯关小游戏，用 Scratch 练习条件判断和反馈设计。\n\n- 关卡按难度递进。\n- 错题会给出提示。\n- 适合继续加入积分和徽章系统。", attachments: [] },
+      { id: "work-function-map", title: "初中函数知识图谱", category: "数学资料", date: "2026-05-16", summary: "知识结构与例题整理。", tone: "#dae8ff", toneDeep: "#7da7df", markdown: "## 作品说明\n把一次函数、反比例函数和二次函数整理成一张可浏览的知识图谱。\n\n- 核心概念放在中心。\n- 典型题型按分支展开。\n- 每个节点可以补充例题和错题。", attachments: [] },
+      { id: "work-quadratic-tool", title: "二次函数图像生成器", category: "网页工具", date: "2026-05-13", summary: "输入参数，自动绘制图像。", tone: "#111827", toneDeep: "#2e3a59", markdown: "## 作品说明\n一个输入 a、b、c 后自动绘制二次函数图像的网页工具。\n\n- 支持顶点、对称轴和交点提示。\n- 适合课堂演示和学生自查。\n- 后续可以加入参数滑块和动画。", attachments: [] },
+      { id: "work-sudoku-map", title: "数独技巧思维导图", category: "课程设计", date: "2026-05-10", summary: "方法梳理与可视化总结。", tone: "#f0b4c9", toneDeep: "#d15f8e", markdown: "## 作品说明\n把数独解题技巧整理成一张思维导图，帮助学生从观察进入推理。\n\n- 唯一数、宫排除、行列排除。\n- 从简单策略过渡到组合判断。\n- 适合做成一组训练卡。", attachments: [] },
+      { id: "work-whale-science", title: "鲸的世界科学讲解稿", category: "科学可视", date: "2026-05-08", summary: "科普视频内容整理。", tone: "#a5d8ff", toneDeep: "#2c7da0", markdown: "## 作品说明\n一份关于鲸类世界的科普讲解稿，把科学事实整理成适合视频表达的结构。\n\n- 先用体型和声音建立兴趣。\n- 再解释迁徙、呼吸和生态位置。\n- 最后引出海洋保护。", attachments: [] }
     ];
 
     const tonePresets = [
@@ -762,7 +762,7 @@
         const saved = JSON.parse(localStorage.getItem(diaryStorageKey) || "null");
         if (Array.isArray(saved)) return saved;
       } catch (error) {
-        console.warn("Unable to load diary data", error);
+        console.warn("Unable to load lab work data", error);
       }
       const initial = cloneDefaultDiaries();
       localStorage.setItem(diaryStorageKey, JSON.stringify(initial));
@@ -888,7 +888,7 @@
     }
 
     function createDiaryId() {
-      return `diary-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+      return `work-${Date.now()}-${Math.random().toString(16).slice(2)}`;
     }
 
     function getToneForCategory(category) {
@@ -933,9 +933,9 @@
             </div>
             <div class="card-body">
               <h3>${escapeHtml(diary.title)}</h3>
-              <p>${escapeHtml(diary.summary || "点击查看完整 Markdown 日记。")}</p>
+              <p>${escapeHtml(diary.summary || "点击查看完整 Markdown 作品说明。")}</p>
               <time class="date">${formatDate(diary.date)}</time>
-              <div class="card-actions" aria-label="日记管理">
+              <div class="card-actions" aria-label="作品管理">
                 <button type="button" data-diary-action="view" data-diary-id="${escapeHtml(diary.id)}">查看</button>
                 <button type="button" data-diary-action="edit" data-diary-id="${escapeHtml(diary.id)}">编辑</button>
                 <button class="danger" type="button" data-diary-action="delete" data-diary-id="${escapeHtml(diary.id)}">删除</button>
@@ -966,13 +966,13 @@
       const diary = id ? getDiaryById(id) : null;
       editingRemovedAttachments = new Set();
       editingCoverRemoved = false;
-      diaryEditorTitle.textContent = diary ? "编辑学习日记" : "添加学习日记";
+      diaryEditorTitle.textContent = diary ? "编辑作品" : "添加作品";
       diaryIdInput.value = diary?.id || "";
       diaryTitleInput.value = diary?.title || "";
       diaryCategoryInput.value = diary?.category || "";
       diaryDateInput.value = diary?.date || new Date().toISOString().slice(0, 10);
       diarySummaryInput.value = diary?.summary || "";
-      diaryMarkdownInput.value = diary?.markdown || "## 今天学到了什么\n- \n\n## 一个新的问题\n- \n\n## 下一步\n- ";
+      diaryMarkdownInput.value = diary?.markdown || "## 作品说明\n- \n\n## 使用的工具\n- \n\n## 下一步\n- ";
       diaryCoverInput.value = "";
       diaryFileInput.value = "";
       renderCoverAttachment(diary);
@@ -1082,7 +1082,7 @@
     async function deleteDiary(id) {
       const diary = getDiaryById(id);
       if (!diary) return;
-      if (!window.confirm(`确定删除《${diary.title}》吗？`)) return;
+      if (!window.confirm(`确定删除作品《${diary.title}》吗？`)) return;
       if (diary.coverId) await deleteAttachment(diary.coverId);
       for (const attachment of diary.attachments || []) await deleteAttachment(attachment.id);
       diaries = diaries.filter((item) => item.id !== id);
@@ -1145,9 +1145,13 @@
     diaries = loadDiaries();
     renderDiaries();
 
-    const requestedId = new URLSearchParams(window.location.search).get("id");
+    const pageParams = new URLSearchParams(window.location.search);
+    const requestedId = pageParams.get("id");
     if (requestedId) {
       requestAnimationFrame(() => openViewer(requestedId));
+    }
+    if (pageParams.get("action") === "add") {
+      requestAnimationFrame(() => openEditor());
     }
   </script>
 </body>

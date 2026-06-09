@@ -234,7 +234,7 @@
 
     .hero {
       position: relative;
-      min-height: 690px;
+      min-height: calc(100svh - 76px);
       display: grid;
       align-items: center;
       overflow: hidden;
@@ -242,7 +242,7 @@
       background-image:
         linear-gradient(90deg, rgba(19, 9, 3, .9) 0%, rgba(37, 18, 7, .75) 37%, rgba(83, 42, 13, .34) 64%, rgba(22, 11, 5, .08) 100%),
         url("assets/personal-cover.png");
-      background-position: center center;
+      background-position: contain;
       background-size: cover;
     }
 
@@ -265,7 +265,7 @@
 
     .hero-inner {
       position: relative;
-      padding: 76px 0 70px;
+      padding: 150px 0 70px;
     }
 
     .hero-copy {
@@ -321,6 +321,7 @@
       background: rgba(255, 248, 236, .78);
       font-weight: 900;
       box-shadow: var(--shadow-soft);
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
     }
 
     body.dark .button {
@@ -345,36 +346,30 @@
       background: rgba(55, 31, 14, .68);
     }
 
+    .hero .button:hover,
+    .hero .button:focus-visible {
+      transform: translateY(-4px);
+      border-color: rgba(255, 210, 138, .76);
+      box-shadow: 0 22px 48px rgba(120, 58, 16, .36);
+      outline: none;
+    }
+
+    .hero .button.primary:hover,
+    .hero .button.primary:focus-visible {
+      transform: translateY(-10px) scale(1.05);
+    }
+
     .quote {
       width: fit-content;
       max-width: 100%;
       display: inline-grid;
-      grid-template-columns: 28px minmax(0, auto) 28px;
+      grid-template-columns: 1fr;
       align-items: center;
       column-gap: 10px;
       color: rgba(255, 238, 210, .84);
       font-family: var(--serif);
       font-size: 1.03rem;
       line-height: 1.6;
-    }
-
-    .quote::before,
-    .quote::after {
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
-      color: #fff;
-      background: linear-gradient(135deg, #ffd28a, var(--orange));
-      display: grid;
-      place-items: center;
-      font-family: Georgia, serif;
-      font-size: 1.7rem;
-      line-height: 1;
-      content: "“";
-    }
-
-    .quote::after {
-      content: "”";
     }
 
     section {
@@ -445,11 +440,179 @@
       white-space: nowrap;
     }
 
+    .mobile-only {
+      display: none !important;
+    }
+
+    .mobile-hero,
+    .mobile-field-list,
+    .mobile-resource-list,
+    .mobile-note-panel {
+      display: none;
+    }
+
+    .mobile-hero {
+      gap: 14px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(214, 146, 69, .18), transparent 34%),
+        linear-gradient(135deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02)),
+        var(--paper);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .mobile-kicker {
+      color: var(--violet);
+      font-size: .78rem;
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .mobile-hero .mobile-kicker {
+      color: var(--violet);
+    }
+
+    .mobile-hero h1 {
+      color: var(--ink);
+      font-size: 1.55rem;
+      line-height: 1.14;
+      text-shadow: none;
+    }
+
+    .mobile-hero p {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.58;
+    }
+
+    .mobile-hero-actions,
+    .mobile-resource-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .mobile-hero-actions .button,
+    .mobile-resource-actions .resource-button {
+      width: 100%;
+    }
+
+    .mobile-field-list,
+    .mobile-resource-list {
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .mobile-field-link,
+    .mobile-resource-card,
+    .mobile-note-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02)),
+        var(--paper);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .mobile-field-link {
+      min-height: 68px;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      align-items: center;
+      gap: 12px;
+      color: inherit;
+    }
+
+    .mobile-field-dot {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, var(--tone, var(--violet)), var(--tone-deep, var(--blue)));
+      font-weight: 950;
+    }
+
+    .mobile-field-link strong,
+    .mobile-resource-card strong {
+      display: block;
+      font-size: .96rem;
+      line-height: 1.2;
+    }
+
+    .mobile-field-link small,
+    .mobile-resource-card small {
+      color: var(--muted);
+      font-size: .74rem;
+      font-weight: 800;
+    }
+
+    .mobile-field-link b,
+    .mobile-resource-card b {
+      color: var(--quiet);
+      font-size: 1rem;
+    }
+
+    .mobile-resource-card {
+      padding: 14px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .mobile-resource-card header {
+      display: grid;
+      grid-template-columns: 42px 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .mobile-resource-card p {
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.45;
+    }
+
+    .mobile-note-panel {
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .mobile-note-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .mobile-note-row:last-of-type {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .mobile-note-row h3 {
+      font-size: .9rem;
+      line-height: 1.35;
+    }
+
+    .mobile-note-row time {
+      color: var(--quiet);
+      font-size: .72rem;
+      white-space: nowrap;
+    }
+
     .field-section {
       margin-top: 20px;
       position: relative;
       z-index: 2;
       padding-top: 0;
+      background: linear-gradient(180deg, #180d06, #241209);
     }
 
     .field-panel {
@@ -466,13 +629,13 @@
 
     .field-grid {
       display: grid;
-      grid-template-columns: repeat(7, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
       margin-top: 20px;
     }
 
     .field-card {
-      min-height: 278px;
+      min-height: 200px;
       padding: 0 0 18px;
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -498,7 +661,7 @@
 
     a.field-card:hover,
     a.field-card:focus-visible {
-      transform: translateY(-4px);
+      transform: translateY(-25px);
       border-color: color-mix(in srgb, var(--tone, var(--violet)) 54%, var(--line));
       box-shadow: 0 18px 42px rgba(143, 84, 28, .18);
       outline: none;
@@ -528,7 +691,7 @@
 
     a.field-card:hover .field-cover img,
     a.field-card:focus-visible .field-cover img {
-      transform: scale(1.04);
+      transform: scale(1.2);
     }
 
     .field-icon,
@@ -821,6 +984,14 @@
     }
 
     @media (max-width: 760px) {
+      .desktop-only {
+        display: none !important;
+      }
+
+      .mobile-only {
+        display: grid !important;
+      }
+
       .site-header {
         background: rgba(16, 11, 7, .94);
       }
@@ -986,24 +1157,8 @@
         padding: 18px 0 8px;
       }
 
-      .hero-copy {
-        max-width: none;
-        gap: 14px;
-        padding: 18px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background:
-          radial-gradient(circle at 8% 0%, rgba(214, 146, 69, .16), transparent 34%),
-          linear-gradient(135deg, rgba(255, 255, 255, .76), rgba(255, 255, 255, .38)),
-          var(--paper);
-        box-shadow: var(--shadow-soft);
-      }
-
-      body.dark .hero-copy {
-        background:
-          radial-gradient(circle at 8% 0%, rgba(214, 146, 69, .16), transparent 34%),
-          linear-gradient(135deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02)),
-          var(--paper);
+      .mobile-hero {
+        display: grid !important;
       }
 
       .hero h1 {
@@ -1098,6 +1253,11 @@
 
       .field-panel {
         padding: 0;
+      }
+
+      .mobile-field-list,
+      .mobile-resource-list {
+        display: grid !important;
       }
 
       .field-grid,
@@ -1273,7 +1433,7 @@
 
       <div class="nav-links">
         <a href="#home" data-icon="⌂" aria-current="page">首页</a>
-        <a href="#fields" data-icon="✦">持续学习中</a>
+        <a href="#fields" data-icon="✦">Learning</a>
         <a href="#resources" data-icon="◈">学习资源</a>
         <a href="#journal" data-icon="✎">分享</a>
         <a href="#about" data-icon="?">关于</a>
@@ -1288,19 +1448,30 @@
   <main>
     <section class="hero" id="home" aria-label="个人学习记录网站">
       <div class="hero-inner">
-        <div class="hero-copy">
-          <h1>Keep <span class="accent">Curiosity</span> Alive.<br>在温暖的书房里自由学习。</h1>
+        <div class="hero-copy desktop-only">
+          <h1>Keep <span class="accent">Curiosity</span> Alive.<br>好奇心和求知欲！</h1>
           <p class="hero-text">
-            这里整理数学、编程、阅读、音乐、科学、教育与生活资源，也收藏那些让学习重新发光的问题、工具和灵感。
+            我很好奇，我很喜欢，我想要花点时间去理解ta。
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="#resources">进入学习资源 →</a>
-            <a class="button" href="primary-math/">小学数学专区</a>
-            <a class="button" href="#about">关于 Michael</a>
+            <a class="button primary" href="#resources">学习资源 →</a>
+            <a class="button primary" href="primary-math/index.html">小学数学专区</a>
+            <a class="button primary" href="#about">关于Michael's Learning Lab</a>
           </div>
           <p class="quote">
-            有能力学习感兴趣的东西，做喜欢的事情
+            “分享一些感兴趣的东西，做喜欢的事情。”
           </p>
+        </div>
+
+        <div class="mobile-hero mobile-only" aria-label="手机首页摘要">
+          <p class="mobile-kicker">Michael's Learning Lab</p>
+          <h1>保持好奇心和求知欲</h1>
+          <p>分享学习经验，快速进入学习资源、小学数学专区和成长记录。</p>
+          <div class="mobile-hero-actions">
+            <a class="button primary" href="#resources">学习资源</a>
+            <a class="button" href="primary-math/index.html">小学数学</a>
+          </div>
+          <p>学习感兴趣的东西，做喜欢的事情。</p>
         </div>
       </div>
     </section>
@@ -1309,57 +1480,95 @@
       <div class="section-inner">
         <div class="field-panel">
           <div class="section-title center">
-            <h2 id="fields-title">持续学习中</h2>
+            <h2 id="fields-title">Learning</h2>
           </div>
 
-          <div class="field-grid">
-            <a class="field-card" href="math-growth/" aria-label="查看数学学习成长轨迹"
+          <div class="field-grid desktop-only">
+            <a class="field-card" href="math-growth/index.html" aria-label="查看数学学习成长轨迹"
               style="--tone: #c6813a; --tone-deep: #744116">
               <span class="field-cover"><img src="assets/field-math-cover.png" alt="数学封面"></span>
               <h3>数学 <span>Mathematics</span></h3>
-              <p>代数结构、几何直观、数学思维与可视化。</p>
+
             </a>
 
-            <a class="field-card" href="code-growth/" aria-label="查看编程创作成长轨迹"
+            <a class="field-card" href="code-growth/index.html" aria-label="查看编程创作成长轨迹"
               style="--tone: #8f6a3f; --tone-deep: #4c2d14">
               <span class="field-cover"><img src="assets/field-code-cover.png" alt="编程封面"></span>
               <h3>编程 <span>Code</span></h3>
-              <p>Python、Swift、Web、算法和创意编程。</p>
+
             </a>
 
-            <a class="field-card" href="reading-growth/" aria-label="查看阅读思想成长轨迹"
+            <a class="field-card" href="reading-growth/index.html" aria-label="查看阅读思想成长轨迹"
               style="--tone: #6f7b4a; --tone-deep: #394520">
               <span class="field-cover"><img src="assets/field-reading-cover.png" alt="阅读封面"></span>
               <h3>阅读 <span>Reading</span></h3>
-              <p>哲学、心理学、社会学、学习方法与写作。</p>
+
             </a>
 
-            <a class="field-card" href="music-growth/" aria-label="查看音乐聆听成长轨迹"
+            <a class="field-card" href="music-growth/index.html" aria-label="查看音乐聆听成长轨迹"
               style="--tone: #c06a2f; --tone-deep: #713817">
               <span class="field-cover"><img src="assets/field-music-cover.png" alt="音乐封面"></span>
               <h3>音乐 <span>Music</span></h3>
-              <p>古典音乐、钢琴、小提琴、结构与聆听。</p>
+
             </a>
 
-            <a class="field-card" href="science-growth/" aria-label="查看科学探索成长轨迹"
+            <a class="field-card" href="science-growth/index.html" aria-label="查看科学探索成长轨迹"
               style="--tone: #806f4b; --tone-deep: #3f321b">
               <span class="field-cover"><img src="assets/field-science-cover.png" alt="科学封面"></span>
               <h3>科学 <span>Science</span></h3>
-              <p>科技往事、科学实验、自然与宇宙。</p>
+
             </a>
 
-            <a class="field-card" href="education-growth/" aria-label="查看教育理解成长轨迹"
+            <a class="field-card" href="education-growth/index.html" aria-label="查看教育理解成长轨迹"
               style="--tone: #a3513f; --tone-deep: #5c241b">
               <span class="field-cover"><img src="assets/field-education-cover.png" alt="教育封面"></span>
               <h3>教育 <span>Education</span></h3>
-              <p>儿童学习、教学设计、学习心理与成长支持。</p>
+              <p></p>
             </a>
 
-            <a class="field-card" href="life-growth/" aria-label="查看生活成长轨迹"
+            <a class="field-card" href="life-growth/index.html" aria-label="查看生活成长轨迹"
               style="--tone: #9c7650; --tone-deep: #4f321c">
               <span class="field-cover"><img src="assets/field-life-cover.png" alt="生活封面"></span>
               <h3>生活 <span>Life</span></h3>
-              <p>日常观察、习惯养成、审美、旅行与生活记录。</p>
+              <p> </p>
+            </a>
+          </div>
+
+          <div class="mobile-field-list mobile-only" aria-label="手机学习领域入口">
+            <a class="mobile-field-link" href="math-growth/index.html" style="--tone: #c6813a; --tone-deep: #744116">
+              <span class="mobile-field-dot">数</span>
+              <span><strong>数学</strong><small>Mathematics</small></span>
+              <b>→</b>
+            </a>
+            <a class="mobile-field-link" href="code-growth/index.html" style="--tone: #8f6a3f; --tone-deep: #4c2d14">
+              <span class="mobile-field-dot">编</span>
+              <span><strong>编程</strong><small>Code</small></span>
+              <b>→</b>
+            </a>
+            <a class="mobile-field-link" href="reading-growth/index.html" style="--tone: #6f7b4a; --tone-deep: #394520">
+              <span class="mobile-field-dot">读</span>
+              <span><strong>阅读</strong><small>Reading</small></span>
+              <b>→</b>
+            </a>
+            <a class="mobile-field-link" href="music-growth/index.html" style="--tone: #c06a2f; --tone-deep: #713817">
+              <span class="mobile-field-dot">乐</span>
+              <span><strong>音乐</strong><small>Music</small></span>
+              <b>→</b>
+            </a>
+            <a class="mobile-field-link" href="science-growth/index.html" style="--tone: #806f4b; --tone-deep: #3f321b">
+              <span class="mobile-field-dot">科</span>
+              <span><strong>科学</strong><small>Science</small></span>
+              <b>→</b>
+            </a>
+            <a class="mobile-field-link" href="education-growth/index.html" style="--tone: #a3513f; --tone-deep: #5c241b">
+              <span class="mobile-field-dot">教</span>
+              <span><strong>教育</strong><small>Education</small></span>
+              <b>→</b>
+            </a>
+            <a class="mobile-field-link" href="life-growth/index.html" style="--tone: #9c7650; --tone-deep: #4f321c">
+              <span class="mobile-field-dot">生</span>
+              <span><strong>生活</strong><small>Life</small></span>
+              <b>→</b>
             </a>
           </div>
         </div>
@@ -1375,7 +1584,7 @@
           <span class="link-pill">持续整理中</span>
         </div>
 
-        <div class="resource-grid">
+        <div class="resource-grid desktop-only">
           <article class="resource-card primary-resource">
             <div class="resource-top">
               <div class="resource-title"><span class="resource-icon">∫dx</span>数学资源</div>
@@ -1389,9 +1598,9 @@
               </ul>
             </div>
             <div class="resource-actions" aria-label="小学数学页面入口">
-              <a class="resource-button" href="plan/">暑假学习计划</a>
-              <a class="resource-button secondary" href="primary-math/grade2/">二年级教材</a>
-              <a class="resource-button secondary" href="primary-math/grade5/">五年级知识点</a>
+              <a class="resource-button" href="plan/index.html">暑假学习计划</a>
+              <a class="resource-button secondary" href="primary-math/grade2/index.html">二年级教材</a>
+              <a class="resource-button secondary" href="primary-math/grade5/index.html">五年级知识点</a>
             </div>
           </article>
 
@@ -1470,13 +1679,56 @@
             <span class="arrow">→</span>
           </article>
         </div>
+
+        <div class="mobile-resource-list mobile-only" aria-label="手机学习资源入口">
+          <article class="mobile-resource-card">
+            <header>
+              <span class="resource-icon">∫dx</span>
+              <span><strong>数学资源</strong><small>小学数学与暑假计划</small></span>
+              <b>→</b>
+            </header>
+            <p>快速进入暑假计划、二年级教材和五年级知识点。</p>
+            <div class="mobile-resource-actions">
+              <a class="resource-button" href="plan/index.html">暑假计划</a>
+              <a class="resource-button secondary" href="primary-math/grade2/index.html">二年级</a>
+              <a class="resource-button secondary" href="primary-math/grade5/index.html">五年级</a>
+            </div>
+          </article>
+
+          <article class="mobile-resource-card">
+            <header>
+              <span class="resource-icon" style="--tone: var(--blue); --tone-deep: #4c2d14">&gt;_</span>
+              <span><strong>编程资源</strong><small>MDN / CS50 / Scratch</small></span>
+              <b>→</b>
+            </header>
+            <p>收集 Web、算法和儿童创意编程的入口。</p>
+          </article>
+
+          <article class="mobile-resource-card">
+            <header>
+              <span class="resource-icon" style="--tone: var(--green); --tone-deep: #394520">▣</span>
+              <span><strong>英语资源</strong><small>BBC / TED-Ed / VOA</small></span>
+              <b>→</b>
+            </header>
+            <p>适合听力、词典、表达训练和每日输入。</p>
+          </article>
+
+          <article class="mobile-resource-card">
+            <header>
+              <span class="resource-icon" style="--tone: var(--orange); --tone-deep: #713817">⚛</span>
+              <span><strong>科学资源</strong><small>PhET / NASA / HHMI</small></span>
+              <b>→</b>
+            </header>
+            <p>实验、宇宙、生命科学和可视化资源。</p>
+          </article>
+        </div>
       </div>
     </section>
 
     <section id="journal" aria-labelledby="journal-title">
       <div class="section-inner">
         <div class="journal-layout">
-          <article class="note-list">
+          <article class="note-list desktop-only">
             <div class="section-title">
               <h2 id="journal-title">成长分享</h2>
             </div>
@@ -1501,6 +1753,25 @@
 
             <a class="button" href="#journal">阅读更多札记 →</a>
           </article>
+
+          <article class="mobile-note-panel mobile-only" aria-labelledby="mobile-journal-title">
+            <div class="section-title">
+              <h2 id="mobile-journal-title">成长分享</h2>
+            </div>
+            <div class="mobile-note-row">
+              <h3>如何让孩子产生真正的学习兴趣？</h3>
+              <time>2026.05.14</time>
+            </div>
+            <div class="mobile-note-row">
+              <h3>独立教师工作室的设计与日常</h3>
+              <time>2026.05.07</time>
+            </div>
+            <div class="mobile-note-row">
+              <h3>作业托管，不只是看作业</h3>
+              <time>2026.04.28</time>
+            </div>
+            <a class="button" href="#journal">更多札记</a>
+          </article>
         </div>
       </div>
     </section>
@@ -1513,7 +1784,7 @@
           <span class="brand-mark" aria-hidden="true"><img src="assets/profile-icon.jpg" alt=""></span>
           <span>
             <span class="brand-title">Michael's Learning Lab</span>
-            <span class="brand-subtitle">自由学习 · 清晰表达 · 安静生长</span>
+            <span class="brand-subtitle">自由地学习</span>
           </span>
         </a>
         <div class="socials" aria-label="社交链接">
@@ -1527,7 +1798,7 @@
       <div class="footer-column">
         <h3>快速导航</h3>
         <ul>
-          <li><a href="#fields">持续学习中</a></li>
+          <li><a href="#fields">Learning</a></li>
           <li><a href="#resources">学习资源</a></li>
           <li><a href="#journal">成长分享</a></li>
           <li><a href="#about">关于我</a></li>
@@ -1559,7 +1830,7 @@
 
       <div class="subscribe">
         <h3>GitHub 更新</h3>
-        <p>完整资料、项目与长期记录会继续在 GitHub 上整理；主页保留核心入口与学习资源。</p>
+        <p>微信号</p>
       </div>
     </div>
 

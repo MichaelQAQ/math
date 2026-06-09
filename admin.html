@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Homepage Admin | Michael's Learning Lab</title>
+  <style>
+    :root {
+      --ink: #fff1dc;
+      --ink-soft: #e4ccb0;
+      --muted: #b99c7b;
+      --paper: #1d1209;
+      --wash: #100b07;
+      --panel: #24160c;
+      --line: rgba(255, 214, 159, .16);
+      --line-strong: rgba(255, 214, 159, .28);
+      --accent: #ffd28a;
+      --accent-deep: #c06a2f;
+      --danger: #e57c65;
+      --shadow: 0 22px 58px rgba(0, 0, 0, .32);
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.6;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(198, 106, 47, .22), transparent 26%),
+        linear-gradient(180deg, #100b07 0%, #1b1109 58%, #100b07 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 28px 0 44px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      background: rgba(16, 11, 7, .9);
+      backdrop-filter: blur(18px);
+    }
+
+    .topbar-inner {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: grid;
+      gap: 2px;
+    }
+
+    .brand strong {
+      font-size: 1.05rem;
+      line-height: 1.2;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .button {
+      min-height: 40px;
+      padding: 9px 14px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #2a160b;
+      background: linear-gradient(135deg, #ffd28a, #c06a2f);
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(96, 45, 14, .22);
+    }
+
+    .button.secondary {
+      color: var(--ink);
+      background: var(--panel);
+    }
+
+    .button.danger {
+      color: #fff4e2;
+      background: linear-gradient(135deg, #b84d35, #6b2418);
+    }
+
+    .hero {
+      display: grid;
+      gap: 12px;
+      margin: 30px 0 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.12;
+    }
+
+    .hero p {
+      max-width: 780px;
+      color: var(--muted);
+    }
+
+    .status {
+      min-height: 28px;
+      color: var(--accent);
+      font-size: .92rem;
+      font-weight: 800;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, .9fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(29, 18, 9, .84);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-head {
+      padding: 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .panel-head h2 {
+      font-size: 1.05rem;
+    }
+
+    .panel-body {
+      padding: 18px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .form-grid.full,
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 820;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 11px;
+      color: var(--ink);
+      background: rgba(16, 11, 7, .72);
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: rgba(255, 210, 138, .62);
+      box-shadow: 0 0 0 3px rgba(255, 210, 138, .12);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .json-area {
+      min-height: 560px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: .82rem;
+      white-space: pre;
+    }
+
+    .stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-item {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      gap: 8px;
+      background: rgba(16, 11, 7, .5);
+    }
+
+    .mini-item h3 {
+      font-size: .92rem;
+    }
+
+    .mini-item p {
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .mini-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .small-button {
+      min-height: 32px;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      background: rgba(255, 248, 236, .06);
+      cursor: pointer;
+    }
+
+    .small-button.danger {
+      color: var(--danger);
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .file-input {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .topbar-inner,
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar-inner,
+      .layout,
+      .form-grid {
+        display: grid;
+      }
+
+      .actions {
+        justify-content: start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        position: static;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <strong>Michael's Learning Lab</strong>
+        <span>Homepage Content Admin</span>
+      </a>
+      <div class="actions">
+        <a class="button secondary" href="index.html">返回首页</a>
+        <a class="button secondary" href="index.html?draft=1" target="_blank" rel="noreferrer">预览草稿</a>
+        <button class="button secondary" type="button" id="chooseFileButton">选择 JSON</button>
+        <button class="button secondary" type="button" id="saveFileButton">保存到文件</button>
+        <button class="button" type="button" id="downloadButton">下载 content.json</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <h1>首页内容编辑</h1>
+      <p>这里编辑的数据结构与首页模板一致。保存草稿后可预览；确认无误后下载或保存为 <strong>data/content.json</strong>。</p>
+      <div class="status" id="status">正在载入内容...</div>
+    </section>
+
+    <div class="layout">
+      <div class="stack">
+        <section class="panel">
+          <div class="panel-head">
+            <h2>首页文字</h2>
+            <button class="small-button" type="button" id="applyHeroButton">更新</button>
+          </div>
+          <div class="panel-body">
+            <div class="form-grid">
+              <label>
+                网站标题
+                <input id="siteTitle" type="text">
+              </label>
+              <label>
+                副标题
+                <input id="siteSubtitle" type="text">
+              </label>
+              <label class="field-full">
+                Hero 第二行标题
+                <input id="heroSecondLine" type="text">
+              </label>
+              <label class="field-full">
+                Hero 说明
+                <textarea id="heroText"></textarea>
+              </label>
+              <label class="field-full">
+                引言
+                <input id="heroQuote" type="text">
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>新增学习卡片</h2>
+          </div>
+          <form class="panel-body" id="fieldForm">
+            <div class="form-grid">
+              <label>
+                中文标题
+                <input name="title" type="text" required>
+              </label>
+              <label>
+                英文标题
+                <input name="subtitle" type="text">
+              </label>
+              <label>
+                链接
+                <input name="href" type="text" placeholder="new-page/index.html">
+              </label>
+              <label>
+                图片
+                <input name="image" type="text" placeholder="assets/example.png">
+              </label>
+              <label class="field-full">
+                简介
+                <textarea name="description"></textarea>
+              </label>
+              <label>
+                主色
+                <input name="tone" type="text" value="#c6813a">
+              </label>
+              <label>
+                深色
+                <input name="toneDeep" type="text" value="#744116">
+              </label>
+            </div>
+            <button class="button" type="submit">添加学习卡片</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>新增资源卡片</h2>
+          </div>
+          <form class="panel-body" id="resourceForm">
+            <div class="form-grid">
+              <label>
+                标题
+                <input name="title" type="text" required>
+              </label>
+              <label>
+                图标文字
+                <input name="icon" type="text" value="✦">
+              </label>
+              <label class="field-full">
+                条目，每行一个
+                <textarea name="entries" required></textarea>
+              </label>
+              <label class="field-full">
+                按钮，每行格式：文字|链接|secondary
+                <textarea name="actions"></textarea>
+              </label>
+            </div>
+            <button class="button" type="submit">添加资源卡片</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>新增分享条目</h2>
+          </div>
+          <form class="panel-body" id="journalForm">
+            <div class="form-grid">
+              <label>
+                标题
+                <input name="title" type="text" required>
+              </label>
+              <label>
+                日期
+                <input name="date" type="text" placeholder="2026.06.08">
+              </label>
+            </div>
+            <button class="button" type="submit">添加分享</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>当前条目</h2>
+          </div>
+          <div class="panel-body">
+            <div class="mini-list" id="summaryList"></div>
+          </div>
+        </section>
+      </div>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>完整 JSON</h2>
+          <div class="mini-actions">
+            <button class="small-button" type="button" id="applyJsonButton">应用 JSON</button>
+            <button class="small-button" type="button" id="saveDraftButton">保存草稿</button>
+            <button class="small-button danger" type="button" id="clearDraftButton">清除草稿</button>
+          </div>
+        </div>
+        <div class="panel-body">
+          <textarea class="json-area" id="jsonEditor" spellcheck="false"></textarea>
+          <p class="hint">保存草稿会写入浏览器本地存储；下载或保存到文件后，替换 data/content.json，首页就会读取新内容。</p>
+        </div>
+      </section>
+    </div>
+
+    <input class="file-input" id="fileInput" type="file" accept="application/json,.json">
+  </main>
+
+  <script>
+    const CONTENT_URL = "data/content.json";
+    const DRAFT_STORAGE_KEY = "learningLabContentDraft";
+    const statusNode = document.getElementById("status");
+    const jsonEditor = document.getElementById("jsonEditor");
+    const fileInput = document.getElementById("fileInput");
+    let content = null;
+    let fileHandle = null;
+
+    const starterContent = {
+      site: {
+        title: "Michael's Learning Lab",
+        subtitle: "Keep Curiosity Alive",
+        footerSubtitle: "自由地学习",
+        description: "分享学习经验。",
+        logo: "assets/profile-icon.jpg"
+      },
+      nav: [
+        { label: "首页", href: "#home", icon: "⌂", current: true },
+        { label: "Learning", href: "#fields", icon: "✦" },
+        { label: "学习资源", href: "#resources", icon: "◈" },
+        { label: "分享", href: "#journal", icon: "✎" },
+        { label: "关于", href: "#about", icon: "?" }
+      ],
+      hero: {
+        titlePrefix: "Keep ",
+        titleAccent: "Curiosity",
+        titleSuffix: " Alive.",
+        titleSecondLine: "保持好奇心和求知欲！",
+        text: "分享学习经验。",
+        quote: "学习感兴趣的东西，做喜欢的事情",
+        actions: []
+      },
+      fields: { title: "Learning", items: [] },
+      resources: { title: "学习资源", status: "持续整理中", items: [] },
+      journal: { title: "成长分享", moreLabel: "阅读更多札记 →", moreHref: "#journal", entries: [] },
+      footer: { socials: ["GH", "YT", "BL", "WX"], columns: [], subscribeTitle: "GitHub 更新", subscribeText: "微信号", copyright: "© 2026 Michael's Learning Lab. All rights reserved." }
+    };
+
+    function setStatus(message) {
+      statusNode.textContent = message;
+    }
+
+    function clone(value) {
+      return JSON.parse(JSON.stringify(value));
+    }
+
+    function pretty(value = content) {
+      return JSON.stringify(value, null, 2);
+    }
+
+    function linesToArray(value) {
+      return value.split("\n").map((line) => line.trim()).filter(Boolean);
+    }
+
+    function parseActions(value) {
+      return linesToArray(value).map((line) => {
+        const [label, href, secondary] = line.split("|").map((part) => part.trim());
+        return {
+          label,
+          href: href || "#",
+          secondary: secondary === "secondary"
+        };
+      });
+    }
+
+    function syncEditor() {
+      jsonEditor.value = pretty();
+    }
+
+    function syncHeroForm() {
+      document.getElementById("siteTitle").value = content.site?.title || "";
+      document.getElementById("siteSubtitle").value = content.site?.subtitle || "";
+      document.getElementById("heroSecondLine").value = content.hero?.titleSecondLine || "";
+      document.getElementById("heroText").value = content.hero?.text || "";
+      document.getElementById("heroQuote").value = content.hero?.quote || "";
+    }
+
+    function renderSummary() {
+      const list = document.getElementById("summaryList");
+      list.replaceChildren();
+      const groups = [
+        ["学习卡片", content.fields?.items || [], "fields"],
+        ["资源卡片", content.resources?.items || [], "resources"],
+        ["分享条目", content.journal?.entries || [], "journal"]
+      ];
+
+      groups.forEach(([label, items, key]) => {
+        const group = document.createElement("div");
+        group.className = "mini-item";
+        const title = document.createElement("h3");
+        title.textContent = `${label} · ${items.length}`;
+        group.append(title);
+        items.forEach((item, index) => {
+          const row = document.createElement("div");
+          row.className = "mini-actions";
+          const name = document.createElement("p");
+          name.textContent = item.title || item.label || `第 ${index + 1} 项`;
+          const remove = document.createElement("button");
+          remove.className = "small-button danger";
+          remove.type = "button";
+          remove.textContent = "删除";
+          remove.addEventListener("click", () => {
+            if (key === "fields") content.fields.items.splice(index, 1);
+            if (key === "resources") content.resources.items.splice(index, 1);
+            if (key === "journal") content.journal.entries.splice(index, 1);
+            refresh("已删除条目");
+          });
+          row.append(name, remove);
+          group.append(row);
+        });
+        list.append(group);
+      });
+    }
+
+    function refresh(message) {
+      syncHeroForm();
+      syncEditor();
+      renderSummary();
+      setStatus(message || "内容已更新");
+    }
+
+    function applyJson() {
+      content = JSON.parse(jsonEditor.value);
+      refresh("JSON 已应用");
+    }
+
+    async function loadContent() {
+      const draft = localStorage.getItem(DRAFT_STORAGE_KEY);
+      try {
+        const response = await fetch(CONTENT_URL, { cache: "no-store" });
+        if (!response.ok) throw new Error("fetch failed");
+        content = await response.json();
+        refresh(draft ? "已载入 data/content.json，本地草稿仍可预览" : "已载入 data/content.json");
+      } catch (error) {
+        content = draft ? JSON.parse(draft) : clone(starterContent);
+        refresh(draft ? "已载入浏览器草稿" : "未能自动载入 JSON，已使用空模板");
+      }
+    }
+
+    function updateHeroFromForm() {
+      content.site = content.site || {};
+      content.hero = content.hero || {};
+      content.site.title = document.getElementById("siteTitle").value.trim();
+      content.site.subtitle = document.getElementById("siteSubtitle").value.trim();
+      content.hero.titleSecondLine = document.getElementById("heroSecondLine").value.trim();
+      content.hero.text = document.getElementById("heroText").value.trim();
+      content.hero.quote = document.getElementById("heroQuote").value.trim();
+      refresh("首页文字已更新");
+    }
+
+    function downloadJson() {
+      applyJson();
+      const blob = new Blob([pretty(), "\n"], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "content.json";
+      link.click();
+      URL.revokeObjectURL(url);
+      setStatus("已下载 content.json");
+    }
+
+    async function chooseJsonFile() {
+      if ("showOpenFilePicker" in window) {
+        [fileHandle] = await window.showOpenFilePicker({
+          types: [{ description: "JSON", accept: { "application/json": [".json"] } }],
+          multiple: false
+        });
+        const file = await fileHandle.getFile();
+        content = JSON.parse(await file.text());
+        refresh(`已选择 ${file.name}`);
+        return;
+      }
+
+      fileInput.click();
+    }
+
+    async function saveJsonFile() {
+      applyJson();
+      if (!fileHandle || !("createWritable" in fileHandle)) {
+        setStatus("当前浏览器不支持直接写文件，请下载 content.json 后替换 data/content.json");
+        return;
+      }
+      const writable = await fileHandle.createWritable();
+      await writable.write(pretty() + "\n");
+      await writable.close();
+      setStatus("已保存到已选择的 JSON 文件");
+    }
+
+    document.getElementById("applyHeroButton").addEventListener("click", updateHeroFromForm);
+    document.getElementById("applyJsonButton").addEventListener("click", () => {
+      try {
+        applyJson();
+      } catch (error) {
+        setStatus(`JSON 格式有误：${error.message}`);
+      }
+    });
+    document.getElementById("saveDraftButton").addEventListener("click", () => {
+      try {
+        applyJson();
+        localStorage.setItem(DRAFT_STORAGE_KEY, pretty());
+        setStatus("草稿已保存，可打开首页草稿预览");
+      } catch (error) {
+        setStatus(`JSON 格式有误：${error.message}`);
+      }
+    });
+    document.getElementById("clearDraftButton").addEventListener("click", () => {
+      localStorage.removeItem(DRAFT_STORAGE_KEY);
+      setStatus("浏览器草稿已清除");
+    });
+    document.getElementById("downloadButton").addEventListener("click", downloadJson);
+    document.getElementById("chooseFileButton").addEventListener("click", () => {
+      chooseJsonFile().catch((error) => setStatus(`选择文件失败：${error.message}`));
+    });
+    document.getElementById("saveFileButton").addEventListener("click", () => {
+      saveJsonFile().catch((error) => setStatus(`保存文件失败：${error.message}`));
+    });
+
+    fileInput.addEventListener("change", async () => {
+      const file = fileInput.files[0];
+      if (!file) return;
+      content = JSON.parse(await file.text());
+      refresh(`已导入 ${file.name}`);
+    });
+
+    document.getElementById("fieldForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = new FormData(event.currentTarget);
+      content.fields.items.push({
+        title: form.get("title").trim(),
+        subtitle: form.get("subtitle").trim(),
+        description: form.get("description").trim(),
+        href: form.get("href").trim() || "#",
+        image: form.get("image").trim(),
+        alt: `${form.get("title").trim()}封面`,
+        ariaLabel: `查看${form.get("title").trim()}页面`,
+        tone: form.get("tone").trim() || "#c6813a",
+        toneDeep: form.get("toneDeep").trim() || "#744116"
+      });
+      event.currentTarget.reset();
+      refresh("学习卡片已添加");
+    });
+
+    document.getElementById("resourceForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = new FormData(event.currentTarget);
+      content.resources.items.push({
+        title: form.get("title").trim(),
+        icon: form.get("icon").trim() || "✦",
+        entries: linesToArray(form.get("entries")),
+        actions: parseActions(form.get("actions"))
+      });
+      event.currentTarget.reset();
+      refresh("资源卡片已添加");
+    });
+
+    document.getElementById("journalForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = new FormData(event.currentTarget);
+      content.journal.entries.unshift({
+        title: form.get("title").trim(),
+        date: form.get("date").trim(),
+        tone: "#b68c63",
+        toneDeep: "#6b4b2b"
+      });
+      event.currentTarget.reset();
+      refresh("分享条目已添加");
+    });
+
+    loadContent();
+  </script>
+</body>
+
+</html>
